@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.30.0](https://github.com/GrandeurSmart/gza-core/compare/v0.29.1...v0.30.0) (2024-01-01)
+## [1.0.1](https://github.com/GrandeurSmart/gza-core/compare/v0.29.1...v0.30.0) (2024-01-01)
 
 
 ### Features
