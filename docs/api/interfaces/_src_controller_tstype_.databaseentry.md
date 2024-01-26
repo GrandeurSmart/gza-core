@@ -25,7 +25,7 @@
 
 •  **id**: number
 
-*Defined in [src/controller/tstype.ts:9](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/tstype.ts#L9)*
+*Defined in [src/controller/tstype.ts:9](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/tstype.ts#L9)*
 
 ___
 
@@ -33,4 +33,4 @@ ___
 
 •  **type**: [EntityType](../modules/_src_controller_tstype_.md#entitytype)
 
-*Defined in [src/controller/tstype.ts:10](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/tstype.ts#L10)*
+*Defined in [src/controller/tstype.ts:10](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/tstype.ts#L10)*

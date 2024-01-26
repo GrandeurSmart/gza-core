@@ -26,7 +26,7 @@
 
 •  **acceptJoiningDeviceHandler**: (ieeeAddr: string) => Promise\<boolean>
 
-*Defined in [src/controller/controller.ts:31](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/controller.ts#L31)*
+*Defined in [src/controller/controller.ts:31](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/controller.ts#L31)*
 
 This lambda can be used by an application to explictly reject or accept an incoming device.
 When false is returned zigbee-herdsman will not start the interview process and immidiately
@@ -38,7 +38,7 @@ ___
 
 •  **adapter**: [AdapterOptions](_src_adapter_tstype_.adapteroptions.md)
 
-*Defined in [src/controller/controller.ts:25](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/controller.ts#L25)*
+*Defined in [src/controller/controller.ts:25](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/controller.ts#L25)*
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 •  **backupPath**: string
 
-*Defined in [src/controller/controller.ts:24](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/controller.ts#L24)*
+*Defined in [src/controller/controller.ts:24](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/controller.ts#L24)*
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 •  **databaseBackupPath**: string
 
-*Defined in [src/controller/controller.ts:23](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/controller.ts#L23)*
+*Defined in [src/controller/controller.ts:23](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/controller.ts#L23)*
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 •  **databasePath**: string
 
-*Defined in [src/controller/controller.ts:22](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/controller.ts#L22)*
+*Defined in [src/controller/controller.ts:22](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/controller.ts#L22)*
 
 ___
 
@@ -70,7 +70,7 @@ ___
 
 •  **network**: [NetworkOptions](_src_adapter_tstype_.networkoptions.md)
 
-*Defined in [src/controller/controller.ts:20](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/controller.ts#L20)*
+*Defined in [src/controller/controller.ts:20](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/controller.ts#L20)*
 
 ___
 
@@ -78,4 +78,4 @@ ___
 
 •  **serialPort**: [SerialPortOptions](_src_adapter_tstype_.serialportoptions.md)
 
-*Defined in [src/controller/controller.ts:21](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/controller.ts#L21)*
+*Defined in [src/controller/controller.ts:21](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/controller.ts#L21)*

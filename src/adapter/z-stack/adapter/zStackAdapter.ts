@@ -245,7 +245,7 @@ class ZStackAdapter extends Adapter {
                 // We cannot 100% correctly determine if an adapter supports LED. E.g. the zStack 1.2 20190608
                 // fw supports led on the CC2531 but not on the CC2530. Therefore if a led request fails never thrown
                 // an error but instead mark the led as unsupported.
-                // https://github.com/Koenkk/zigbee-herdsman/issues/377
+                // https://github.com/GrandeurSmart/gza-core/issues/377
                 // https://github.com/Koenkk/zigbee2mqtt/issues/7693
                 this.supportsLED = false;
             });

@@ -28,7 +28,7 @@
 
 • `Optional` **direction**: Direction
 
-*Defined in [src/controller/model/endpoint.ts:28](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/endpoint.ts#L28)*
+*Defined in [src/controller/model/endpoint.ts:28](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/endpoint.ts#L28)*
 
 ___
 
@@ -36,7 +36,7 @@ ___
 
 • `Optional` **disableDefaultResponse**: boolean
 
-*Defined in [src/controller/model/endpoint.ts:25](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/endpoint.ts#L25)*
+*Defined in [src/controller/model/endpoint.ts:25](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/endpoint.ts#L25)*
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 • `Optional` **disableRecovery**: boolean
 
-*Defined in [src/controller/model/endpoint.ts:32](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/endpoint.ts#L32)*
+*Defined in [src/controller/model/endpoint.ts:32](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/endpoint.ts#L32)*
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 • `Optional` **disableResponse**: boolean
 
-*Defined in [src/controller/model/endpoint.ts:26](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/endpoint.ts#L26)*
+*Defined in [src/controller/model/endpoint.ts:26](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/endpoint.ts#L26)*
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 • `Optional` **manufacturerCode**: number
 
-*Defined in [src/controller/model/endpoint.ts:24](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/endpoint.ts#L24)*
+*Defined in [src/controller/model/endpoint.ts:24](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/endpoint.ts#L24)*
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 • `Optional` **reservedBits**: number
 
-*Defined in [src/controller/model/endpoint.ts:30](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/endpoint.ts#L30)*
+*Defined in [src/controller/model/endpoint.ts:30](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/endpoint.ts#L30)*
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 • `Optional` **srcEndpoint**: number
 
-*Defined in [src/controller/model/endpoint.ts:29](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/endpoint.ts#L29)*
+*Defined in [src/controller/model/endpoint.ts:29](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/endpoint.ts#L29)*
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 • `Optional` **timeout**: number
 
-*Defined in [src/controller/model/endpoint.ts:27](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/endpoint.ts#L27)*
+*Defined in [src/controller/model/endpoint.ts:27](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/endpoint.ts#L27)*
 
 ___
 
@@ -92,4 +92,4 @@ ___
 
 • `Optional` **transactionSequenceNumber**: number
 
-*Defined in [src/controller/model/endpoint.ts:31](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/endpoint.ts#L31)*
+*Defined in [src/controller/model/endpoint.ts:31](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/endpoint.ts#L31)*

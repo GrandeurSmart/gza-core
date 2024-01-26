@@ -4296,7 +4296,7 @@ const Cluster: {
     },
     manuSpecificUbisysDeviceSetup: {
         ID: 0xfc00,
-        // Doesn't use manufacturerCode: https://github.com/Koenkk/zigbee-herdsman-converters/pull/4412
+        // Doesn't use manufacturerCode: https://github.com/GrandeurSmart/gza-core-converters/pull/4412
         attributes: {
             inputConfigurations: {ID: 0x0000, type: DataType.array},
             inputActions: {ID: 0x0001, type: DataType.array},

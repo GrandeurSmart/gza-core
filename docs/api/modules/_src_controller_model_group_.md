@@ -24,7 +24,7 @@
 
 ▪ `Const` **debug**: object
 
-*Defined in [src/controller/model/group.ts:10](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L10)*
+*Defined in [src/controller/model/group.ts:10](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L10)*
 
 #### Properties:
 

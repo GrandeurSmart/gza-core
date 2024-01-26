@@ -36,7 +36,7 @@
         "excludeProtected": true,
         "excludeNotExported": false,
         "excludeExternals": true,
-        "sourcefile-url-prefix": "https://github.com/Koenkk/zigbee-herdsman/blob/master/src/",
+        "sourcefile-url-prefix": "https://github.com/GrandeurSmart/gza-core/blob/master/src/",
         "out": "./docs/api/",
         "logger": "console",
         "ignoreCompilerErrors": true

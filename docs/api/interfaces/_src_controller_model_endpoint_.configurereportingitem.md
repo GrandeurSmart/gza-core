@@ -23,7 +23,7 @@
 
 •  **attribute**: string \| number \| { ID: number ; type: number  }
 
-*Defined in [src/controller/model/endpoint.ts:17](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/endpoint.ts#L17)*
+*Defined in [src/controller/model/endpoint.ts:17](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/endpoint.ts#L17)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 •  **maximumReportInterval**: number
 
-*Defined in [src/controller/model/endpoint.ts:19](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/endpoint.ts#L19)*
+*Defined in [src/controller/model/endpoint.ts:19](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/endpoint.ts#L19)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 •  **minimumReportInterval**: number
 
-*Defined in [src/controller/model/endpoint.ts:18](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/endpoint.ts#L18)*
+*Defined in [src/controller/model/endpoint.ts:18](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/endpoint.ts#L18)*
 
 ___
 
@@ -47,4 +47,4 @@ ___
 
 •  **reportableChange**: number
 
-*Defined in [src/controller/model/endpoint.ts:20](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/endpoint.ts#L20)*
+*Defined in [src/controller/model/endpoint.ts:20](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/endpoint.ts#L20)*

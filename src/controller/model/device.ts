@@ -540,7 +540,7 @@ class Device extends Entity {
             'TERNCY-PP01': {
                 type: 'EndDevice', manufacturerID: 4648, manufacturerName: 'TERNCY', powerSource: 'Battery'
             },
-            '3RWS18BZ': {}, // https://github.com/Koenkk/zigbee-herdsman-converters/pull/2710
+            '3RWS18BZ': {}, // https://github.com/GrandeurSmart/gza-core-converters/pull/2710
             'MULTI-MECI--EA01': {},
             'MOT003': {}, // https://github.com/Koenkk/zigbee2mqtt/issues/12471
         };
@@ -622,7 +622,7 @@ class Device extends Entity {
         }
 
         // e.g. Xiaomi Aqara Opple devices fail to respond to the first active endpoints request, therefore try 2 times
-        // https://github.com/Koenkk/zigbee-herdsman/pull/103
+        // https://github.com/GrandeurSmart/gza-core/pull/103
         let activeEndpoints;
         for (let attempt = 0; attempt < 2; attempt++) {
             try {
@@ -641,7 +641,7 @@ class Device extends Entity {
 
         // Some devices, e.g. TERNCY return endpoint 0 in the active endpoints request.
         // This is not a valid endpoint number according to the ZCL, requesting a simple descriptor will result
-        // into an error. Therefore we filter it, more info: https://github.com/Koenkk/zigbee-herdsman/issues/82
+        // into an error. Therefore we filter it, more info: https://github.com/GrandeurSmart/gza-core/issues/82
         activeEndpoints.endpoints.filter((e) => e !== 0 && !this.getEndpoint(e)).forEach((e) =>
             this._endpoints.push(Endpoint.create(e, undefined, undefined, [], [], this.networkAddress, this.ieeeAddr)));
         debug.log(`Interview - got active endpoints for device '${this.ieeeAddr}'`);
@@ -667,7 +667,7 @@ class Device extends Entity {
                             } catch (error) {
                                 // Reading attributes can fail for many reason, e.g. it could be that device rejoins
                                 // while joining like in:
-                                // https://github.com/Koenkk/zigbee-herdsman-converters/issues/2485.
+                                // https://github.com/GrandeurSmart/gza-core-converters/issues/2485.
                                 // The modelID and manufacturerName are crucial for device identification, so retry.
                                 if (item.key === 'modelID' || item.key === 'manufacturerName') {
                                     debug.log(`Interview - first ${item.key} retrieval attempt failed, ` +

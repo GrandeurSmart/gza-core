@@ -25,7 +25,7 @@
 
 ▪ `Const` **DefaultOptions**: object
 
-*Defined in [src/controller/controller.ts:34](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/controller.ts#L34)*
+*Defined in [src/controller/controller.ts:34](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/controller.ts#L34)*
 
 #### Properties:
 
@@ -45,7 +45,7 @@ ___
 
 ▪ `Const` **debug**: object
 
-*Defined in [src/controller/controller.ts:50](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/controller.ts#L50)*
+*Defined in [src/controller/controller.ts:50](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/controller.ts#L50)*
 
 #### Properties:
 

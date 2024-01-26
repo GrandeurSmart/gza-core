@@ -20,4 +20,4 @@
 
 •  **neighbors**: { depth: number ; ieeeAddr: string ; linkquality: number ; networkAddress: number ; relationship: number  }[]
 
-*Defined in [src/controller/model/device.ts:20](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/device.ts#L20)*
+*Defined in [src/controller/model/device.ts:20](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/device.ts#L20)*

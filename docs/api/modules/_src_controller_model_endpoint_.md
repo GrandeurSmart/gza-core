@@ -28,7 +28,7 @@
 
 ▪ `Const` **debug**: object
 
-*Defined in [src/controller/model/endpoint.ts:11](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/endpoint.ts#L11)*
+*Defined in [src/controller/model/endpoint.ts:11](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/endpoint.ts#L11)*
 
 #### Properties:
 

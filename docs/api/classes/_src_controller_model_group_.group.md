@@ -44,7 +44,7 @@
 
 • `Readonly` **groupID**: number
 
-*Defined in [src/controller/model/group.ts:25](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L25)*
+*Defined in [src/controller/model/group.ts:25](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L25)*
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 • `Readonly` **meta**: [KeyValue](../interfaces/_src_controller_tstype_.keyvalue.md)
 
-*Defined in [src/controller/model/group.ts:29](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L29)*
+*Defined in [src/controller/model/group.ts:29](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L29)*
 
 ## Accessors
 
@@ -60,7 +60,7 @@ ___
 
 • get **members**(): [Endpoint](_src_controller_model_endpoint_.endpoint.md)[]
 
-*Defined in [src/controller/model/group.ts:27](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L27)*
+*Defined in [src/controller/model/group.ts:27](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L27)*
 
 **Returns:** [Endpoint](_src_controller_model_endpoint_.endpoint.md)[]
 
@@ -70,7 +70,7 @@ ___
 
 ▸ **addMember**(`endpoint`: [Endpoint](_src_controller_model_endpoint_.endpoint.md)): void
 
-*Defined in [src/controller/model/group.ts:126](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L126)*
+*Defined in [src/controller/model/group.ts:126](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L126)*
 
 #### Parameters:
 
@@ -86,7 +86,7 @@ ___
 
 ▸ **command**(`clusterKey`: number \| string, `commandKey`: number \| string, `payload`: [KeyValue](../interfaces/_src_controller_tstype_.keyvalue.md), `options?`: [Options](../interfaces/_src_controller_model_group_.options.md)): Promise\<void>
 
-*Defined in [src/controller/model/group.ts:206](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L206)*
+*Defined in [src/controller/model/group.ts:206](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L206)*
 
 #### Parameters:
 
@@ -105,7 +105,7 @@ ___
 
 ▸ **hasMember**(`endpoint`: [Endpoint](_src_controller_model_endpoint_.endpoint.md)): boolean
 
-*Defined in [src/controller/model/group.ts:136](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L136)*
+*Defined in [src/controller/model/group.ts:136](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L136)*
 
 #### Parameters:
 
@@ -121,7 +121,7 @@ ___
 
 ▸ **read**(`clusterKey`: number \| string, `attributes`: string[] \| number[], `options?`: [Options](../interfaces/_src_controller_model_group_.options.md)): Promise\<void>
 
-*Defined in [src/controller/model/group.ts:178](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L178)*
+*Defined in [src/controller/model/group.ts:178](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L178)*
 
 #### Parameters:
 
@@ -139,7 +139,7 @@ ___
 
 ▸ **removeFromDatabase**(): void
 
-*Defined in [src/controller/model/group.ts:112](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L112)*
+*Defined in [src/controller/model/group.ts:112](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L112)*
 
 **Returns:** void
 
@@ -149,7 +149,7 @@ ___
 
 ▸ **removeFromNetwork**(): Promise\<void>
 
-*Defined in [src/controller/model/group.ts:104](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L104)*
+*Defined in [src/controller/model/group.ts:104](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L104)*
 
 **Returns:** Promise\<void>
 
@@ -159,7 +159,7 @@ ___
 
 ▸ **removeMember**(`endpoint`: [Endpoint](_src_controller_model_endpoint_.endpoint.md)): void
 
-*Defined in [src/controller/model/group.ts:131](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L131)*
+*Defined in [src/controller/model/group.ts:131](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L131)*
 
 #### Parameters:
 
@@ -175,7 +175,7 @@ ___
 
 ▸ **save**(): void
 
-*Defined in [src/controller/model/group.ts:122](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L122)*
+*Defined in [src/controller/model/group.ts:122](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L122)*
 
 **Returns:** void
 
@@ -185,7 +185,7 @@ ___
 
 ▸ **write**(`clusterKey`: number \| string, `attributes`: [KeyValue](../interfaces/_src_controller_tstype_.keyvalue.md), `options?`: [Options](../interfaces/_src_controller_model_group_.options.md)): Promise\<void>
 
-*Defined in [src/controller/model/group.ts:144](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L144)*
+*Defined in [src/controller/model/group.ts:144](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L144)*
 
 #### Parameters:
 
@@ -203,7 +203,7 @@ ___
 
 ▸ `Static`**all**(): [Group](_src_controller_model_group_.group.md)[]
 
-*Defined in [src/controller/model/group.ts:84](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L84)*
+*Defined in [src/controller/model/group.ts:84](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L84)*
 
 **Returns:** [Group](_src_controller_model_group_.group.md)[]
 
@@ -213,7 +213,7 @@ ___
 
 ▸ `Static`**byGroupID**(`groupID`: number): [Group](_src_controller_model_group_.group.md)
 
-*Defined in [src/controller/model/group.ts:79](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L79)*
+*Defined in [src/controller/model/group.ts:79](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L79)*
 
 #### Parameters:
 
@@ -229,7 +229,7 @@ ___
 
 ▸ `Static`**create**(`groupID`: number): [Group](_src_controller_model_group_.group.md)
 
-*Defined in [src/controller/model/group.ts:89](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L89)*
+*Defined in [src/controller/model/group.ts:89](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L89)*
 
 #### Parameters:
 
@@ -247,7 +247,7 @@ ___
 
 *Inherited from [Group](_src_controller_model_group_.group.md).[injectAdapter](_src_controller_model_group_.group.md#injectadapter)*
 
-*Defined in [src/controller/model/entity.ts:12](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/entity.ts#L12)*
+*Defined in [src/controller/model/entity.ts:12](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/entity.ts#L12)*
 
 #### Parameters:
 
@@ -265,7 +265,7 @@ ___
 
 *Inherited from [Group](_src_controller_model_group_.group.md).[injectDatabase](_src_controller_model_group_.group.md#injectdatabase)*
 
-*Defined in [src/controller/model/entity.ts:8](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/entity.ts#L8)*
+*Defined in [src/controller/model/entity.ts:8](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/entity.ts#L8)*
 
 #### Parameters:
 

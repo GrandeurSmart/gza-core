@@ -638,7 +638,7 @@ class BuffaloZcl extends Buffalo {
             return this.writeStructuredSelector(value);
         } else {
             // In case the type is undefined, write it as a buffer to easily allow for custom types
-            // e.g. for https://github.com/Koenkk/zigbee-herdsman/issues/127
+            // e.g. for https://github.com/GrandeurSmart/gza-core/issues/127
             type = type === undefined ? 'BUFFER' : type;
 
             // TODO: remove uppercase once dataTypes are snake case

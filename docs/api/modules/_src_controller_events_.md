@@ -32,7 +32,7 @@
 
 Ƭ  **MessagePayloadType**: \"attributeReport\" \| \"readResponse\" \| \"raw\" \| \"read\" \| \"write\" \| \"commandOn\" \| \"commandOffWithEffect\" \| \"commandStep\" \| \"commandStop\" \| \"commandHueNotification\" \| \"commandOff\" \| \"commandStepColorTemp\" \| \"commandMoveWithOnOff\" \| \"commandMove\" \| \"commandMoveHue\" \| \"commandMoveToSaturation\" \| \"commandStopWithOnOff\" \| \"commandMoveToLevelWithOnOff\" \| \"commandToggle\" \| \"commandTradfriArrowSingle\" \| \"commandTradfriArrowHold\" \| \"commandTradfriArrowRelease\" \| \"commandStepWithOnOff\" \| \"commandMoveToColorTemp\" \| \"commandMoveToColor\" \| \"commandOnWithTimedOff\" \| \"commandRecall\" \| \"commandArm\" \| \"commandPanic\" \| \"commandEmergency\" \| \"commandColorLoopSet\" \| \"commandOperationEventNotification\" \| \"commandStatusChangeNotification\" \| \"commandEnhancedMoveToHueAndSaturation\" \| \"commandUpOpen\" \| \"commandDownClose\" \| \"commandMoveToLevel\" \| \"commandMoveColorTemp\" \| \"commandGetData\" \| \"commandSetDataResponse\" \| \"commandGetWeeklyScheduleRsp\" \| \"commandQueryNextImageRequest\" \| \"commandNotification\" \| \"commandAlertsNotification\" \| \"commandProgrammingEventNotification\" \| \"commandGetPinCodeRsp\" \| \"commandArrivalSensorNotify\" \| \"commandCommissioningNotification\" \| \"commandAtHome\" \| \"commandGoOut\" \| \"commandCinema\" \| \"commandRepast\" \| \"commandSleep\" \| \"commandStudyKeyRsp\" \| \"commandCreateIdRsp\" \| \"commandGetIdAndKeyCodeListRsp\" \| \"commandSetTimeRequest\" \| \"commandGetPanelStatus\"
 
-*Defined in [src/controller/events.ts:91](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/events.ts#L91)*
+*Defined in [src/controller/events.ts:91](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/events.ts#L91)*
 
 ## Object literals
 
@@ -40,7 +40,7 @@
 
 ▪ `Const` **CommandsLookup**: object
 
-*Defined in [src/controller/events.ts:30](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/events.ts#L30)*
+*Defined in [src/controller/events.ts:30](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/events.ts#L30)*
 
 #### Properties:
 

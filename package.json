@@ -1,27 +1,15 @@
 {
   "author": {
-    "name": "Koen Kanters",
-    "email": "koenkanters94@gmail.com"
+    "name": "Mainlogix",
+    "email": "mainlogixlimited@gmail.com"
   },
   "bugs": {
     "url": "https://github.com/koenkk/zigbee-herdsman/issues"
   },
   "contributors": [
     {
-      "name": "Koen Kanters",
-      "email": "koenkanters94@gmail.com"
-    },
-    {
-      "name": "Hedy Wang",
-      "email": "hedywings@gmail.com"
-    },
-    {
-      "name": "Simen Li",
-      "email": "simenkid@gmail.com"
-    },
-    {
-      "name": "Jack Wu",
-      "email": "jackchased@gmail.com"
+      "name": "Mainlogix",
+      "email": "mainlogixlimited@gmail.com"
     }
   ],
   "dependencies": {
@@ -60,7 +48,7 @@
     "typedoc-plugin-no-inherit": "*",
     "typescript": "*"
   },
-  "homepage": "https://github.com/Koenkk/zigbee-herdsman",
+  "homepage": "https://github.com/GrandeurSmart/gza-core",
   "keywords": [
     "zigbee",
     "cc253x"
@@ -71,7 +59,7 @@
   "name": "zigbee-herdsman",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Koenkk/zigbee-herdsman.git"
+    "url": "git+https://github.com/GrandeurSmart/gza-core.git"
   },
   "scripts": {
     "build": "./node_modules/.bin/tsc",

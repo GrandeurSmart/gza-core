@@ -23,7 +23,7 @@ import {LoggerStub} from "../../../controller/logger-stub";
 import * as Models from "../../../models";
 
 const debug = Debug('adapter');
-const default_bind_group = 901;  // https://github.com/Koenkk/zigbee-herdsman-converters/blob/master/lib/constants.js#L3
+const default_bind_group = 901;  // https://github.com/GrandeurSmart/gza-core-converters/blob/master/lib/constants.js#L3
 interface WaitressMatcher {
     address: number | string;
     endpoint: number;

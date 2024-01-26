@@ -27,7 +27,7 @@
 
 Ƭ  **DeviceType**: \"Coordinator\" \| \"Router\" \| \"EndDevice\" \| \"Unknown\" \| \"GreenPower\"
 
-*Defined in [src/controller/tstype.ts:4](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/tstype.ts#L4)*
+*Defined in [src/controller/tstype.ts:4](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/tstype.ts#L4)*
 
 ___
 
@@ -35,4 +35,4 @@ ___
 
 Ƭ  **EntityType**: [DeviceType](_src_controller_tstype_.md#devicetype) \| \"Group\"
 
-*Defined in [src/controller/tstype.ts:6](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/tstype.ts#L6)*
+*Defined in [src/controller/tstype.ts:6](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/tstype.ts#L6)*

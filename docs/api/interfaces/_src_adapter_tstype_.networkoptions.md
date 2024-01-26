@@ -24,7 +24,7 @@
 
 •  **channelList**: number[]
 
-*Defined in [src/adapter/tstype.ts:4](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/adapter/tstype.ts#L4)*
+*Defined in [src/adapter/tstype.ts:4](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/adapter/tstype.ts#L4)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • `Optional` **extendedPanID**: number[]
 
-*Defined in [src/adapter/tstype.ts:3](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/adapter/tstype.ts#L3)*
+*Defined in [src/adapter/tstype.ts:3](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/adapter/tstype.ts#L3)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 • `Optional` **networkKey**: number[]
 
-*Defined in [src/adapter/tstype.ts:5](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/adapter/tstype.ts#L5)*
+*Defined in [src/adapter/tstype.ts:5](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/adapter/tstype.ts#L5)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 • `Optional` **networkKeyDistribute**: boolean
 
-*Defined in [src/adapter/tstype.ts:6](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/adapter/tstype.ts#L6)*
+*Defined in [src/adapter/tstype.ts:6](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/adapter/tstype.ts#L6)*
 
 ___
 
@@ -56,4 +56,4 @@ ___
 
 •  **panID**: number
 
-*Defined in [src/adapter/tstype.ts:2](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/adapter/tstype.ts#L2)*
+*Defined in [src/adapter/tstype.ts:2](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/adapter/tstype.ts#L2)*

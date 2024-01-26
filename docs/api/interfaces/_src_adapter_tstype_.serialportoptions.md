@@ -23,7 +23,7 @@
 
 • `Optional` **adapter**: \"zstack\" \| \"deconz\" \| \"zigate\"
 
-*Defined in [src/adapter/tstype.ts:13](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/adapter/tstype.ts#L13)*
+*Defined in [src/adapter/tstype.ts:13](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/adapter/tstype.ts#L13)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • `Optional` **baudRate**: number
 
-*Defined in [src/adapter/tstype.ts:10](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/adapter/tstype.ts#L10)*
+*Defined in [src/adapter/tstype.ts:10](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/adapter/tstype.ts#L10)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • `Optional` **path**: string
 
-*Defined in [src/adapter/tstype.ts:12](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/adapter/tstype.ts#L12)*
+*Defined in [src/adapter/tstype.ts:12](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/adapter/tstype.ts#L12)*
 
 ___
 
@@ -47,4 +47,4 @@ ___
 
 • `Optional` **rtscts**: boolean
 
-*Defined in [src/adapter/tstype.ts:11](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/adapter/tstype.ts#L11)*
+*Defined in [src/adapter/tstype.ts:11](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/adapter/tstype.ts#L11)*

@@ -21,7 +21,7 @@
 
 • `Optional` **concurrent**: number
 
-*Defined in [src/adapter/tstype.ts:17](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/adapter/tstype.ts#L17)*
+*Defined in [src/adapter/tstype.ts:17](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/adapter/tstype.ts#L17)*
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 • `Optional` **delay**: number
 
-*Defined in [src/adapter/tstype.ts:18](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/adapter/tstype.ts#L18)*
+*Defined in [src/adapter/tstype.ts:18](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/adapter/tstype.ts#L18)*

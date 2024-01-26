@@ -91,7 +91,7 @@ const Foundation: {
         parameters: [
             {name: 'status', type: DataType.uint8},
             // minimumRemainingBufferBytes: if direction is present, attrId is also present
-            // https://github.com/Koenkk/zigbee-herdsman/pull/115
+            // https://github.com/GrandeurSmart/gza-core/pull/115
             {name: 'direction', type: DataType.uint8, conditions: [{type: 'minimumRemainingBufferBytes', value: 3}]},
             {name: 'attrId', type: DataType.uint16, conditions: [{type: 'minimumRemainingBufferBytes', value: 2}]},
         ],

@@ -20,4 +20,4 @@
 
 •  **table**: { destinationAddress: number ; nextHop: number ; status: string  }[]
 
-*Defined in [src/controller/model/device.ts:27](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/device.ts#L27)*
+*Defined in [src/controller/model/device.ts:27](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/device.ts#L27)*

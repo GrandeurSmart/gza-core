@@ -21,7 +21,7 @@
 
 •  **adapterDisconnected**:  = "adapterDisconnected"
 
-*Defined in [src/controller/events.ts:6](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/events.ts#L6)*
+*Defined in [src/controller/events.ts:6](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/events.ts#L6)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 •  **deviceAnnounce**:  = "deviceAnnounce"
 
-*Defined in [src/controller/events.ts:9](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/events.ts#L9)*
+*Defined in [src/controller/events.ts:9](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/events.ts#L9)*
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 •  **deviceInterview**:  = "deviceInterview"
 
-*Defined in [src/controller/events.ts:8](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/events.ts#L8)*
+*Defined in [src/controller/events.ts:8](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/events.ts#L8)*
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 •  **deviceJoined**:  = "deviceJoined"
 
-*Defined in [src/controller/events.ts:7](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/events.ts#L7)*
+*Defined in [src/controller/events.ts:7](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/events.ts#L7)*
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 •  **deviceLeave**:  = "deviceLeave"
 
-*Defined in [src/controller/events.ts:10](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/events.ts#L10)*
+*Defined in [src/controller/events.ts:10](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/events.ts#L10)*
 
 ___
 
@@ -61,4 +61,4 @@ ___
 
 •  **message**:  = "message"
 
-*Defined in [src/controller/events.ts:5](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/events.ts#L5)*
+*Defined in [src/controller/events.ts:5](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/events.ts#L5)*

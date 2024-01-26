@@ -16,4 +16,4 @@
 
 •  **deviceJoined**:  = "deviceJoined"
 
-*Defined in [src/controller/tstype.ts:16](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/tstype.ts#L16)*
+*Defined in [src/controller/tstype.ts:16](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/tstype.ts#L16)*

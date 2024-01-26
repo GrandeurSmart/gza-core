@@ -24,7 +24,7 @@
 
 • `Optional` **direction**: Direction
 
-*Defined in [src/controller/model/group.ts:17](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L17)*
+*Defined in [src/controller/model/group.ts:17](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L17)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • `Optional` **manufacturerCode**: number
 
-*Defined in [src/controller/model/group.ts:16](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L16)*
+*Defined in [src/controller/model/group.ts:16](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L16)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 • `Optional` **reservedBits**: number
 
-*Defined in [src/controller/model/group.ts:19](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L19)*
+*Defined in [src/controller/model/group.ts:19](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L19)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 • `Optional` **srcEndpoint**: number
 
-*Defined in [src/controller/model/group.ts:18](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L18)*
+*Defined in [src/controller/model/group.ts:18](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L18)*
 
 ___
 
@@ -56,4 +56,4 @@ ___
 
 • `Optional` **transactionSequenceNumber**: number
 
-*Defined in [src/controller/model/group.ts:20](https://github.com/Koenkk/zigbee-herdsman/blob/master/src/src/controller/model/group.ts#L20)*
+*Defined in [src/controller/model/group.ts:20](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/model/group.ts#L20)*
