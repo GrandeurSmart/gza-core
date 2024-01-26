@@ -12,8 +12,8 @@ import Debug from "debug";
 import assert from 'assert';
 
 const debug = {
-    info: Debug('zigbee-herdsman:controller:endpoint'),
-    error: Debug('zigbee-herdsman:controller:endpoint'),
+    info: Debug('gza-core:controller:endpoint'),
+    error: Debug('gza-core:controller:endpoint'),
 };
 
 export interface ConfigureReportingItem {
@@ -834,7 +834,7 @@ class Endpoint extends Entity {
     /**
      * Remove endpoint from a group, accepts both a Group and number as parameter.
      * The number parameter type should only be used when removing from a group which is not known
-     * to zigbee-herdsman.
+     * to gza-core.
      */
     public async removeFromGroup(group: Group | number): Promise<void> {
         await this.command('genGroups', 'remove', {groupid: group instanceof Group ? group.groupID : group});

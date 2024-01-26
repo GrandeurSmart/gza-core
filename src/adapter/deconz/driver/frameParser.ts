@@ -8,7 +8,7 @@ import { Request, ReceivedDataResponse, DataStateResponse, Command, ParamMac, Pa
 import * as Events from '../../events';
 import {ZclFrame} from '../../../zcl';
 import Debug from 'debug';
-const debug = Debug('zigbee-herdsman:deconz:frameParser');
+const debug = Debug('gza-core:deconz:frameParser');
 
 interface lastReceivedGpInd {
     srcId: number;

@@ -7,7 +7,7 @@ import {
 } from '../../tstype';
 import Debug from "debug";
 import Adapter from '../../adapter';
-const debug = Debug("zigbee-herdsman:deconz:adapter");
+const debug = Debug("gza-core:deconz:adapter");
 import Driver from '../driver/driver';
 import {ZclFrame, FrameType, Direction, Foundation} from '../../../zcl';
 import * as Events from '../../events';

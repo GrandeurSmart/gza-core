@@ -4,7 +4,7 @@ import * as consts from './consts';
 import {crc16ccitt} from './utils';
 import Debug from "debug";
 
-const debug = Debug('zigbee-herdsman:adapter:ezsp:uart');
+const debug = Debug('gza-core:adapter:ezsp:uart');
 
 export class Writer extends stream.Readable {
     public writeBuffer(buffer: Buffer): void {

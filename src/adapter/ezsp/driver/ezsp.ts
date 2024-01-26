@@ -22,8 +22,8 @@ import Debug from "debug";
 
 
 const debug = {
-    error: Debug('zigbee-herdsman:adapter:ezsp:erro'),
-    log: Debug('zigbee-herdsman:adapter:ezsp:ezsp'),
+    error: Debug('gza-core:adapter:ezsp:erro'),
+    log: Debug('gza-core:adapter:ezsp:ezsp'),
 };
 
 

@@ -16,7 +16,7 @@ import { Command, Request, parameterT, ApsDataRequest, ReceivedDataResponse, Dat
 // @ts-ignore
 import slip from 'slip';
 
-const debug = Debug('zigbee-herdsman:deconz:driver');
+const debug = Debug('gza-core:deconz:driver');
 
 const autoDetectDefinitions = [
     {manufacturer: 'dresden elektronik ingenieurtechnik GmbH', vendorId: '1cf1', productId: '0030'}, // Conbee II

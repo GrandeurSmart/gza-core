@@ -9,7 +9,7 @@ import {channelsMask2list} from '../driver/utils';
 export class EZSPAdapterBackup {
     private driver: Driver;
     private defaultPath: string;
-    private debug = Debug("zigbee-herdsman:adapter:ezsp:backup");
+    private debug = Debug("gza-core:adapter:ezsp:backup");
 
     public constructor(driver: Driver, path: string) {
         this.driver = driver;

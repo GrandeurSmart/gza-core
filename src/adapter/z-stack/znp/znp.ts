@@ -30,12 +30,12 @@ const timeouts = {
 };
 
 const debug = {
-    error: Debug('zigbee-herdsman:adapter:zStack:znp:error'),
-    timeout: Debug('zigbee-herdsman:adapter:zStack:znp:timeout'),
-    log: Debug('zigbee-herdsman:adapter:zStack:znp:log'),
-    SREQ: Debug('zigbee-herdsman:adapter:zStack:znp:SREQ'),
-    AREQ: Debug('zigbee-herdsman:adapter:zStack:znp:AREQ'),
-    SRSP: Debug('zigbee-herdsman:adapter:zStack:znp:SRSP'),
+    error: Debug('gza-core:adapter:zStack:znp:error'),
+    timeout: Debug('gza-core:adapter:zStack:znp:timeout'),
+    log: Debug('gza-core:adapter:zStack:znp:log'),
+    SREQ: Debug('gza-core:adapter:zStack:znp:SREQ'),
+    AREQ: Debug('gza-core:adapter:zStack:znp:AREQ'),
+    SRSP: Debug('gza-core:adapter:zStack:znp:SRSP'),
 };
 
 interface WaitressMatcher {

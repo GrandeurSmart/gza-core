@@ -2,7 +2,7 @@
 /* eslint-disable */
 import debug from 'debug';
 
-const adapterDebug = debug('zigbee-herdsman:adapter:zigate');
+const adapterDebug = debug('gza-core:adapter:zigate');
 
 const Debug = (suffix: string): { log: debug.Debugger, error: debug.Debugger , info: debug.Debugger} => {
     const extendDebug = adapterDebug.extend(suffix);

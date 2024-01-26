@@ -20,7 +20,7 @@ export class AdapterBackup {
     private znp: Znp;
     private nv: AdapterNvMemory;
     private defaultPath: string;
-    private debug = Debug("zigbee-herdsman:adapter:zStack:startup:backup");
+    private debug = Debug("gza-core:adapter:zStack:startup:backup");
 
     public constructor(znp: Znp, nv: AdapterNvMemory, path: string) {
         this.znp = znp;
@@ -394,7 +394,7 @@ export class AdapterBackup {
     }
 
     /**
-     * Acquires ZNP version internal to `zigbee-herdsman` from controller.
+     * Acquires ZNP version internal to `gza-core` from controller.
      * 
      * *If Z-Stack 1.2 controller is detected an error is thrown, since Z-Stack 1.2 backup
      * and restore procedures are not supported.*

@@ -28,7 +28,7 @@ interface Options {
     adapter: AdapterTsType.AdapterOptions;
     /**
      * This lambda can be used by an application to explictly reject or accept an incoming device.
-     * When false is returned zigbee-herdsman will not start the interview process and immidiately
+     * When false is returned gza-core will not start the interview process and immidiately
      * try to remove the device from the network.
      */
     acceptJoiningDeviceHandler: (ieeeAddr: string) => Promise<boolean>;
@@ -59,8 +59,8 @@ const DefaultOptions: Options = {
 };
 
 const debug = {
-    error: Debug('zigbee-herdsman:controller:error'),
-    log: Debug('zigbee-herdsman:controller:log'),
+    error: Debug('gza-core:controller:error'),
+    log: Debug('gza-core:controller:log'),
 };
 
 /**

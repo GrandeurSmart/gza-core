@@ -27,7 +27,7 @@
 
     ],
     "typedocOptions": {
-        "name": "zigbee-herdsman",
+        "name": "gza-core",
         "mode": "modules",
         "target": "es6",
         "module": "commonjs",

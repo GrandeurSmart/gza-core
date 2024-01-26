@@ -1,8 +1,8 @@
-**[zigbee-herdsman](README.md)**
+**[gza-core](README.md)**
 
 > Globals
 
-# zigbee-herdsman
+# gza-core
 
 ## Index
 

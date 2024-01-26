@@ -3,7 +3,7 @@
 import {Struct} from "../struct";
 
 /**
- * Creates a zigbee-herdsman `hasConfigured` struct.
+ * Creates a gza-core `hasConfigured` struct.
  * 
  * @param data Data to initialize structure with.
  */

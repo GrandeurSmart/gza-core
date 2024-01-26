@@ -6,7 +6,7 @@ import slip from 'slip';
 import Frame from './frame';
 import Debug from "debug";
 
-const debug = Debug('zigbee-herdsman:deconz:driver:parser');
+const debug = Debug('gza-core:deconz:driver:parser');
 
 class Parser extends stream.Transform {
     private buffer: Buffer;

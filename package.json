@@ -4,7 +4,7 @@
     "email": "mainlogixlimited@gmail.com"
   },
   "bugs": {
-    "url": "https://github.com/koenkk/zigbee-herdsman/issues"
+    "url": "https://github.com/koenkk/gza-core/issues"
   },
   "contributors": [
     {
@@ -56,7 +56,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "name": "zigbee-herdsman",
+  "name": "gza-core",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GrandeurSmart/gza-core.git"

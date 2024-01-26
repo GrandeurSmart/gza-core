@@ -69,7 +69,7 @@ const backupMatchingConfig = JSON.parse(`
     "metadata": {
       "format": "zigpy/open-coordinator-backup",
       "version": 1,
-      "source": "zigbee-herdsman@0.13.65",
+      "source": "gza-core@0.13.65",
       "internal": {
         "date": "2021-03-03T19:15:40.524Z",
         "znpVersion": 2
@@ -164,7 +164,7 @@ const backupMatchingConfig12 = JSON.parse(`
     "metadata": {
       "format": "zigpy/open-coordinator-backup",
       "version": 1,
-      "source": "zigbee-herdsman@0.13.65",
+      "source": "gza-core@0.13.65",
       "internal": {
         "date": "2021-03-03T19:15:40.524Z",
         "znpVersion": 0
@@ -201,7 +201,7 @@ const backupNotMatchingConfig = JSON.parse(`
     "metadata": {
       "format": "zigpy/open-coordinator-backup",
       "version": 1,
-      "source": "zigbee-herdsman@0.13.65",
+      "source": "gza-core@0.13.65",
       "internal": {
         "date": "2021-03-03T19:15:40.524Z",
         "znpVersion": 2

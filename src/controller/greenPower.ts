@@ -7,8 +7,8 @@ import {GreenPowerEvents, GreenPowerDeviceJoinedPayload} from './tstype';
 import Debug from "debug";
 
 const debug = {
-    info: Debug('zigbee-herdsman:controller:greenpower'),
-    error: Debug('zigbee-herdsman:controller:greenpower'),
+    info: Debug('gza-core:controller:greenpower'),
+    error: Debug('gza-core:controller:greenpower'),
 };
 
 const zigBeeLinkKey = Buffer.from([

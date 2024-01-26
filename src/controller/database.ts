@@ -3,7 +3,7 @@ import Debug from "debug";
 import {DatabaseEntry, EntityType} from './tstype';
 
 const debug = {
-    log: Debug('zigbee-herdsman:controller:database:log'),
+    log: Debug('gza-core:controller:database:log'),
 };
 
 class Database {

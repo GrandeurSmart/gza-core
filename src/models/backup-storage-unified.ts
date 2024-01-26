@@ -10,7 +10,7 @@ export interface UnifiedBackupStorage {
         version: 1;
         source: string;
         internal: {
-            /* zigbee-herdsman specific data */
+            /* gza-core specific data */
             date: string;
             znpVersion?: number;
             ezspVersion?: number;

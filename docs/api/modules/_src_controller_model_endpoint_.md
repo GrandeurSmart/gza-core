@@ -1,4 +1,4 @@
-**[zigbee-herdsman](../README.md)**
+**[gza-core](../README.md)**
 
 > [Globals](../README.md) / "src/controller/model/endpoint"
 
@@ -34,5 +34,5 @@
 
 Name | Type | Value |
 ------ | ------ | ------ |
-`error` | Debugger | Debug('zigbee-herdsman:controller:endpoint') |
-`info` | Debugger | Debug('zigbee-herdsman:controller:endpoint') |
+`error` | Debugger | Debug('gza-core:controller:endpoint') |
+`info` | Debugger | Debug('gza-core:controller:endpoint') |

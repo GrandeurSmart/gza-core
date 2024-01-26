@@ -1,4 +1,4 @@
-const { Controller } = require('zigbee-herdsman')
+const { Controller } = require('gza-core')
 
 const SERIAL = '/dev/ttyACM0'
 const DB = './devices.db'

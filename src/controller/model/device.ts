@@ -15,8 +15,8 @@ import {ZclFrameConverter} from '../helpers';
 const OneJanuary2000 = new Date('January 01, 2000 00:00:00 UTC+00:00').getTime();
 
 const debug = {
-    error: Debug('zigbee-herdsman:controller:device:error'),
-    log: Debug('zigbee-herdsman:controller:device:log'),
+    error: Debug('gza-core:controller:device:error'),
+    log: Debug('gza-core:controller:device:log'),
 };
 
 interface LQI {

@@ -1,4 +1,4 @@
-**[zigbee-herdsman](../README.md)**
+**[gza-core](../README.md)**
 
 > [Globals](../README.md) / "src/controller/controller"
 
@@ -51,5 +51,5 @@ ___
 
 Name | Type | Value |
 ------ | ------ | ------ |
-`error` | Debugger | Debug('zigbee-herdsman:controller:error') |
-`log` | Debugger | Debug('zigbee-herdsman:controller:log') |
+`error` | Debugger | Debug('gza-core:controller:error') |
+`log` | Debugger | Debug('gza-core:controller:log') |

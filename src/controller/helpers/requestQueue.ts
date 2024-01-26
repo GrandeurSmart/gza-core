@@ -4,8 +4,8 @@ import Request from './request';
 import Debug from "debug";
 
 const debug = {
-    info: Debug('zigbee-herdsman:helpers:requestQueue'),
-    error: Debug('zigbee-herdsman:helpers:requestQeue'),
+    info: Debug('gza-core:helpers:requestQueue'),
+    error: Debug('gza-core:helpers:requestQeue'),
 };
 
 type Mutable<T> = { -readonly [P in keyof T ]: T[P] };

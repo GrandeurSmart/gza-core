@@ -10,7 +10,7 @@ import {Writer}  from './writer';
 import {Parser}  from './parser';
 import Debug from "debug";
 
-const debug = Debug('zigbee-herdsman:adapter:ezsp:uart');
+const debug = Debug('gza-core:adapter:ezsp:uart');
 
 
 enum NcpResetCode {

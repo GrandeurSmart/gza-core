@@ -1,4 +1,4 @@
-**[zigbee-herdsman](../README.md)**
+**[gza-core](../README.md)**
 
 > [Globals](../README.md) / ["src/controller/model/endpoint"](../modules/_src_controller_model_endpoint_.md) / Endpoint
 
@@ -366,7 +366,7 @@ ___
 
 Remove endpoint from a group, accepts both a Group and number as parameter.
 The number parameter type should only be used when removing from a group which is not known
-to zigbee-herdsman.
+to gza-core.
 
 #### Parameters:
 

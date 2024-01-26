@@ -1,4 +1,4 @@
-**[zigbee-herdsman](../README.md)**
+**[gza-core](../README.md)**
 
 > [Globals](../README.md) / ["src/controller/events"](../modules/_src_controller_events_.md) / DeviceLeavePayload
 

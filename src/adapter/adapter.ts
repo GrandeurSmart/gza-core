@@ -7,7 +7,7 @@ import {LoggerStub} from "../controller/logger-stub";
 import * as Models from "../models";
 import Bonjour, {Service} from 'bonjour-service';
 
-const debug = Debug("zigbee-herdsman:adapter");
+const debug = Debug("gza-core:adapter");
 
 abstract class Adapter extends events.EventEmitter {
     public readonly greenPowerGroup = 0x0b84;

@@ -8,8 +8,8 @@ import assert from 'assert';
 import Debug from "debug";
 
 const debug = {
-    info: Debug('zigbee-herdsman:controller:group'),
-    error: Debug('zigbee-herdsman:controller:group'),
+    info: Debug('gza-core:controller:group'),
+    error: Debug('gza-core:controller:group'),
 };
 
 interface Options {

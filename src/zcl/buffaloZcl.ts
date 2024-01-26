@@ -5,8 +5,8 @@ import * as Utils from './utils';
 import Debug from "debug";
 
 const debug = {
-    info: Debug('zigbee-herdsman:controller:buffaloZcl'),
-    error: Debug('zigbee-herdsman:controller:buffaloZcl'),
+    info: Debug('gza-core:controller:buffaloZcl'),
+    error: Debug('gza-core:controller:buffaloZcl'),
 };
 
 interface KeyValue {[s: string | number]: number | string}

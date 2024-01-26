@@ -1,4 +1,4 @@
-**[zigbee-herdsman](../README.md)**
+**[gza-core](../README.md)**
 
 > [Globals](../README.md) / ["src/controller/controller"](../modules/_src_controller_controller_.md) / Options
 
@@ -29,7 +29,7 @@
 *Defined in [src/controller/controller.ts:31](https://github.com/GrandeurSmart/gza-core/blob/master/src/src/controller/controller.ts#L31)*
 
 This lambda can be used by an application to explictly reject or accept an incoming device.
-When false is returned zigbee-herdsman will not start the interview process and immidiately
+When false is returned gza-core will not start the interview process and immidiately
 try to remove the device from the network.
 
 ___

@@ -18,7 +18,7 @@ import {ZnpAdapterManager} from "./manager";
 import * as Models from "../../../models";
 import assert from 'assert';
 
-const debug = Debug("zigbee-herdsman:adapter:zStack:adapter");
+const debug = Debug("gza-core:adapter:zStack:adapter");
 const Subsystem = UnpiConstants.Subsystem;
 const Type = UnpiConstants.Type;
 const {ZnpCommandStatus, AddressMode} = Constants.COMMON;
