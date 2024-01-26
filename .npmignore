@@ -1,0 +1,23 @@
+#tests
+test
+coverage
+
+#build tools
+.travis.yml
+.jenkins.yml
+.codeclimate.yml
+tsconfig.tsbuildinfo
+
+#linters
+.jscsrc
+.jshintrc
+.eslintrc*
+
+#editor settings
+.vscode
+.idea
+
+#src
+src
+docs
+temp
