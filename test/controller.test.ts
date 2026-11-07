@@ -2667,7 +2667,7 @@ describe("Controller", () => {
         /**
          * Payload of the attribute report that a BSEED TS011F (`_TZ3210_2uollq9d`) sends on cluster 0xE000 and retransmits until
          * answered: attribute 0xD002 of type ARRAY, encoded by Tuya as raw data instead of a ZCL array, which fails to parse.
-         * https://github.com/Koenkk/zigbee2mqtt/issues/33174
+         * https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/33174
          */
         const ts011fReportPayload = (): Buffer => {
             const buffalo = new BuffaloZcl(Buffer.alloc(6));
@@ -3448,7 +3448,7 @@ describe("Controller", () => {
     });
 
     it("Tuya end devices joins, stops responding after 1 requests, should read modelID and manufacturerName immediately on second pair", async () => {
-        // https://github.com/Koenkk/zigbee2mqtt/issues/7553
+        // https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/7553
         await controller.start();
 
         // Joins
@@ -3506,7 +3506,7 @@ describe("Controller", () => {
     });
 
     it("Gledopto GL-C-007/GL-C-008 join (all endpoints support genBasic but only 12 responds)", async () => {
-        //  - https://github.com/Koenkk/zigbee2mqtt/issues/2872
+        //  - https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/2872
         await controller.start();
         await mockAdapterEvents.deviceJoined({networkAddress: 172, ieeeAddr: "0x172"});
         expect(events.deviceInterview.length).toBe(2);

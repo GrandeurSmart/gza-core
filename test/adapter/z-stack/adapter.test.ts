@@ -128,7 +128,7 @@ const backupMatchingConfig = {
     metadata: {
         format: "zigpy/open-coordinator-backup",
         version: 1,
-        source: "zigbee-herdsman@0.13.65",
+        source: "gza-core@0.13.65",
         internal: {
             date: "2021-03-03T19:15:40.524Z",
             znpVersion: 2,
@@ -219,7 +219,7 @@ const backupMatchingConfig12 = {
     metadata: {
         format: "zigpy/open-coordinator-backup",
         version: 1,
-        source: "zigbee-herdsman@0.13.65",
+        source: "gza-core@0.13.65",
         internal: {
             date: "2021-03-03T19:15:40.524Z",
             znpVersion: 0,
@@ -252,7 +252,7 @@ const backupNotMatchingConfig = {
     metadata: {
         format: "zigpy/open-coordinator-backup",
         version: 1,
-        source: "zigbee-herdsman@0.13.65",
+        source: "gza-core@0.13.65",
         internal: {
             date: "2021-03-03T19:15:40.524Z",
             znpVersion: 2,
@@ -1974,7 +1974,7 @@ describe("zstack-adapter", () => {
     });
 
     it("should start with 3.x.0 adapter - warn when preconfigured key doesn't match network key", async () => {
-        // https://github.com/Koenkk/zigbee-herdsman/pull/1692
+        // https://github.com/GrandeurSmart/zigbee-herdsman/pull/1692
         mockZnpRequestWith(commissioned3x0AlignedPrecfgKeyMismatchRequestMock);
         const result = await adapter.start();
         expect(result).toBe("resumed");
@@ -4265,7 +4265,7 @@ describe("zstack-adapter", () => {
     });
 
     it("Node descriptor request should discover route to fix potential fails", async () => {
-        // https://github.com/Koenkk/zigbee2mqtt/issues/3276
+        // https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/3276
         basicMocks();
         await adapter.start();
         mockZnpRequest.mockClear();

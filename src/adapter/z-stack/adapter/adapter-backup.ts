@@ -428,7 +428,7 @@ export class AdapterBackup {
     }
 
     /**
-     * Acquires ZNP version internal to `zigbee-herdsman` from controller.
+     * Acquires ZNP version internal to `gza-core` from controller.
      *
      * *If Z-Stack 1.2 controller is detected an error is thrown, since Z-Stack 1.2 backup
      * and restore procedures are not supported.*

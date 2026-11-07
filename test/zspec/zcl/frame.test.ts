@@ -958,7 +958,7 @@ describe("ZCL Frame", () => {
         );
     });
 
-    // https://github.com/Koenkk/zigbee2mqtt/issues/28217
+    // https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/28217
     it("[workaround] Reads genOta imageBlockRequest even if minimumBlockPeriod is missing", () => {
         const b = Buffer.from([1, 3, 3, 2, 33, 16, 18, 0, 255, 69, 81, 0, 62, 0, 0, 0, 8]);
         const frame = Zcl.Frame.fromBuffer(Zcl.Clusters.genOta.ID, Zcl.Header.fromBuffer(b), b, {});
@@ -973,7 +973,7 @@ describe("ZCL Frame", () => {
         });
     });
 
-    // https://github.com/Koenkk/zigbee-herdsman/issues/1889
+    // https://github.com/GrandeurSmart/zigbee-herdsman/issues/1889
     it("Reads manuSpecificTuya mcuOtaBlockDataRequest with 1-byte size", () => {
         // _TZE204_dtzziy1e on MCU 1.0.3 requesting image 1.0.5: seq, pid "dtzziy1e", version, offset 0, size 48 (16-byte payload)
         const b = Buffer.from([0x09, 0x5e, 0x13, 0x00, 0x60, 0x64, 0x74, 0x7a, 0x7a, 0x69, 0x79, 0x31, 0x65, 0x45, 0x00, 0x00, 0x00, 0x00, 0x30]);

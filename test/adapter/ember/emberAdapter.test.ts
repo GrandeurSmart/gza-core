@@ -97,7 +97,7 @@ const DEFAULT_BACKUP: Readonly<UnifiedBackupStorage> = {
     metadata: {
         format: "zigpy/open-coordinator-backup",
         version: 1,
-        source: "zigbee-herdsman@0.55.0",
+        source: "gza-core@0.55.0",
         internal: {
             date: "2024-07-19T15:57:15.163Z",
             ezspVersion: 13,

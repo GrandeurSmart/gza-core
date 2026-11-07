@@ -105,7 +105,7 @@ export class ZnpAdapterManager {
 
     /**
      * Internal function to determine startup strategy. The strategy determination flow is described in
-     * [this GitHub issue comment](https://github.com/Koenkk/zigbee-herdsman/issues/286#issuecomment-761029689).
+     * [this GitHub issue comment](https://github.com/GrandeurSmart/zigbee-herdsman/issues/286#issuecomment-761029689).
      */
     private async determineStrategy(): Promise<StartupStrategy> {
         logger.debug("determining znp startup strategy", NS);
@@ -350,7 +350,7 @@ export class ZnpAdapterManager {
      *
      * @param nwkOptions Options to configure the new network with.
      * @param failOnCollision Whether process should throw an error if PAN ID collision is detected.
-     * @param writeConfiguredFlag Whether zigbee-herdsman `hasConfigured` flag should be written to NV.
+     * @param writeConfiguredFlag Whether gza-core `hasConfigured` flag should be written to NV.
      */
     private async beginCommissioning(nwkOptions: Models.NetworkOptions, failOnCollision = true, writeConfiguredFlag = true): Promise<void> {
         if (nwkOptions.panId === 65535) {

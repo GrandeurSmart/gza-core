@@ -466,7 +466,7 @@ describe("GreenPower", () => {
         expect(JSON.parse(JSON.stringify(retFrame))).toStrictEqual(JSON.parse(JSON.stringify(clonedFrame)));
     });
 
-    // @see https://github.com/Koenkk/zigbee2mqtt/issues/19405#issuecomment-2727338024
+    // @see https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/19405#issuecomment-2727338024
     it("FULLENCR ZT-LP-ZEU2S-WH-MS MOES 2-gang vectors from ember", async () => {
         let joinData: GreenPowerDeviceJoinedPayload | undefined;
 
@@ -895,7 +895,7 @@ describe("GreenPower", () => {
         }
     });
 
-    // @see https://github.com/Koenkk/zigbee2mqtt/issues/19405#issuecomment-2732204071
+    // @see https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/19405#issuecomment-2732204071
     it("FULLENCR ZT-LP-ZEU2S-WH-MS MOES 3-gang vectors from ember", async () => {
         let joinData: GreenPowerDeviceJoinedPayload | undefined;
 
@@ -1107,7 +1107,7 @@ describe("GreenPower", () => {
         }
     });
 
-    // @see https://github.com/Koenkk/zigbee2mqtt/issues/19405#issuecomment-2744667458
+    // @see https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/19405#issuecomment-2744667458
     it("FULLENCR ZT-LP-ZEU2S-WH-MS MOES 2-gang vectors from zstack through GPP", async () => {
         const joinData: GreenPowerDeviceJoinedPayload = {
             sourceID: 2777252112,

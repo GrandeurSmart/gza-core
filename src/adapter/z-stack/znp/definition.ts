@@ -1359,7 +1359,7 @@ const Definition: {
         },
         {
             name: "mgmtNwkUpdateReq",
-            ID: 55, // the spec says 0x38, but TI used 0x37 see https://github.com/Koenkk/zigbee-herdsman/issues/1237
+            ID: 55, // the spec says 0x38, but TI used 0x37 see https://github.com/GrandeurSmart/zigbee-herdsman/issues/1237
             type: CommandType.SREQ,
             zdoClusterId: ZdoClusterId.NWK_UPDATE_REQUEST,
             // request: [
@@ -1554,7 +1554,7 @@ const Definition: {
             // ],
         },
         {
-            // https://github.com/Koenkk/zigbee2mqtt/issues/3363
+            // https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/3363
             name: "unknown",
             ID: 159,
             type: CommandType.AREQ,

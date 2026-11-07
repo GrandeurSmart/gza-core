@@ -330,7 +330,7 @@ export const MOCK_DEVICES: {
         },
     },
     172: {
-        // Gledopto GL-C-007/GL-C-008 - https://github.com/Koenkk/zigbee2mqtt/issues/2872
+        // Gledopto GL-C-007/GL-C-008 - https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/2872
         // All endpoints announce to support genBasic but only endpoint 12 really responds
         nodeDescriptor: [Zdo.Status.SUCCESS, {...NODE_DESC_DEFAULTS, nwkAddress: 172, logicalType: 0b001, manufacturerCode: 1212}],
         activeEndpoints: [Zdo.Status.SUCCESS, {nwkAddress: 172, endpointList: [12, 11, 13]}],

@@ -96,7 +96,7 @@ export class EZSPAdapter extends Adapter {
             // GP Frame
             // Only handle when clusterId == 33 (greenPower), some devices send messages with this profileId
             // while the cluster is not greenPower
-            // https://github.com/Koenkk/zigbee2mqtt/issues/20838
+            // https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/20838
             if (frame.apsFrame.clusterId === Zcl.Clusters.greenPower.ID) {
                 const payload: ZclPayload = {
                     header: Zcl.Header.fromBuffer(frame.message),
@@ -144,7 +144,7 @@ export class EZSPAdapter extends Adapter {
      */
     public async start(): Promise<StartResult> {
         logger.warning(
-            `'ezsp' driver is deprecated and will only remain to provide support for older firmware (pre 7.4.x). Migration to 'ember' is recommended. If using Zigbee2MQTT see https://github.com/Koenkk/zigbee2mqtt/discussions/21462`,
+            `'ezsp' driver is deprecated and will only remain to provide support for older firmware (pre 7.4.x). Migration to 'ember' is recommended. If using Zigbee2MQTT see https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/discussions/21462`,
             NS,
         );
         return await this.driver.startup(this.adapterOptions.transmitPower);

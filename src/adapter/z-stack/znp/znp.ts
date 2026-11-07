@@ -119,7 +119,7 @@ export class Znp extends EventEmitter<ZnpEventMap> {
             await this.request(Subsystem.SYS, "ping", {capabilities: 1}, undefined, 250);
         } catch {
             // Skip bootloader on CC2530/CC2531
-            // Send magic byte: https://github.com/Koenkk/zigbee2mqtt/issues/1343 to bootloader
+            // Send magic byte: https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/1343 to bootloader
             // and give ZNP 1 second to start.
             try {
                 logger.info("Writing CC2530/CC2531 skip bootloader payload", NS);

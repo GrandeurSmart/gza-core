@@ -37,7 +37,7 @@ interface Options {
     adapter: AdapterTsType.AdapterOptions;
     /**
      * This lambda can be used by an application to explictly reject or accept an incoming device.
-     * When false is returned zigbee-herdsman will not start the interview process and immidiately
+     * When false is returned gza-core will not start the interview process and immidiately
      * try to remove the device from the network.
      */
     acceptJoiningDeviceHandler: (ieeeAddr: string) => Promise<boolean>;
@@ -981,8 +981,8 @@ export class Controller extends events.EventEmitter<ControllerEventMap> {
         } else {
             /**
              * Handling of re-transmitted Xiaomi messages.
-             * https://github.com/Koenkk/zigbee2mqtt/issues/1238
-             * https://github.com/Koenkk/zigbee2mqtt/issues/3592
+             * https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/1238
+             * https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/3592
              *
              * Some Xiaomi router devices re-transmit messages from Xiaomi end devices.
              * The network address of these message is set to the one of the Xiaomi router.

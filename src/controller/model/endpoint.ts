@@ -250,7 +250,7 @@ export class Endpoint extends ZigbeeEntity {
             }
         }
 
-        // Migrate cluster renames from https://github.com/Koenkk/zigbee-herdsman/pull/1503 @deprecated 3.0
+        // Migrate cluster renames from https://github.com/GrandeurSmart/zigbee-herdsman/pull/1503 @deprecated 3.0
         /* v8 ignore start */
         if (record.clusters.piRetailTunnel) {
             record.clusters.retailTunnel = record.clusters.piRetailTunnel;
@@ -1118,7 +1118,7 @@ export class Endpoint extends ZigbeeEntity {
     /**
      * Remove endpoint from a group, accepts both a Group and number as parameter.
      * The number parameter type should only be used when removing from a group which is not known
-     * to zigbee-herdsman.
+     * to gza-core.
      */
     public async removeFromGroup(group: Group | number): Promise<void> {
         const response = await this.zclCommand(

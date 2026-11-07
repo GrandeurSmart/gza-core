@@ -996,7 +996,7 @@ export class BuffaloZcl extends Buffalo {
             }
             default: {
                 // In case the type is undefined, write it as a buffer to easily allow for custom types
-                // e.g. for https://github.com/Koenkk/zigbee-herdsman/issues/127
+                // e.g. for https://github.com/GrandeurSmart/zigbee-herdsman/issues/127
                 if (Buffer.isBuffer(value) || isNumberArray(value)) {
                     this.writeBuffer(value, value.length);
                     break;

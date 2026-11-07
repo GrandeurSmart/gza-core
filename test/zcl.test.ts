@@ -1088,7 +1088,7 @@ describe("Zcl", () => {
     });
 
     it("ZclFrame to buffer write Livolo malformed", () => {
-        // Created as example for https://github.com/Koenkk/zigbee-herdsman/issues/127
+        // Created as example for https://github.com/GrandeurSmart/zigbee-herdsman/issues/127
         const expectedOn = Buffer.from([0x1c, 0xd2, 0x1a, 0xe9, 0x02, 0x01, 0x00, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         const payloadOn = [{attrId: 1, attrData: Buffer.from([1, 0, 0, 0, 0, 0, 0, 0]), dataType: 1}];
         const frameOn = Zcl.Frame.create(FrameType.GLOBAL, Direction.SERVER_TO_CLIENT, true, 0x1ad2, 233, "write", 0, payloadOn, {});

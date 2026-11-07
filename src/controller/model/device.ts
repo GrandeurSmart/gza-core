@@ -385,7 +385,7 @@ export class Device extends Entity<ControllerEventMap> {
         if (!frame) {
             // The payload could not be parsed, but the sender may still expect a default response. Some devices retransmit the
             // same frame indefinitely until they get one, e.g. BSEED TS011F `_TZ3210_5ct6e7ye` reporting a malformed array on
-            // cluster 0xE000: https://github.com/Koenkk/zigbee2mqtt/issues/33174
+            // cluster 0xE000: https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/33174
             const header = dataPayload.header;
 
             if (
@@ -897,9 +897,9 @@ export class Device extends Entity<ControllerEventMap> {
         // Tuya devices are typically hard to interview. They also don't require a full interview to work correctly
         // e.g. no ias enrolling is required for the devices to work.
         // Assume that in case we got both the manufacturerName and modelID the device works correctly.
-        // https://github.com/Koenkk/zigbee2mqtt/issues/7564:
+        // https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/7564:
         //      Fails during ias enroll due to UNSUPPORTED_ATTRIBUTE
-        // https://github.com/Koenkk/zigbee2mqtt/issues/4655
+        // https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/4655
         //      Device does not change zoneState after enroll (event with original gateway)
         // modelID is mostly in the form of e.g. TS0202 and manufacturerName like e.g. _TYZB01_xph99wvr
         if (
@@ -915,7 +915,7 @@ export class Device extends Entity<ControllerEventMap> {
         // fails before a modelID is known and the modelID-keyed quirks below can never match them. The
         // node descriptor already identifies them unambiguously (manufacturerCode 0xabcd), and their
         // proprietary text protocol handles identification beyond this.
-        // https://github.com/Koenkk/zigbee-herdsman/pull/1792
+        // https://github.com/GrandeurSmart/zigbee-herdsman/pull/1792
         if (this._manufacturerID === 0xabcd) {
             this.#genBasic.manufacturerName = "Control4";
             this.#genBasic.modelId = "C4-Zigbee";
@@ -951,15 +951,15 @@ export class Device extends Entity<ControllerEventMap> {
                 manufacturerName: "TERNCY",
                 powerSource: Zcl.PowerSource.Battery,
             },
-            "3RWS18BZ": {}, // https://github.com/Koenkk/zigbee-herdsman-converters/pull/2710
+            "3RWS18BZ": {}, // https://github.com/GrandeurSmart/zigbee-herdsman-converters/pull/2710
             "MULTI-MECI--EA01": {},
-            MOT003: {}, // https://github.com/Koenkk/zigbee2mqtt/issues/12471
+            MOT003: {}, // https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/12471
             "C-ZB-SEDC": {}, //candeo device that doesn't follow IAS enrollment process correctly and therefore fails to complete interview
             "C-ZB-SEMO": {}, //candeo device that doesn't follow IAS enrollment process correctly and therefore fails to complete interview
-            "CS-T9C-A0-BG": {}, // iAS enroll fails: https://github.com/Koenkk/zigbee2mqtt/issues/27822
-            "SNZB-01": {}, // iAS enroll fails: https://github.com/Koenkk/zigbee2mqtt/issues/29474
-            "3011": {type: "EndDevice", powerSource: Zcl.PowerSource.Battery}, // NYCE NCZ-3011-HA fails IAS CIE address write during interview: https://github.com/Koenkk/zigbee2mqtt/issues/32480
-            "Smart Siren": {manufacturerName: "AduroSmart Eria"}, // iAS enroll fails: https://github.com/Koenkk/zigbee2mqtt/issues/32839
+            "CS-T9C-A0-BG": {}, // iAS enroll fails: https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/27822
+            "SNZB-01": {}, // iAS enroll fails: https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/29474
+            "3011": {type: "EndDevice", powerSource: Zcl.PowerSource.Battery}, // NYCE NCZ-3011-HA fails IAS CIE address write during interview: https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/32480
+            "Smart Siren": {manufacturerName: "AduroSmart Eria"}, // iAS enroll fails: https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/32839
         };
 
         let match: string | undefined;
@@ -1014,14 +1014,14 @@ export class Device extends Entity<ControllerEventMap> {
 
         if (this.manufacturerID === 4619 && this._type === "EndDevice") {
             // Give Tuya end device some time to pair. Otherwise they leave immediately.
-            // https://github.com/Koenkk/zigbee2mqtt/issues/5814
+            // https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/5814
             logger.debug("Interview - Detected Tuya end device, waiting 10 seconds...", NS);
             await wait(10000);
         } else if (this.manufacturerID === 0 || this.manufacturerID === 4098) {
             // Potentially a Tuya device, some sleep fast so make sure to read the modelId and manufacturerName quickly.
             // In case the device responds, the endoint and modelID/manufacturerName are set
             // in controller.onZclOrRawData()
-            // https://github.com/Koenkk/zigbee2mqtt/issues/7553
+            // https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/7553
             logger.debug("Interview - Detected potential Tuya end device, reading modelID and manufacturerName...", NS);
             try {
                 const endpoint = Endpoint.create(1, undefined, undefined, [], [], this.networkAddress, this.ieeeAddr);
@@ -1034,7 +1034,7 @@ export class Device extends Entity<ControllerEventMap> {
         }
 
         // e.g. Xiaomi Aqara Opple devices fail to respond to the first active endpoints request, therefore try 2 times
-        // https://github.com/Koenkk/zigbee-herdsman/pull/103
+        // https://github.com/GrandeurSmart/zigbee-herdsman/pull/103
         let gotActiveEndpoints = false;
 
         for (let attempt = 0; attempt < 2; attempt++) {
@@ -1078,7 +1078,7 @@ export class Device extends Entity<ControllerEventMap> {
                             } catch (error) {
                                 // Reading attributes can fail for many reason, e.g. it could be that device rejoins
                                 // while joining like in:
-                                // https://github.com/Koenkk/zigbee-herdsman-converters/issues/2485.
+                                // https://github.com/GrandeurSmart/zigbee-herdsman-converters/issues/2485.
                                 // The modelID and manufacturerName are crucial for device identification, so retry.
                                 if (key === "modelId" || key === "manufacturerName") {
                                     logger.debug(`Interview - first ${key} retrieval attempt failed, retrying after 10 seconds...`, NS);
@@ -1118,7 +1118,7 @@ export class Device extends Entity<ControllerEventMap> {
                     //                this case is handled below.
                     // - Manual enroll: coordinator replies to enroll request with an enroll response.
                     //                  this case in hanled in onZclData().
-                    // https://github.com/Koenkk/zigbee2mqtt/issues/4569#issuecomment-706075676
+                    // https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/4569#issuecomment-706075676
                     await wait(500);
                     logger.debug(`IAS - '${this.ieeeAddr}' sending enroll response (auto enroll)`, NS);
                     const payload = {enrollrspcode: 0, zoneid: 23};
@@ -1219,7 +1219,7 @@ export class Device extends Entity<ControllerEventMap> {
         for (const endpoint of activeEndpoints.endpointList) {
             // Some devices, e.g. TERNCY return endpoint 0 in the active endpoints request.
             // This is not a valid endpoint number according to the ZCL, requesting a simple descriptor will result
-            // into an error. Therefore we filter it, more info: https://github.com/Koenkk/zigbee-herdsman/issues/82
+            // into an error. Therefore we filter it, more info: https://github.com/GrandeurSmart/zigbee-herdsman/issues/82
             if (endpoint !== 0 && !this.getEndpoint(endpoint)) {
                 this._endpoints.push(Endpoint.create(endpoint, undefined, undefined, [], [], this.networkAddress, this.ieeeAddr));
             }
@@ -1625,9 +1625,9 @@ export class Device extends Entity<ControllerEventMap> {
         ) {
             // The current.fileVersion which comes from the device is wrong.
             // Use the `lumiFileVersion` which comes from the manuSpecificLumi.attributeReport instead.
-            // https://github.com/Koenkk/zigbee2mqtt/issues/16345#issuecomment-1454835056
-            // https://github.com/Koenkk/zigbee2mqtt/issues/16345 doesn't seem to be needed for all
-            // https://github.com/Koenkk/zigbee2mqtt/issues/15745
+            // https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/16345#issuecomment-1454835056
+            // https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/16345 doesn't seem to be needed for all
+            // https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/15745
             current = {...current, fileVersion: this.meta.lumiFileVersion};
         }
 

@@ -116,7 +116,7 @@ export class Database {
 
         const fd = fs.openSync(tmpPath, "w");
         fs.writeFileSync(fd, lines.slice(0, -1)); // remove last newline, no effect if empty string
-        // Ensure file is on disk https://github.com/Koenkk/zigbee2mqtt/issues/11759
+        // Ensure file is on disk https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/11759
         fs.fsyncSync(fd);
         fs.closeSync(fd);
         fs.renameSync(tmpPath, this.path);

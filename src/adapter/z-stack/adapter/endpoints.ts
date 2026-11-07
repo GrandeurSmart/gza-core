@@ -23,7 +23,7 @@ const EndpointDefaults: {
 export const Endpoints = [
     {...EndpointDefaults, endpoint: 1, appprofid: 0x0104},
     {...EndpointDefaults, endpoint: 2, appprofid: 0x0101},
-    // Required for https://github.com/Koenkk/zigbee-herdsman-converters/commit/d0fb06c2429171f327950484ea3dec80864637cc
+    // Required for https://github.com/GrandeurSmart/zigbee-herdsman-converters/commit/d0fb06c2429171f327950484ea3dec80864637cc
     {...EndpointDefaults, endpoint: 3, appprofid: 0x0104},
     {...EndpointDefaults, endpoint: 4, appprofid: 0x0107},
     {...EndpointDefaults, endpoint: 5, appprofid: 0x0108},
@@ -38,10 +38,10 @@ export const Endpoints = [
         appnumoutclusters: 2,
         appoutclusterlist: [Clusters.ssIasZone.ID, Clusters.ssIasWd.ID],
         appnuminclusters: 2,
-        // genTime required for https://github.com/Koenkk/zigbee2mqtt/issues/10816
+        // genTime required for https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/10816
         appinclusterlist: [Clusters.ssIasAce.ID, Clusters.genTime.ID],
     },
-    // TERNCY: https://github.com/Koenkk/zigbee-herdsman/issues/82
+    // TERNCY: https://github.com/GrandeurSmart/zigbee-herdsman/issues/82
     {...EndpointDefaults, endpoint: 0x6e, appprofid: 0x0104},
     {...EndpointDefaults, endpoint: 12, appprofid: 0xc05e},
     {

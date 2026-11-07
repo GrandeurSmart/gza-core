@@ -157,7 +157,7 @@ describe("Ember Ezsp Layer", () => {
     });
 
     it("Starts ASH layer with messy hardware flow control", async () => {
-        // https://github.com/Koenkk/zigbee-herdsman/issues/943
+        // https://github.com/GrandeurSmart/zigbee-herdsman/issues/943
         const ashEmitSpy = vi.spyOn(ezsp.ash, "emit");
         let restart: (() => Promise<EzspStatus>) | undefined;
         // @ts-expect-error private
