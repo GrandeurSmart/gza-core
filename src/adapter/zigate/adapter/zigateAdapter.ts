@@ -18,7 +18,7 @@ import Driver from "../driver/zigate";
 import {patchZdoBuffaloBE} from "./patchZdoBuffaloBE";
 
 const NS = "zh:zigate";
-const default_bind_group = 901; // https://github.com/GrandeurSmart/zigbee-herdsman-converters/blob/master/lib/constants.js#L3
+const default_bind_group = 901; // https://github.com/GrandeurSmart/gza-core-libs/blob/master/lib/constants.js#L3
 
 export class ZiGateAdapter extends Adapter {
     private driver: Driver;

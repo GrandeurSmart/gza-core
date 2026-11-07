@@ -417,7 +417,7 @@ export class OtaSession {
             case Zcl.ManufacturerCode.SHENZHEN_COOLKIT_TECHNOLOGY_CO_LTD: {
                 if (image.header.imageType === 8199) {
                     // increase the upgradeEndReq wait time to solve the problem of OTA timeout failure of Sonoff Devices
-                    // (https://github.com/GrandeurSmart/zigbee-herdsman-converters/issues/6657)
+                    // (https://github.com/GrandeurSmart/gza-core-libs/issues/6657)
                     this.dataSettings.requestTimeout = 3600000;
                 }
                 break;

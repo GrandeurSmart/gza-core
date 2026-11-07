@@ -205,7 +205,7 @@ export class ZStackAdapter extends Adapter {
                 // We cannot 100% correctly determine if an adapter supports LED. E.g. the zStack 1.2 20190608
                 // fw supports led on the CC2531 but not on the CC2530. Therefore if a led request fails never thrown
                 // an error but instead mark the led as unsupported.
-                // https://github.com/GrandeurSmart/zigbee-herdsman/issues/377
+                // https://github.com/GrandeurSmart/gza-core/issues/377
                 // https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/7693
                 this.supportsLED = false;
             });
@@ -865,7 +865,7 @@ export class ZStackAdapter extends Adapter {
                 // the short and the long address allowing us to update our own
                 // mappings.
                 // https://e2e.ti.com/cfs-file/__key/communityserver-discussions-components-files/158/4403.zstacktask.c
-                // https://github.com/GrandeurSmart/zigbee-herdsman/issues/74
+                // https://github.com/GrandeurSmart/gza-core/issues/74
                 this.emit("zdoResponse", Zdo.ClusterId.NETWORK_ADDRESS_RESPONSE, [
                     Zdo.Status.SUCCESS,
                     {
@@ -996,7 +996,7 @@ export class ZStackAdapter extends Adapter {
              * Return a dummy nwkUpdateId of 0, the nwkUpdateId is used when changing channels however the
              * zstack API does not allow to set this value. Instead it automatically increments the nwkUpdateId
              * based on the value in the NIB.
-             * https://github.com/GrandeurSmart/zigbee-herdsman/pull/1280#discussion_r1947815987
+             * https://github.com/GrandeurSmart/gza-core/pull/1280#discussion_r1947815987
              */
             nwkUpdateID: 0,
         };

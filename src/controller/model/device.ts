@@ -915,7 +915,7 @@ export class Device extends Entity<ControllerEventMap> {
         // fails before a modelID is known and the modelID-keyed quirks below can never match them. The
         // node descriptor already identifies them unambiguously (manufacturerCode 0xabcd), and their
         // proprietary text protocol handles identification beyond this.
-        // https://github.com/GrandeurSmart/zigbee-herdsman/pull/1792
+        // https://github.com/GrandeurSmart/gza-core/pull/1792
         if (this._manufacturerID === 0xabcd) {
             this.#genBasic.manufacturerName = "Control4";
             this.#genBasic.modelId = "C4-Zigbee";
@@ -951,7 +951,7 @@ export class Device extends Entity<ControllerEventMap> {
                 manufacturerName: "TERNCY",
                 powerSource: Zcl.PowerSource.Battery,
             },
-            "3RWS18BZ": {}, // https://github.com/GrandeurSmart/zigbee-herdsman-converters/pull/2710
+            "3RWS18BZ": {}, // https://github.com/GrandeurSmart/gza-core-libs/pull/2710
             "MULTI-MECI--EA01": {},
             MOT003: {}, // https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/issues/12471
             "C-ZB-SEDC": {}, //candeo device that doesn't follow IAS enrollment process correctly and therefore fails to complete interview
@@ -1034,7 +1034,7 @@ export class Device extends Entity<ControllerEventMap> {
         }
 
         // e.g. Xiaomi Aqara Opple devices fail to respond to the first active endpoints request, therefore try 2 times
-        // https://github.com/GrandeurSmart/zigbee-herdsman/pull/103
+        // https://github.com/GrandeurSmart/gza-core/pull/103
         let gotActiveEndpoints = false;
 
         for (let attempt = 0; attempt < 2; attempt++) {
@@ -1078,7 +1078,7 @@ export class Device extends Entity<ControllerEventMap> {
                             } catch (error) {
                                 // Reading attributes can fail for many reason, e.g. it could be that device rejoins
                                 // while joining like in:
-                                // https://github.com/GrandeurSmart/zigbee-herdsman-converters/issues/2485.
+                                // https://github.com/GrandeurSmart/gza-core-libs/issues/2485.
                                 // The modelID and manufacturerName are crucial for device identification, so retry.
                                 if (key === "modelId" || key === "manufacturerName") {
                                     logger.debug(`Interview - first ${key} retrieval attempt failed, retrying after 10 seconds...`, NS);
@@ -1219,7 +1219,7 @@ export class Device extends Entity<ControllerEventMap> {
         for (const endpoint of activeEndpoints.endpointList) {
             // Some devices, e.g. TERNCY return endpoint 0 in the active endpoints request.
             // This is not a valid endpoint number according to the ZCL, requesting a simple descriptor will result
-            // into an error. Therefore we filter it, more info: https://github.com/GrandeurSmart/zigbee-herdsman/issues/82
+            // into an error. Therefore we filter it, more info: https://github.com/GrandeurSmart/gza-core/issues/82
             if (endpoint !== 0 && !this.getEndpoint(endpoint)) {
                 this._endpoints.push(Endpoint.create(endpoint, undefined, undefined, [], [], this.networkAddress, this.ieeeAddr));
             }

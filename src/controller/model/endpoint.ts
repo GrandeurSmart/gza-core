@@ -250,7 +250,7 @@ export class Endpoint extends ZigbeeEntity {
             }
         }
 
-        // Migrate cluster renames from https://github.com/GrandeurSmart/zigbee-herdsman/pull/1503 @deprecated 3.0
+        // Migrate cluster renames from https://github.com/GrandeurSmart/gza-core/pull/1503 @deprecated 3.0
         /* v8 ignore start */
         if (record.clusters.piRetailTunnel) {
             record.clusters.retailTunnel = record.clusters.piRetailTunnel;

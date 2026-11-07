@@ -4,7 +4,7 @@
     "email": "koenkanters94@gmail.com"
   },
   "bugs": {
-    "url": "https://github.com/koenkk/gza-core/issues"
+    "url": "https://github.com/GrandeurSmart/gza-core/issues"
   },
   "packageManager": "pnpm@12.3.4",
   "contributors": [
@@ -48,7 +48,7 @@
     "typescript": "^7.0.2",
     "vitest": "^3.2.6"
   },
-  "homepage": "https://github.com/GrandeurSmart/zigbee-herdsman",
+  "homepage": "https://github.com/GrandeurSmart/gza-core",
   "keywords": [
     "zigbee",
     "zstack",
@@ -70,7 +70,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GrandeurSmart/zigbee-herdsman.git"
+    "url": "git+https://github.com/GrandeurSmart/gza-core.git"
   },
   "scripts": {
     "build": "tsc",

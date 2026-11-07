@@ -1974,7 +1974,7 @@ describe("zstack-adapter", () => {
     });
 
     it("should start with 3.x.0 adapter - warn when preconfigured key doesn't match network key", async () => {
-        // https://github.com/GrandeurSmart/zigbee-herdsman/pull/1692
+        // https://github.com/GrandeurSmart/gza-core/pull/1692
         mockZnpRequestWith(commissioned3x0AlignedPrecfgKeyMismatchRequestMock);
         const result = await adapter.start();
         expect(result).toBe("resumed");

@@ -530,7 +530,7 @@ export class Driver extends EventEmitter {
                 gpdHeader.writeUInt8(0b00000001, 0); // frameControl: FrameType.SPECIFIC + Direction.CLIENT_TO_SERVER + disableDefaultResponse=false
                 gpdHeader.writeUInt8(frame.sequenceNumber, 1); // transactionSequenceNumber
                 gpdHeader.writeUInt8(commandIdentifier, 2); // commandIdentifier
-                gpdHeader.writeUInt16LE(0, 3); // options XXX: bypassed, same as deconz https://github.com/GrandeurSmart/zigbee-herdsman/pull/536
+                gpdHeader.writeUInt16LE(0, 3); // options XXX: bypassed, same as deconz https://github.com/GrandeurSmart/gza-core/pull/536
                 gpdHeader.writeUInt32LE(frame.srcId, 5); // srcID
                 // omitted: gpdIEEEAddr ieeeAddr
                 // omitted: gpdEndpoint uint8

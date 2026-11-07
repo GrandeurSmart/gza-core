@@ -105,7 +105,7 @@ export class ZnpAdapterManager {
 
     /**
      * Internal function to determine startup strategy. The strategy determination flow is described in
-     * [this GitHub issue comment](https://github.com/GrandeurSmart/zigbee-herdsman/issues/286#issuecomment-761029689).
+     * [this GitHub issue comment](https://github.com/GrandeurSmart/gza-core/issues/286#issuecomment-761029689).
      */
     private async determineStrategy(): Promise<StartupStrategy> {
         logger.debug("determining znp startup strategy", NS);
