@@ -144,7 +144,7 @@ export class EZSPAdapter extends Adapter {
      */
     public async start(): Promise<StartResult> {
         logger.warning(
-            `'ezsp' driver is deprecated and will only remain to provide support for older firmware (pre 7.4.x). Migration to 'ember' is recommended. If using Zigbee2MQTT see https://github.com/GrandeurSmart/grandeursmart-zigbee-automation/discussions/21462`,
+            `'ezsp' driver is deprecated and will only remain to provide support for older firmware (pre 7.4.x). Migration to 'ember' is recommended. If using Zigbee2MQTT see https://github.com/Koenkk/zigbee2mqtt/discussions/21462`,
             NS,
         );
         return await this.driver.startup(this.adapterOptions.transmitPower);
