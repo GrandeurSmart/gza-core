@@ -1,72 +1,37 @@
-# Agents Instructions for zigbee-herdsman
+# AGENTS.md — GrandeurSmart rules
 
-## Priority Guidelines
+Rules for anyone, people or automated agents, changing this repository. It is part of GZA, the GrandeurSmart
+(GS) Zigbee service, maintained by Mainlogix Technology for GrandeurSmart. These rules apply until a shared GS
+rules file replaces them.
 
-When generating code for this repository:
+## Wording
+- Docs describe GrandeurSmart products. Say "GS" or "GS core" in prose.
+- Compatibility identifiers stay unchanged and appear in code formatting, marked as compatibility identifiers:
+  MQTT base topic `zigbee2mqtt`, discovery prefix `homeassistant`, the `homeassistant` config key,
+  `switch.zigbee2mqtt_bridge_permit_join`.
+- Do not rename code identifiers beyond the GZA naming rules in grandeursmart-zigbee-automation
+  `gza/gza_rebase.py`.
 
-1. **Version Compatibility**: Always respect the exact versions of Node.js, TypeScript, and libraries used in this project
-2. **Codebase Patterns**: Scan the codebase for established patterns before generating code
-3. **Architectural Consistency**: Maintain the layered architecture and established module boundaries
-4. **Performance**: Keep to best-practices to maintain high performance
-5. **Code Quality**: Prioritize maintainability, type safety, and consistency with existing patterns
-6. **Testing**: Follow the established Vitest testing patterns
+## Licence and credits
+- Keep LICENSE, any NOTICE, third-party licence files and copyright headers unchanged.
+- Keep the original `author` and `contributors` in `package.json`.
 
-## Technology Stack & Versions
+## Data and secrets
+- No secrets, keys, DSKs, passwords or tokens in any file, commit, log or pull request.
+- No gateway or lab data: device addresses, IP addresses, network fingerprints, database copies or expected-ID
+  lists.
+- No personal names in commits, docs or code.
+- Run a secret scan on every added or changed file before each push.
 
-### Core Technologies
+## Branches
+- Work on branches. No force push, no change to the default branch `gs`, no merges and no tags without owner
+  approval.
+- Pull requests stay draft until the OS image first-boot test passes on the lab gateway.
+- GitHub Actions stay disabled.
 
-- **Runtime**: Node.js
-- **Language**: TypeScript
-- **Package Manager**: pnpm
+## Build and test
+- This branch is source for review; the shipped overlay is built by grandeursmart-zigbee-automation
+  `gza/build_libs.py`. Build and tests are described in that repository's README.
 
-### Development Tools
-
-- **Testing**: Vitest with @vitest/coverage-v8
-- **Benchmarking**: Vitest
-- **Code Quality**: Biome (formatting, linting)
-- **Build**: TypeScript compiler
-
-## Project Architecture
-
-### Project Structure
-
-```
-src/
-├── index.ts           # Public API exports
-├── adapter/           # Hardware adapter layer (Z-Stack, EZSP, etc.)
-├── buffalo/           # Binary data serialization/deserialization
-├── controller/        # Core business logic
-│   ├── controller.ts  # Main controller orchestration
-│   ├── database.ts    # Persistence layer
-│   ├── helpers/       # Shared utilities
-│   └── model/         # Domain models (Device, Endpoint, Group)
-├── models/            # Backup and configuration models
-├── utils/             # Cross-cutting utilities
-└── zspec/             # Zigbee specification implementation
-    ├── zcl/           # Zigbee Cluster Library
-    └── zdo/           # Zigbee Device Objects
-test/                  # Vitest test/bench files with mocks
-dist/                  # Compiled JavaScript output
-```
-
-### Key Architectural Principles
-
-1. **Separation of Concerns**: Adapter layer handles hardware communication, controller handles business logic
-2. **Entity Pattern**: Device, Endpoint, Group, Entity form a hierarchy
-3. **Event-Driven**: Controller extends EventEmitter for loose coupling
-4. **Static Caching**: Device and Group use static Maps for singleton-like behavior
-5. **Database Abstraction**: All persistence goes through `database.ts`
-
-## Code Style & Formatting
-
-See [Biome configuration](biome.json)
-
-## Code Documentation
-
-Use JSDoc, following existing patterns.
-
-## Additional Resources
-
-- [Official API Documentation](https://koenkk.github.io/zigbee-herdsman)
-- [GitHub Repository](https://github.com/Koenkk/zigbee-herdsman)
-- Related Project: [Zigbee2MQTT](https://www.zigbee2mqtt.io/)
+## Security
+See `SECURITY.md`.
