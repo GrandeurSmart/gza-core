@@ -1,11 +1,9 @@
-/* istanbul ignore file */
-/* eslint-disable */
+/* v8 ignore start */
 class Frame {
     public toBuffer(): Buffer {
         return Buffer.alloc(0);
     }
-
-    public static fromBuffer(buffer: Buffer): Frame {
+    public static fromBuffer(_buffer: Buffer): Frame {
         return new Frame();
     }
 }

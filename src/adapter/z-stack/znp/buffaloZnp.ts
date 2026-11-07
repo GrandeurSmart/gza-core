@@ -1,43 +1,6 @@
-
-import {Buffalo, TsType} from '../../../buffalo';
-import {BuffaloZnpOptions} from './tstype';
-
-
-type RoutingTableEntryStatus = 'ACTIVE' | 'DISCOVERY_UNDERWAY' | 'DISCOVERY_FAILED' | 'INACTIVE';
-
-const routingTableStatusLookup: Record<number, RoutingTableEntryStatus> = {
-    0: 'ACTIVE',
-    1: 'DISCOVERY_UNDERWAY',
-    2: 'DISCOVERY_FAILED',
-    3: 'INACTIVE',
-};
-
-interface RoutingEntry {
-    destNwkAddr: number;
-    routeStatus: RoutingTableEntryStatus | undefined;
-    nextHopNwkAddr: number;
-}
-
-interface Bind {
-    srcAddr: string;
-    srcEp: number;
-    clusterId: number;
-    dstAddrMode: number;
-    dstAddr: string;
-    dstEp?: number;
-}
-
-interface Neighbor {
-    extPandId: string;
-    extAddr: string;
-    nwkAddr: number
-    deviceType: number;
-    rxOnWhenIdle: number;
-    relationship: number;
-    permitJoin: number;
-    depth: number;
-    lqi: number;
-}
+import {Buffalo} from "../../../buffalo";
+import ParameterType from "./parameterType";
+import type {BuffaloZnpOptions} from "./tstype";
 
 interface Network {
     neightborPanId: number;
@@ -49,67 +12,10 @@ interface Network {
     permitJoin: number;
 }
 
-
 class BuffaloZnp extends Buffalo {
-    private readListRoutingTable(options: TsType.Options): RoutingEntry[] {
-        const value = [];
-
-        for (let i = 0; i < options.length; i++) {
-            value.push({
-                destNwkAddr: this.readUInt16(),
-                routeStatus: routingTableStatusLookup[this.readUInt8()],
-                nextHopNwkAddr: this.readUInt16(),
-            });
-        }
-
-        return value;
-    }
-
-    private readListBindTable(options: TsType.Options): Bind[]{
-        const value = [];
-
-        for (let i = 0; i < options.length; i++) {
-            const item: Bind = {
-                srcAddr: this.readIeeeAddr(),
-                srcEp: this.readUInt8(),
-                clusterId: this.readUInt16(),
-                dstAddrMode: this.readUInt8(),
-                dstAddr: this.readIeeeAddr(),
-            };
-            if (item.dstAddrMode === 3) {
-                item.dstEp = this.readUInt8();
-            }
-            value.push(item);
-        }
-        return value;
-    }
-
-    private readListNeighborLqi(options: TsType.Options): Neighbor[] {
-        const value = [];
-        for (let i = 0; i < options.length; i++) {
-            const prefix = {
-                extPandId: this.readIeeeAddr(),
-                extAddr: this.readIeeeAddr(),
-                nwkAddr: this.readUInt16()
-            };
-            const bitfields = this.readUInt8();
-            value.push({
-                ...prefix,
-                deviceType: bitfields & 0x03,
-                rxOnWhenIdle: (bitfields & 0x0C) >> 2,
-                relationship: (bitfields & 0x70) >> 4,
-                permitJoin: this.readUInt8() & 0x03,
-                depth: this.readUInt8(),
-                lqi: this.readUInt8()
-            });
-        }
-
-        return value;
-    }
-
-    private  readListNetwork(options: TsType.Options): Network[] {
-        const value = [];
-        for (let i = 0; i < options.length; i++) {
+    private readListNetwork(length: number): Network[] {
+        const value: Network[] = [];
+        for (let i = 0; i < length; i++) {
             const neightborPanId = this.readUInt16();
             const logicalChannel = this.readUInt8();
             const value1 = this.readUInt8();
@@ -119,46 +25,149 @@ class BuffaloZnp extends Buffalo {
             value.push({
                 neightborPanId,
                 logicalChannel,
-                stackProfile: value1 & 0x0F,
-                zigbeeVersion: (value1 & 0xF0) >> 4,
-                beaconOrder: value2 & 0x0F,
-                superFrameOrder: (value2 & 0xF0) >> 4,
-                permitJoin
+                stackProfile: value1 & 0x0f,
+                zigbeeVersion: (value1 & 0xf0) >> 4,
+                beaconOrder: value2 & 0x0f,
+                superFrameOrder: (value2 & 0xf0) >> 4,
+                permitJoin,
             });
         }
 
         return value;
     }
-
-    private readListAssocDev(options: BuffaloZnpOptions): number[] {
-        const value = [];
-        const listLength = options.length - options.startIndex;
-
-        for (let i = 0; i < listLength; i++) {
-            // There are max 70 bytes in the list (= 35 uint16)
-            if (i === 35) {
+    // biome-ignore lint/suspicious/noExplicitAny: API
+    public write(type: ParameterType, value: any, options: BuffaloZnpOptions): void {
+        switch (type) {
+            case ParameterType.UINT8: {
+                this.writeUInt8(value);
                 break;
             }
-
-            value.push(this.readUInt16());
+            case ParameterType.UINT16: {
+                this.writeUInt16(value);
+                break;
+            }
+            case ParameterType.UINT32: {
+                this.writeUInt32(value);
+                break;
+            }
+            case ParameterType.IEEEADDR: {
+                this.writeIeeeAddr(value);
+                break;
+            }
+            case ParameterType.BUFFER: {
+                this.writeBuffer(value, options.length ?? value.length);
+                break;
+            }
+            case ParameterType.BUFFER8: {
+                this.writeBuffer(value, 8);
+                break;
+            }
+            case ParameterType.BUFFER16: {
+                this.writeBuffer(value, 16);
+                break;
+            }
+            case ParameterType.BUFFER18: {
+                this.writeBuffer(value, 18);
+                break;
+            }
+            case ParameterType.BUFFER32: {
+                this.writeBuffer(value, 32);
+                break;
+            }
+            case ParameterType.BUFFER42: {
+                this.writeBuffer(value, 42);
+                break;
+            }
+            case ParameterType.BUFFER100: {
+                this.writeBuffer(value, 100);
+                break;
+            }
+            case ParameterType.LIST_UINT8: {
+                this.writeListUInt8(value);
+                break;
+            }
+            case ParameterType.LIST_UINT16: {
+                this.writeListUInt16(value);
+                break;
+            }
+            // NOTE: not writable
+            // case ParameterType.LIST_NETWORK:
+            case ParameterType.INT8: {
+                this.writeInt8(value);
+                break;
+            }
+            default: {
+                throw new Error(`Write for '${type}' not available`);
+            }
         }
-
-        return value;
     }
+    // biome-ignore lint/suspicious/noExplicitAny: API
+    public read(type: ParameterType, options: BuffaloZnpOptions): any {
+        switch (type) {
+            case ParameterType.UINT8: {
+                return this.readUInt8();
+            }
+            case ParameterType.UINT16: {
+                return this.readUInt16();
+            }
+            case ParameterType.UINT32: {
+                return this.readUInt32();
+            }
+            case ParameterType.IEEEADDR: {
+                return this.readIeeeAddr();
+            }
+            case ParameterType.BUFFER: {
+                if (options.length == null) {
+                    throw new Error("Cannot read BUFFER without length option specified");
+                }
 
-    public read(type: string, options: BuffaloZnpOptions): TsType.Value {
-        if (type === 'LIST_ROUTING_TABLE') {
-            return this.readListRoutingTable(options);
-        } else if (type === 'LIST_BIND_TABLE') {
-            return this.readListBindTable(options);
-        }  else if (type === 'LIST_NEIGHBOR_LQI') {
-            return this.readListNeighborLqi(options);
-        } else if (type === 'LIST_NETWORK') {
-            return this.readListNetwork(options);
-        } else if (type === 'LIST_ASSOC_DEV') {
-            return this.readListAssocDev(options);
-        } else {
-            return super.read(type, options);
+                return this.readBuffer(options.length);
+            }
+            case ParameterType.BUFFER8: {
+                return this.readBuffer(8);
+            }
+            case ParameterType.BUFFER16: {
+                return this.readBuffer(16);
+            }
+            case ParameterType.BUFFER18: {
+                return this.readBuffer(18);
+            }
+            case ParameterType.BUFFER32: {
+                return this.readBuffer(32);
+            }
+            case ParameterType.BUFFER42: {
+                return this.readBuffer(42);
+            }
+            case ParameterType.BUFFER100: {
+                return this.readBuffer(100);
+            }
+            case ParameterType.LIST_UINT8: {
+                if (options.length == null) {
+                    throw new Error("Cannot read LIST_UINT8 without length option specified");
+                }
+
+                return this.readListUInt8(options.length);
+            }
+            case ParameterType.LIST_UINT16: {
+                if (options.length == null) {
+                    throw new Error("Cannot read LIST_UINT16 without length option specified");
+                }
+
+                return this.readListUInt16(options.length);
+            }
+            case ParameterType.LIST_NETWORK: {
+                if (options.length == null) {
+                    throw new Error("Cannot read LIST_NETWORK without length option specified");
+                }
+
+                return this.readListNetwork(options.length);
+            }
+            case ParameterType.INT8: {
+                return this.readInt8();
+            }
+            default: {
+                throw new Error(`Read for '${type}' not available`);
+            }
         }
     }
 }

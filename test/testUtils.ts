@@ -1,4 +1,6 @@
-function duplicateArray (amount, value) {
+import {vi} from "vitest";
+
+function duplicateArray(amount, value) {
     let result = [];
     for (let i = 0; i < amount; i++) {
         result = result.concat(value);
@@ -8,15 +10,18 @@ function duplicateArray (amount, value) {
 }
 
 const ieeeaAddr1 = {
-    string: '0xae440112004b1200',
+    string: "0xae440112004b1200",
     hex: [0x00, 0x12, 0x4b, 0x00, 0x12, 0x01, 0x44, 0xae],
 };
 
 const ieeeaAddr2 = {
-    string: '0xaf440112005b1200',
+    string: "0xaf440112005b1200",
     hex: [0x00, 0x12, 0x5b, 0x00, 0x12, 0x01, 0x44, 0xaf],
 };
 
-export {
-    duplicateArray, ieeeaAddr1, ieeeaAddr2,
+export async function flushPromises(): Promise<void> {
+    const {setImmediate} = await vi.importActual<typeof import("node:timers")>("node:timers");
+    return new Promise((resolve) => setImmediate(resolve));
 }
+
+export {duplicateArray, ieeeaAddr1, ieeeaAddr2};

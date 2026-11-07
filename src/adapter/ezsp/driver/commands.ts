@@ -1,93 +1,95 @@
-/* istanbul ignore file */
-import {/* Basic Types */
+/* v8 ignore start */
+
+import {
+    Bool,
+    EmberAesMmoHashContext,
+    EmberApsFrame,
+    EmberBindingTableEntry,
+    EmberCertificate283k1Data,
+    EmberCertificateData,
+    EmberCounterType,
+    EmberCurrentSecurityState,
+    EmberDeviceUpdate,
+    EmberEUI64,
+    EmberEventUnits,
+    EmberGpAddress,
+    EmberGpKeyType,
+    EmberGpSecurityLevel,
+    EmberIncomingMessageType,
+    EmberInitialSecurityState,
+    EmberJoinDecision,
+    EmberKeyData,
+    EmberKeyStatus,
+    EmberKeyStruct,
+    EmberKeyType,
+    EmberLibraryStatus,
+    EmberMacPassthroughType,
+    EmberMessageDigest,
+    EmberMultiAddress,
+    EmberMulticastTableEntry,
+    EmberNeighbors,
+    EmberNeighborTableEntry,
+    EmberNetworkInitStruct /* Structs */,
+    EmberNetworkParameters,
+    EmberNetworkStatus,
+    EmberNodeDescriptor /* Named Types */,
+    EmberNodeId,
+    EmberNodeType,
+    EmberOutgoingMessageType,
+    EmberPanId,
+    EmberPrivateKeyData,
+    EmberPublicKey283k1Data,
+    EmberPublicKeyData,
+    EmberRouteTableEntry,
+    EmberRoutingTable,
+    EmberSecurityManagerContext,
+    EmberSecurityManagerNetworkKeyInfo,
+    EmberSignature283k1Data,
+    EmberSignatureData,
+    EmberSimpleDescriptor,
+    EmberSmacData,
+    EmberStackError,
+    EmberStatus,
+    EmberTokTypeStackZllData,
+    EmberTokTypeStackZllSecurity,
+    EmberZigbeeNetwork,
+    EmberZllAddressAssignment,
+    EmberZllDeviceInfoRecord,
+    EmberZllInitialSecurityState,
+    EmberZllNetwork,
+    EzspConfigId,
+    EzspDecisionId,
+    EzspExtendedValueId,
+    EzspMfgTokenId,
+    EzspNetworkScanType,
+    EzspPolicyId,
+    EzspStatus,
+    EzspValueId,
+    EzspZllNetworkOperation,
+    fixed_list /* Basic Types */,
     int8s,
+    LVBytes,
+    SecureEzspRandomNumber,
+    SecureEzspSecurityLevel,
+    SecureEzspSecurityType,
+    SLStatus,
     uint8_t,
     uint16_t,
     uint32_t,
-    LVBytes,
-    fixed_list,
     WordList,
-    Bytes,
+} from "./types";
 
-    /* Named Types */
-    EmberNodeId,
-    EmberPanId,
-    EmberEUI64,
-    EmberLibraryStatus,
-    SecureEzspSecurityType,
-    SecureEzspSecurityLevel,
-    EmberGpSecurityLevel,
-    EmberGpKeyType,
-    SecureEzspRandomNumber,
-    Bool,
-    EzspConfigId,
-    EzspValueId,
-    EzspExtendedValueId,
-    EzspPolicyId,
-    EzspDecisionId,
-    EzspMfgTokenId,
-    EzspStatus,
-    EmberStatus,
-    EmberEventUnits,
-    EmberNodeType,
-    EmberNetworkStatus,
-    EmberIncomingMessageType,
-    EmberOutgoingMessageType,
-    EmberMacPassthroughType,
-    EzspNetworkScanType,
-    EmberJoinDecision,
-    EmberKeyType,
-    EmberDeviceUpdate,
-    EmberKeyStatus,
-    EmberCounterType,
-    EzspZllNetworkOperation,
-
-    /* Structs */
-    EmberNetworkParameters,
-    EmberZigbeeNetwork,
-    EmberApsFrame,
-    EmberBindingTableEntry,
-    EmberMulticastTableEntry,
-    EmberKeyData,
-    EmberCertificateData,
-    EmberPublicKeyData,
-    EmberPrivateKeyData,
-    EmberSmacData,
-    EmberSignatureData,
-    EmberCertificate283k1Data,
-    EmberPublicKey283k1Data,
-    EmberSignature283k1Data,
-    EmberMessageDigest,
-    EmberAesMmoHashContext,
-    EmberNeighborTableEntry,
-    EmberRouteTableEntry,
-    EmberInitialSecurityState,
-    EmberCurrentSecurityState,
-    EmberKeyStruct,
-    EmberNetworkInitStruct,
-    EmberZllNetwork,
-    EmberZllInitialSecurityState,
-    EmberZllDeviceInfoRecord,
-    EmberZllAddressAssignment,
-    EmberTokTypeStackZllData,
-    EmberTokTypeStackZllSecurity,
-    EmberGpAddress,
-    EmberNodeDescriptor,
-    EmberSimpleDescriptor,
-    EmberMultiAddress,
-    EmberNeighbors,
-    EmberRoutingTable,
-} from './types';
-
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any*/
-export interface ParamsDesc {[s: string]: any}
+export interface ParamsDesc {
+    // biome-ignore lint/suspicious/noExplicitAny: API
+    [s: string]: any;
+}
 
 export interface EZSPFrameDesc {
-    ID: number,
-    request: ParamsDesc,
-    response: ParamsDesc,
-    minV?: number,
-    maxV?: number
+    ID: number;
+    request?: ParamsDesc;
+    response?: ParamsDesc;
+    minV?: number;
+    maxV?: number;
 }
 
 export const FRAMES: {[key: string]: EZSPFrameDesc} = {
@@ -95,33 +97,33 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
     version: {
         ID: 0x0000,
         request: {
-            desiredProtocolVersion: uint8_t
+            desiredProtocolVersion: uint8_t,
         },
         response: {
-            protocolVersion: uint8_t, 
-            stackType: uint8_t, 
-            stackVersion: uint16_t
-        }
+            protocolVersion: uint8_t,
+            stackType: uint8_t,
+            stackVersion: uint16_t,
+        },
     },
     getConfigurationValue: {
         ID: 0x0052, // 82
         request: {
-            configId: EzspConfigId
+            configId: EzspConfigId,
         },
         response: {
             status: EzspStatus,
-            value: uint16_t
-        }
+            value: uint16_t,
+        },
     },
     setConfigurationValue: {
         ID: 0x0053, // 83
         request: {
             configId: EzspConfigId,
-            value: uint16_t
+            value: uint16_t,
         },
         response: {
-            status: EzspStatus
-        }
+            status: EzspStatus,
+        },
     },
     addEndpoint: {
         ID: 0x0002,
@@ -136,18 +138,18 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
             outputClusterList: WordList,
         },
         response: {
-            status: EzspStatus
-        }
+            status: EzspStatus,
+        },
     },
     setPolicy: {
         ID: 0x0055, //85
         request: {
             policyId: EzspPolicyId,
-            decisionId: EzspDecisionId
+            decisionId: EzspDecisionId,
         },
         response: {
-            status: EzspStatus
-        }
+            status: EzspStatus,
+        },
     },
     getPolicy: {
         ID: 0x0056, //86
@@ -156,8 +158,8 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
         },
         response: {
             status: EzspStatus,
-            decisionId: EzspDecisionId
-        }
+            decisionId: EzspDecisionId,
+        },
     },
     sendPanIdUpdate: {
         ID: 0x0057, //87
@@ -165,243 +167,243 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
             newPan: EmberPanId,
         },
         response: {
-            status: Bool
-        }
+            status: Bool,
+        },
     },
     getValue: {
-        ID: 0x00AA, // 170
+        ID: 0x00aa, // 170
         request: {
-            valueId: EzspValueId
+            valueId: EzspValueId,
         },
         response: {
             status: EzspStatus,
-            value: LVBytes
-        }
+            value: LVBytes,
+        },
     },
     getExtendedValue: {
         ID: 0x0003,
         request: {
             valueId: EzspExtendedValueId,
-            characteristics: uint32_t
+            characteristics: uint32_t,
         },
         response: {
             status: EzspStatus,
-            value: LVBytes
-        }
+            value: LVBytes,
+        },
     },
     setValue: {
-        ID: 0x00AB, // 171
+        ID: 0x00ab, // 171
         request: {
             valueId: EzspValueId,
-            value: LVBytes
+            value: LVBytes,
         },
         response: {
-            status: EzspStatus
-        }
+            status: EzspStatus,
+        },
     },
 
     // Utilities Frames
     nop: {
         ID: 0x0005,
-        request: null,
-        response: null
+        request: undefined,
+        response: undefined,
     },
     echo: {
         ID: 0x0081, // 129
         request: {
-            data: LVBytes
+            data: LVBytes,
         },
         response: {
-            echo: LVBytes
-        }
+            echo: LVBytes,
+        },
     },
     invalidCommand: {
         ID: 0x0058, // 88
-        request: null,
+        request: undefined,
         response: {
-            reason: EzspStatus
-        }
+            reason: EzspStatus,
+        },
     },
     callback: {
         ID: 0x0006,
-        request: null,
-        response: null
+        request: undefined,
+        response: undefined,
     },
     noCallbacks: {
         ID: 0x0007,
-        request: null,
-        response: null
+        request: undefined,
+        response: undefined,
     },
     setToken: {
         ID: 0x0009,
         request: {
             tokenId: uint8_t,
-            tokenData: fixed_list(8, uint8_t)
+            tokenData: fixed_list(8, uint8_t),
         },
         response: {
-            status: EmberStatus
-        }
+            status: EmberStatus,
+        },
     },
     getToken: {
-        ID: 0x000A, // 10
+        ID: 0x000a, // 10
         request: {
-            tokenId: uint8_t
+            tokenId: uint8_t,
         },
         response: {
             status: EmberStatus,
-            tokenData: fixed_list(8, uint8_t)
-        }
+            tokenData: fixed_list(8, uint8_t),
+        },
     },
     getMfgToken: {
-        ID: 0x000B, // 11
+        ID: 0x000b, // 11
         request: {
-            tokenId: EzspMfgTokenId
+            tokenId: EzspMfgTokenId,
         },
         response: {
             status: EmberStatus,
-            tokenData: LVBytes
-        }
+            tokenData: LVBytes,
+        },
     },
     setMfgToken: {
-        ID: 0x000C, // 12
+        ID: 0x000c, // 12
         request: {
             tokenId: EzspMfgTokenId,
-            tokenData: LVBytes
+            tokenData: LVBytes,
         },
         response: {
-            status: EmberStatus
-        }
+            status: EmberStatus,
+        },
     },
     stackTokenChangedHandler: {
-        ID: 0x000D, // 13
-        request: null,
+        ID: 0x000d, // 13
+        request: undefined,
         response: {
-            tokenAddress: uint16_t
-        }
+            tokenAddress: uint16_t,
+        },
     },
     getRandomNumber: {
         ID: 0x0049, // 73
-        request: null,
+        request: undefined,
         response: {
             status: EmberStatus,
-            value: uint16_t
-        }
+            value: uint16_t,
+        },
     },
     setTimer: {
-        ID: 0x000E, // 14
+        ID: 0x000e, // 14
         request: {
             timerId: uint8_t,
             time: uint16_t,
             units: EmberEventUnits,
-            repeat: Bool
+            repeat: Bool,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     getTimer: {
-        ID: 0x004E, // 78
+        ID: 0x004e, // 78
         request: {
-            timerId: uint8_t
+            timerId: uint8_t,
         },
         response: {
             time: uint16_t,
             units: EmberEventUnits,
-            repeat: Bool
+            repeat: Bool,
         },
     },
     timerHandler: {
-        ID: 0x000F, // 15
-        request: null,
+        ID: 0x000f, // 15
+        request: undefined,
         response: {
-            timerId: uint8_t
+            timerId: uint8_t,
         },
     },
     debugWrite: {
         ID: 0x0012, // 18
         request: {
             binaryMessage: Bool,
-            message: LVBytes
+            message: LVBytes,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     readAndClearCounters: {
         ID: 0x0065, // 101
-        request: null,
+        request: undefined,
         response: {
-            values: fixed_list(EmberCounterType.COUNTER_TYPE_COUNT, uint16_t)
+            values: fixed_list(EmberCounterType.COUNTER_TYPE_COUNT, uint16_t),
         },
     },
     readCounters: {
-        ID: 0x00F1, // 241
-        request: null,
+        ID: 0x00f1, // 241
+        request: undefined,
         response: {
-            values: fixed_list(EmberCounterType.COUNTER_TYPE_COUNT, uint16_t)
+            values: fixed_list(EmberCounterType.COUNTER_TYPE_COUNT, uint16_t),
         },
     },
     counterRolloverHandler: {
-        ID: 0x00F2, // 242
-        request: null,
+        ID: 0x00f2, // 242
+        request: undefined,
         response: {
-            type: EmberCounterType
+            type: EmberCounterType,
         },
     },
     delayTest: {
-        ID: 0x009D, // 157
+        ID: 0x009d, // 157
         request: {
-            delay: uint16_t
+            delay: uint16_t,
         },
-        response: null,
+        response: undefined,
     },
     getLibraryStatus: {
         ID: 0x0001,
         request: {
-            libraryId: uint8_t
+            libraryId: uint8_t,
         },
         response: {
-            status: EmberLibraryStatus
+            status: EmberLibraryStatus,
         },
     },
     getXncpInfo: {
         ID: 0x0013, // 19
-        request: null,
+        request: undefined,
         response: {
             status: EmberStatus,
             manufacturerId: uint16_t,
-            versionNumber: uint16_t
+            versionNumber: uint16_t,
         },
     },
     customFrame: {
         ID: 0x0047, // 71
         request: {
-            payload: LVBytes
+            payload: LVBytes,
         },
         response: {
             status: EmberStatus,
-            reply: LVBytes
+            reply: LVBytes,
         },
     },
     customFrameHandler: {
         ID: 0x0054, // 84
-        request: null,
+        request: undefined,
         response: {
-            payload: LVBytes
+            payload: LVBytes,
         },
     },
     getEui64: {
         ID: 0x0026, // 38
-        request: null,
+        request: undefined,
         response: {
-            eui64: EmberEUI64
+            eui64: EmberEUI64,
         },
     },
     getNodeId: {
         ID: 0x0027, // 39
-        request: null,
+        request: undefined,
         response: {
-            nodeId: EmberNodeId
+            nodeId: EmberNodeId,
         },
     },
 
@@ -409,125 +411,125 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
     setManufacturerCode: {
         ID: 0x0015, // 21
         request: {
-            code: uint16_t
+            code: uint16_t,
         },
-        response: null,
+        response: undefined,
     },
     setPowerDescriptor: {
         ID: 0x0016, // 22
         request: {
-            descriptor: uint16_t
+            descriptor: uint16_t,
         },
-        response: null,
+        response: undefined,
     },
     networkInit: {
         ID: 0x0017, // 23
-        request: null,
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     networkInitExtended: {
         ID: 112,
         request: {
-            networkInitStruct: EmberNetworkInitStruct
+            networkInitStruct: EmberNetworkInitStruct,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     networkState: {
         ID: 0x0018, // 24
-        request: null,
+        request: undefined,
         response: {
-            status: EmberNetworkStatus
+            status: EmberNetworkStatus,
         },
     },
     stackStatusHandler: {
         ID: 0x0019, // 25
-        request: null,
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     startScan: {
-        ID: 0x001A, // 26
+        ID: 0x001a, // 26
         request: {
             scanType: EzspNetworkScanType,
             channelMask: uint32_t,
-            duration: uint8_t
+            duration: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     energyScanResultHandler: {
         ID: 0x0048, // 72
-        request: null,
+        request: undefined,
         response: {
             channel: uint8_t,
-            maxRssiValue: int8s
+            maxRssiValue: int8s,
         },
     },
     networkFoundHandler: {
-        ID: 0x001B, // 27
-        request: null,
+        ID: 0x001b, // 27
+        request: undefined,
         response: {
             networkFound: EmberZigbeeNetwork,
             lastHopLqi: uint8_t,
-            lastHopRssi: int8s
+            lastHopRssi: int8s,
         },
     },
     scanCompleteHandler: {
-        ID: 0x001C, // 28
-        request: null,
+        ID: 0x001c, // 28
+        request: undefined,
         response: {
             channel: uint8_t,
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     unusedPanIdFoundHandler: {
-        ID: 0x00D2,
-        request: null,
+        ID: 0x00d2,
+        request: undefined,
         response: {
             panId: EmberPanId,
-            channel: uint8_t
+            channel: uint8_t,
         },
     },
     findUnusedPanId: {
-        ID: 0x00D3,
+        ID: 0x00d3,
         request: {
             channelMask: uint32_t,
-            duration: uint8_t
+            duration: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     stopScan: {
-        ID: 0x001D, // 29
-        request: null,
+        ID: 0x001d, // 29
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     formNetwork: {
-        ID: 0x001E, // 30
+        ID: 0x001e, // 30
         request: {
-            parameters: EmberNetworkParameters
+            parameters: EmberNetworkParameters,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     joinNetwork: {
-        ID: 0x001F, // 31
+        ID: 0x001f, // 31
         request: {
             nodeType: EmberNodeType,
-            parameters: EmberNetworkParameters
+            parameters: EmberNetworkParameters,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     // joinNetworkDirectly: {
@@ -544,137 +546,137 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
     // },
     leaveNetwork: {
         ID: 0x0020, // 32
-        request: null,
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     findAndRejoinNetwork: {
         ID: 0x0021, // 33
         request: {
             haveCurrentNetworkKey: Bool,
-            channelMask: uint32_t
+            channelMask: uint32_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     permitJoining: {
         ID: 0x0022, // 34
         request: {
-            duration: uint8_t
+            duration: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     childJoinHandler: {
         ID: 0x0023, // 35
-        request: null,
+        request: undefined,
         response: {
             index: uint8_t,
             joining: Bool,
             childId: EmberNodeId,
             childEui64: EmberEUI64,
-            childType: EmberNodeType
+            childType: EmberNodeType,
         },
     },
     energyScanRequest: {
-        ID: 0x009C, // 156
+        ID: 0x009c, // 156
         request: {
             target: EmberNodeId,
             scanChannels: uint32_t,
             scanDuration: uint8_t,
-            scanCount: uint16_t
+            scanCount: uint16_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     getNetworkParameters: {
         ID: 0x0028, // 40
-        request: null,
+        request: undefined,
         response: {
             status: EmberStatus,
             nodeType: EmberNodeType,
-            parameters: EmberNetworkParameters
+            parameters: EmberNetworkParameters,
         },
     },
     getRadioParameters: {
-        ID: 0x00FD,
+        ID: 0x00fd,
         request: {
-            childCount: uint8_t
+            childCount: uint8_t,
         },
         response: {
             status: EmberStatus,
             nodeType: EmberNodeType,
-            parameters: EmberNetworkParameters
+            parameters: EmberNetworkParameters,
         },
     },
     getParentChildParameters: {
         ID: 0x0029, // 41
-        request: null,
+        request: undefined,
         response: {
             childCount: uint8_t,
             parentEui64: EmberEUI64,
-            parentNodeId: EmberNodeId
+            parentNodeId: EmberNodeId,
         },
     },
     getChildData: {
-        ID: 0x004A, // 74
+        ID: 0x004a, // 74
         request: {
-            index: uint8_t
+            index: uint8_t,
         },
         response: {
             status: EmberStatus,
             nodeId: EmberNodeId,
             eui64: EmberEUI64,
-            nodeType: EmberNodeType
+            nodeType: EmberNodeType,
         },
     },
     getNeighbor: {
         ID: 0x0079, // 121
         request: {
-            index: uint8_t
+            index: uint8_t,
         },
         response: {
             status: EmberStatus,
-            value: EmberNeighborTableEntry
+            value: EmberNeighborTableEntry,
         },
     },
     neighborCount: {
-        ID: 0x007A, // 122
-        request: null,
+        ID: 0x007a, // 122
+        request: undefined,
         response: {
-            value: uint8_t
+            value: uint8_t,
         },
     },
     getRouteTableEntry: {
-        ID: 0x007B, // 123
+        ID: 0x007b, // 123
         request: {
-            index: uint8_t
+            index: uint8_t,
         },
         response: {
             status: EmberStatus,
-            value: EmberRouteTableEntry
+            value: EmberRouteTableEntry,
         },
     },
     setRadioPower: {
         ID: 0x0099, // 153
         request: {
-            power: int8s
+            power: int8s,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     setRadioChannel: {
-        ID: 0x009A, // 154
+        ID: 0x009a, // 154
         request: {
-            channel: uint8_t
+            channel: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     setConcentrator: {
@@ -686,100 +688,100 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
             maxTime: uint16_t,
             routeErrorThreshold: uint8_t,
             deliveryFailureThreshold: uint8_t,
-            maxHops: uint8_t
+            maxHops: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
 
     // Binding Frames
     clearBindingTable: {
-        ID: 0x002A, // 42
-        request: null,
+        ID: 0x002a, // 42
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     setBinding: {
-        ID: 0x002B, // 43
+        ID: 0x002b, // 43
         request: {
             index: uint8_t,
-            value: EmberBindingTableEntry
-        },
-        response: {
-            status: EmberStatus
-        },
-    },
-    getBinding: {
-        ID: 0x002C, // 44
-        request: {
-            index: uint8_t
+            value: EmberBindingTableEntry,
         },
         response: {
             status: EmberStatus,
-            value: EmberBindingTableEntry
+        },
+    },
+    getBinding: {
+        ID: 0x002c, // 44
+        request: {
+            index: uint8_t,
+        },
+        response: {
+            status: EmberStatus,
+            value: EmberBindingTableEntry,
         },
     },
     deleteBinding: {
-        ID: 0x002D, // 45
+        ID: 0x002d, // 45
         request: {
-            index: uint8_t
+            index: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     bindingIsActive: {
-        ID: 0x002E, // 46
+        ID: 0x002e, // 46
         request: {
-            index: uint8_t
+            index: uint8_t,
         },
         response: {
-            active: Bool
+            active: Bool,
         },
     },
     getBindingRemoteNodeId: {
-        ID: 0x002F, // 47
+        ID: 0x002f, // 47
         request: {
-            index: uint8_t
+            index: uint8_t,
         },
         response: {
-            nodeId: EmberNodeId
+            nodeId: EmberNodeId,
         },
     },
     setBindingRemoteNodeId: {
         ID: 0x0030, // 48
         request: {
             index: uint8_t,
-            nodeId: EmberNodeId
+            nodeId: EmberNodeId,
         },
-        response: null,
+        response: undefined,
     },
     remoteSetBindingHandler: {
         ID: 0x0031, // 49
-        request: null,
+        request: undefined,
         response: {
             entry: EmberBindingTableEntry,
             index: uint8_t,
-            policyDecision: EmberStatus
+            policyDecision: EmberStatus,
         },
     },
     remoteDeleteBindingHandler: {
         ID: 0x0032, // 50
-        request: null,
+        request: undefined,
         response: {
             index: uint8_t,
-            policyDecision: EmberStatus
+            policyDecision: EmberStatus,
         },
     },
 
     // Messaging Frames
     maximumPayloadLength: {
         ID: 0x0033, // 51
-        request: null,
+        request: undefined,
         response: {
-            apsLength: uint8_t
+            apsLength: uint8_t,
         },
     },
     sendUnicast: {
@@ -789,11 +791,11 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
             indexOrDestination: EmberNodeId,
             apsFrame: EmberApsFrame,
             messageTag: uint8_t,
-            message: LVBytes
+            message: LVBytes,
         },
         response: {
             status: EmberStatus,
-            sequence: uint8_t
+            sequence: uint8_t,
         },
     },
     sendBroadcast: {
@@ -803,11 +805,11 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
             apsFrame: EmberApsFrame,
             radius: uint8_t,
             messageTag: uint8_t,
-            message: LVBytes
+            message: LVBytes,
         },
         response: {
             status: EmberStatus,
-            sequence: uint8_t
+            sequence: uint8_t,
         },
     },
     proxyBroadcast: {
@@ -819,11 +821,11 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
             apsFrame: EmberApsFrame,
             radius: uint8_t,
             messageTag: uint8_t,
-            message: LVBytes
+            message: LVBytes,
         },
         response: {
             status: EmberStatus,
-            apsSequence: uint8_t
+            apsSequence: uint8_t,
         },
     },
     sendMulticast: {
@@ -833,15 +835,15 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
             hops: uint8_t,
             nonmemberRadius: uint8_t,
             messageTag: uint8_t,
-            message: LVBytes
+            message: LVBytes,
         },
         response: {
             status: EmberStatus,
-            sequence: uint8_t
+            sequence: uint8_t,
         },
     },
     sendMulticastWithAlias: {
-        ID: 0x003A,
+        ID: 0x003a,
         request: {
             apsFrame: EmberApsFrame,
             hops: uint8_t,
@@ -849,11 +851,11 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
             alias: uint16_t,
             nwkSequence: uint8_t,
             messageTag: uint8_t,
-            message: LVBytes
+            message: LVBytes,
         },
         response: {
             status: EmberStatus,
-            sequence: uint8_t
+            sequence: uint8_t,
         },
     },
     sendReply: {
@@ -861,32 +863,32 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
         request: {
             sender: EmberNodeId,
             apsFrame: EmberApsFrame,
-            message: LVBytes
+            message: LVBytes,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     messageSentHandler: {
-        ID: 0x003F, // 63
-        request: null,
+        ID: 0x003f, // 63
+        request: undefined,
         response: {
             type: EmberOutgoingMessageType,
             indexOrDestination: uint16_t,
             apsFrame: EmberApsFrame,
             messageTag: uint8_t,
             status: EmberStatus,
-            message: LVBytes
+            message: LVBytes,
         },
     },
     sendManyToOneRouteRequest: {
         ID: 0x0041, // 65
         request: {
             concentratorType: uint16_t,
-            radius: uint8_t
+            radius: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     pollForData: {
@@ -894,36 +896,36 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
         request: {
             interval: uint16_t,
             units: EmberEventUnits,
-            failureLimit: uint8_t
+            failureLimit: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     pollCompleteHandler: {
         ID: 0x0043, // 67
-        request: null,
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     pollHandler: {
         ID: 0x0044, // 68
-        request: null,
+        request: undefined,
         response: {
-            childId: EmberNodeId
+            childId: EmberNodeId,
         },
     },
     incomingSenderEui64Handler: {
         ID: 0x0062, // 98
-        request: null,
+        request: undefined,
         response: {
-            senderEui64: EmberEUI64
+            senderEui64: EmberEUI64,
         },
     },
     incomingMessageHandler: {
         ID: 0x0045, // 69
-        request: null,
+        request: undefined,
         response: {
             type: EmberIncomingMessageType,
             apsFrame: EmberApsFrame,
@@ -932,35 +934,35 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
             sender: EmberNodeId,
             bindingIndex: uint8_t,
             addressIndex: uint8_t,
-            message: LVBytes
+            message: LVBytes,
         },
     },
     incomingRouteRecordHandler: {
         ID: 0x0059, // 89
-        request: null,
+        request: undefined,
         response: {
             source: EmberNodeId,
             longId: EmberEUI64,
             lastHopLqi: uint8_t,
             lastHopRssi: int8s,
-            relay: LVBytes
+            relay: LVBytes,
         },
     },
     incomingManyToOneRouteRequestHandler: {
-        ID: 0x007D, // 125
-        request: null,
+        ID: 0x007d, // 125
+        request: undefined,
         response: {
             source: EmberNodeId,
             longId: EmberEUI64,
-            cost: uint8_t
+            cost: uint8_t,
         },
     },
     incomingRouteErrorHandler: {
         ID: 0x0080, // 128
-        request: null,
+        request: undefined,
         response: {
             status: EmberStatus,
-            target: EmberNodeId
+            target: EmberNodeId,
         },
     },
     unicastCurrentNetworkKey: {
@@ -968,72 +970,72 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
         request: {
             targetShort: EmberNodeId,
             targetLong: EmberEUI64,
-            parentShortId: EmberNodeId
+            parentShortId: EmberNodeId,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     addressTableEntryIsActive: {
-        ID: 0x005B, // 91
+        ID: 0x005b, // 91
         request: {
-            addressTableIndex: uint8_t
+            addressTableIndex: uint8_t,
         },
         response: {
-            active: Bool
+            active: Bool,
         },
     },
     setAddressTableRemoteEui64: {
-        ID: 0x005C, // 92
+        ID: 0x005c, // 92
         request: {
             addressTableIndex: uint8_t,
-            eui64: EmberEUI64
+            eui64: EmberEUI64,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     setAddressTableRemoteNodeId: {
-        ID: 0x005D, // 93
+        ID: 0x005d, // 93
         request: {
             addressTableIndex: uint8_t,
-            id: EmberNodeId
+            id: EmberNodeId,
         },
-        response: null,
+        response: undefined,
     },
     getAddressTableRemoteEui64: {
-        ID: 0x005E, // 94
+        ID: 0x005e, // 94
         request: {
-            addressTableIndex: uint8_t
+            addressTableIndex: uint8_t,
         },
         response: {
-            eui64: EmberEUI64
+            eui64: EmberEUI64,
         },
     },
     getAddressTableRemoteNodeId: {
-        ID: 0x005F, // 95
+        ID: 0x005f, // 95
         request: {
-            addressTableIndex: uint8_t
+            addressTableIndex: uint8_t,
         },
         response: {
-            nodeId: EmberNodeId
+            nodeId: EmberNodeId,
         },
     },
     setExtendedTimeout: {
-        ID: 0x007E, // 126
+        ID: 0x007e, // 126
         request: {
             remoteEui64: EmberEUI64,
-            extendedTimeout: Bool
+            extendedTimeout: Bool,
         },
-        response: null,
+        response: undefined,
     },
     getExtendedTimeout: {
-        ID: 0x007F, // 127,
+        ID: 0x007f, // 127,
         request: {
-            remoteEui64: EmberEUI64
+            remoteEui64: EmberEUI64,
         },
         response: {
-            extendedTimeout: Bool
+            extendedTimeout: Bool,
         },
     },
     replaceAddressTableEntry: {
@@ -1042,76 +1044,76 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
             addressTableIndex: uint8_t,
             newEui64: EmberEUI64,
             newId: EmberNodeId,
-            newExtendedTimeout: Bool
+            newExtendedTimeout: Bool,
         },
         response: {
             status: EmberStatus,
             oldEui64: EmberEUI64,
             oldId: EmberNodeId,
-            oldExtendedTimeout: Bool
+            oldExtendedTimeout: Bool,
         },
     },
     lookupNodeIdByEui64: {
         ID: 0x0060, // 96
         request: {
-            eui64: EmberEUI64
+            eui64: EmberEUI64,
         },
         response: {
-            nodeId: EmberNodeId
+            nodeId: EmberNodeId,
         },
     },
     lookupEui64ByNodeId: {
         ID: 0x0061, // 97
         request: {
-            nodeId: EmberNodeId
+            nodeId: EmberNodeId,
         },
         response: {
             status: EmberStatus,
-            eui64: EmberEUI64
+            eui64: EmberEUI64,
         },
     },
     getMulticastTableEntry: {
         ID: 0x0063, // 99
         request: {
-            index: uint8_t
+            index: uint8_t,
         },
         response: {
-            value: EmberMulticastTableEntry
+            value: EmberMulticastTableEntry,
         },
     },
     setMulticastTableEntry: {
         ID: 0x0064, // 100
         request: {
             index: uint8_t,
-            value: EmberMulticastTableEntry
+            value: EmberMulticastTableEntry,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     idConflictHandler: {
-        ID: 0x007C, // 124
-        request: null,
+        ID: 0x007c, // 124
+        request: undefined,
         response: {
-            id: EmberNodeId
+            id: EmberNodeId,
         },
     },
     writeNodeData: {
-        ID: 0x00FE,
+        ID: 0x00fe,
         request: {
-            erase: Bool
+            erase: Bool,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     sendRawMessage: {
         ID: 0x0096, // 150
         request: {
-            message: LVBytes
+            message: LVBytes,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     sendRawMessageExtended: {
@@ -1119,38 +1121,38 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
         request: {
             message: LVBytes,
             priority: uint8_t,
-            useCca: Bool
+            useCca: Bool,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     macPassthroughMessageHandler: {
         ID: 0x0097, // 151
-        request: null,
+        request: undefined,
         response: {
             messageType: EmberMacPassthroughType,
             lastHopLqi: uint8_t,
             lastHopRssi: int8s,
-            message: LVBytes
+            message: LVBytes,
         },
     },
     macFilterMatchMessageHandler: {
         ID: 0x0046, // 70
-        request: null,
+        request: undefined,
         response: {
             filterIndexMatch: uint8_t,
             legacyPassthroughType: EmberMacPassthroughType,
             lastHopLqi: uint8_t,
             lastHopRssi: int8s,
-            message: LVBytes
+            message: LVBytes,
         },
     },
     rawTransmitCompleteHandler: {
         ID: 0x0098, // 152
-        request: null,
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
 
@@ -1158,45 +1160,63 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
     setInitialSecurityState: {
         ID: 0x0068, // 104
         request: {
-            state: EmberInitialSecurityState
+            state: EmberInitialSecurityState,
         },
         response: {
-            success: EmberStatus
+            success: EmberStatus,
         },
     },
     getCurrentSecurityState: {
         ID: 0x0069, // 105
-        request: null,
+        request: undefined,
         response: {
             status: EmberStatus,
-            state: EmberCurrentSecurityState
+            state: EmberCurrentSecurityState,
         },
     },
     getKey: {
         ID: 0x006a, // 106
         request: {
-            keyType: EmberKeyType
+            keyType: EmberKeyType,
         },
         response: {
             status: EmberStatus,
-            keyStruct: EmberKeyStruct
+            keyStruct: EmberKeyStruct,
+        },
+    },
+    exportKey: {
+        ID: 0x0114,
+        request: {
+            context: EmberSecurityManagerContext,
+        },
+        response: {
+            keyData: EmberKeyData,
+            status: SLStatus,
+        },
+    },
+    getNetworkKeyInfo: {
+        ID: 0x0116,
+        request: undefined,
+        response: {
+            status: SLStatus,
+            networkKeyInfo: EmberSecurityManagerNetworkKeyInfo,
         },
     },
     switchNetworkKeyHandler: {
         ID: 0x006e, // 110
-        request: null,
+        request: undefined,
         response: {
-            sequenceNumber: uint8_t
+            sequenceNumber: uint8_t,
         },
     },
     getKeyTableEntry: {
         ID: 0x0071, // 113
         request: {
-            index: uint8_t
+            index: uint8_t,
         },
         response: {
             status: EmberStatus,
-            keyStruct: EmberKeyStruct
+            keyStruct: EmberKeyStruct,
         },
     },
     setKeyTableEntry: {
@@ -1205,20 +1225,20 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
             index: uint8_t,
             address: EmberEUI64,
             linkKey: Bool,
-            keyData: EmberKeyData
+            keyData: EmberKeyData,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     findKeyTableEntry: {
         ID: 0x0075, // 117
         request: {
             address: EmberEUI64,
-            linkKey: Bool
+            linkKey: Bool,
         },
         response: {
-            index: uint8_t
+            index: uint8_t,
         },
     },
     addOrUpdateKeyTableEntry: {
@@ -1226,78 +1246,89 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
         request: {
             address: EmberEUI64,
             linkKey: Bool,
-            keyData: EmberKeyData
+            keyData: EmberKeyData,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     sendTrustCenterLinkKey: {
         ID: 0x0067,
         request: {
             destinationNodeId: EmberNodeId,
-            destinationEui64: EmberEUI64
+            destinationEui64: EmberEUI64,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     eraseKeyTableEntry: {
         ID: 0x0076, // 118
         request: {
-            index: uint8_t
+            index: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     clearKeyTable: {
-        ID: 0x00B1, // 177
-        request: null,
+        ID: 0x00b1, // 177
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     requestLinkKey: {
         ID: 0x0014, // 20
         request: {
-            partner: EmberEUI64
+            partner: EmberEUI64,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     updateTcLinkKey: {
-        ID: 0x006C,
+        ID: 0x006c,
         request: {
-            maxAttempts: uint8_t
+            maxAttempts: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
-    }, 
+    },
     zigbeeKeyEstablishmentHandler: {
-        ID: 0x009B, // 155
-        request: null,
+        ID: 0x009b, // 155
+        request: undefined,
         response: {
             partner: EmberEUI64,
-            status: EmberKeyStatus
+            status: EmberKeyStatus,
         },
     },
     addTransientLinkKey: {
-        ID: 0x00AF, // 175
+        ID: 0x00af, // 175
         request: {
             partner: EmberEUI64,
-            transientKey: EmberKeyData
+            transientKey: EmberKeyData,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
+        },
+    },
+    importTransientKey: {
+        ID: 0x0111,
+        request: {
+            partner: EmberEUI64,
+            transientKey: EmberKeyData,
+            flags: uint8_t,
+        },
+        response: {
+            status: EmberStatus,
         },
     },
     clearTransientLinkKeys: {
-        ID: 0x006B, // 107
-        request: null,
-        response: null,
+        ID: 0x006b, // 107
+        request: undefined,
+        response: undefined,
     },
     // getTransientLinkKey: {
     //     ID: 0x00CE,
@@ -1312,274 +1343,274 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
 
     // Secure EZSP Frames
     setSecurityKey: {
-        ID: 0x00CA, // 202
+        ID: 0x00ca, // 202
         request: {
             key: EmberKeyData,
-            securityType: SecureEzspSecurityType
+            securityType: SecureEzspSecurityType,
         },
         response: {
-            status: EzspStatus
+            status: EzspStatus,
         },
     },
     setSecurityParameters: {
-        ID: 0x00CB, // 203
+        ID: 0x00cb, // 203
         request: {
             securityLevel: SecureEzspSecurityLevel,
-            hostRandomNumber: SecureEzspRandomNumber
+            hostRandomNumber: SecureEzspRandomNumber,
         },
         response: {
             status: EzspStatus,
-            returnNcpRandomNumber: SecureEzspRandomNumber
+            returnNcpRandomNumber: SecureEzspRandomNumber,
         },
     },
     resetToFactoryDefaults: {
-        ID: 0x00CC, // 204
-        request: null,
+        ID: 0x00cc, // 204
+        request: undefined,
         response: {
-            status: EzspStatus
+            status: EzspStatus,
         },
     },
     getSecurityKeyStatus: {
-        ID: 0x00CD, // 205
-        request: null,
+        ID: 0x00cd, // 205
+        request: undefined,
         response: {
             status: EzspStatus,
-            returnSecurityType: SecureEzspSecurityType
+            returnSecurityType: SecureEzspSecurityType,
         },
     },
 
     // Trust Center Frames
     trustCenterJoinHandler: {
         ID: 0x0024, // 36
-        request: null,
+        request: undefined,
         response: {
             newNodeId: EmberNodeId,
             newNodeEui64: EmberEUI64,
             status: EmberDeviceUpdate,
             policyDecision: EmberJoinDecision,
-            parentOfNewNodeId: EmberNodeId
+            parentOfNewNodeId: EmberNodeId,
         },
     },
     broadcastNextNetworkKey: {
         ID: 0x0073, // 115
         request: {
-            key: EmberKeyData
+            key: EmberKeyData,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     broadcastNetworkKeySwitch: {
         ID: 0x0074, // 116
-        request: null,
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     becomeTrustCenter: {
         ID: 0x0077, // 119
         request: {
-            newNetworkKey: EmberKeyData
-        },
-        response: {
-            status: EmberStatus
-        },
-    },
-    aesMmoHash: {
-        ID: 0x006F, // 111
-        request: {
-            context: EmberAesMmoHashContext,
-            finalize: Bool,
-            data: LVBytes
+            newNetworkKey: EmberKeyData,
         },
         response: {
             status: EmberStatus,
-            returnContext: EmberAesMmoHashContext
+        },
+    },
+    aesMmoHash: {
+        ID: 0x006f, // 111
+        request: {
+            context: EmberAesMmoHashContext,
+            finalize: Bool,
+            data: LVBytes,
+        },
+        response: {
+            status: EmberStatus,
+            returnContext: EmberAesMmoHashContext,
         },
     },
     removeDevice: {
-        ID: 0x00A8, // 168
+        ID: 0x00a8, // 168
         request: {
             destShort: EmberNodeId,
             destLong: EmberEUI64,
-            targetLong: EmberEUI64
+            targetLong: EmberEUI64,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     unicastNwkKeyUpdate: {
-        ID: 0x00A9, // 169
+        ID: 0x00a9, // 169
         request: {
             destShort: EmberNodeId,
             destLong: EmberEUI64,
-            key: EmberKeyData
+            key: EmberKeyData,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
 
     // Certificate Based Key Exchange (CBKE) Frames
     generateCbkeKeys: {
-        ID: 0x00A4, // 164
-        request: null,
+        ID: 0x00a4, // 164
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     generateCbkeKeysHandler: {
-        ID: 0x009E, // 158
-        request: null,
+        ID: 0x009e, // 158
+        request: undefined,
         response: {
             status: EmberStatus,
-            ephemeralPublicKey: EmberPublicKeyData
+            ephemeralPublicKey: EmberPublicKeyData,
         },
     },
     calculateSmacs: {
-        ID: 0x009F, // 159
+        ID: 0x009f, // 159
         request: {
             amInitiator: Bool,
             partnerCertificate: EmberCertificateData,
-            partnerEphemeralPublicKey: EmberPublicKeyData
+            partnerEphemeralPublicKey: EmberPublicKeyData,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     calculateSmacsHandler: {
-        ID: 0x00A0, // 160
-        request: null,
+        ID: 0x00a0, // 160
+        request: undefined,
         response: {
             status: EmberStatus,
             initiatorSmac: EmberSmacData,
-            responderSmac: EmberSmacData
+            responderSmac: EmberSmacData,
         },
     },
     generateCbkeKeys283k1: {
-        ID: 0x00E8, // 232
-        request: null,
+        ID: 0x00e8, // 232
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     generateCbkeKeysHandler283k1: {
-        ID: 0x00E9, // 233
-        request: null,
+        ID: 0x00e9, // 233
+        request: undefined,
         response: {
             status: EmberStatus,
-            ephemeralPublicKey: EmberPublicKey283k1Data
+            ephemeralPublicKey: EmberPublicKey283k1Data,
         },
     },
     calculateSmacs283k1: {
-        ID: 0x00EA, // 234
+        ID: 0x00ea, // 234
         request: {
             amInitiator: Bool,
             partnerCertificate: EmberCertificate283k1Data,
-            partnerEphemeralPublicKey: EmberPublicKey283k1Data
+            partnerEphemeralPublicKey: EmberPublicKey283k1Data,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     calculateSmacsHandler283k1: {
-        ID: 0x00EB, // 235
-        request: null,
+        ID: 0x00eb, // 235
+        request: undefined,
         response: {
             status: EmberStatus,
             initiatorSmac: EmberSmacData,
-            responderSmac: EmberSmacData
+            responderSmac: EmberSmacData,
         },
     },
     clearTemporaryDataMaybeStoreLinkKey: {
-        ID: 0x00A1, // 161
+        ID: 0x00a1, // 161
         request: {
-            storeLinkKey: Bool
+            storeLinkKey: Bool,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     clearTemporaryDataMaybeStoreLinkKey283k1: {
-        ID: 0x00EE, // 238
+        ID: 0x00ee, // 238
         request: {
-            storeLinkKey: Bool
+            storeLinkKey: Bool,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     getCertificate: {
-        ID: 0x00A5, // 165
-        request: null,
+        ID: 0x00a5, // 165
+        request: undefined,
         response: {
             status: EmberStatus,
-            localCert: EmberCertificateData
+            localCert: EmberCertificateData,
         },
     },
     getCertificate283k1: {
-        ID: 0x00EC, // 236
-        request: null,
+        ID: 0x00ec, // 236
+        request: undefined,
         response: {
             status: EmberStatus,
-            localCert: EmberCertificate283k1Data
+            localCert: EmberCertificate283k1Data,
         },
     },
     dsaSign: {
-        ID: 0x00A6, // 166
+        ID: 0x00a6, // 166
         request: {
-            message: LVBytes
+            message: LVBytes,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     dsaSignHandler: {
-        ID: 0x00A7, // 167
-        request: null,
+        ID: 0x00a7, // 167
+        request: undefined,
         response: {
             status: EmberStatus,
-            message: LVBytes
+            message: LVBytes,
         },
     },
     dsaVerify: {
-        ID: 0x00A3, // 163
+        ID: 0x00a3, // 163
         request: {
             digest: EmberMessageDigest,
             signerCertificate: EmberCertificateData,
-            receivedSig: EmberSignatureData
+            receivedSig: EmberSignatureData,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     dsaVerifyHandler: {
         ID: 0x0078, // 120
-        request: null,
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     dsaVerify283k1: {
-        ID: 0x00B0, // 176
+        ID: 0x00b0, // 176
         request: {
             digest: EmberMessageDigest,
             signerCertificate: EmberCertificate283k1Data,
-            receivedSig: EmberSignature283k1Data
+            receivedSig: EmberSignature283k1Data,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     setPreinstalledCbkeData: {
-        ID: 0x00A2, // 162
+        ID: 0x00a2, // 162
         request: {
             caPublic: EmberPublicKeyData,
             myCert: EmberCertificateData,
-            myKey: EmberPrivateKeyData
+            myKey: EmberPrivateKeyData,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     // setPreinstalledCbkeData283k1: {
@@ -1598,107 +1629,107 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
     mfglibStart: {
         ID: 0x0083, // 131
         request: {
-            rxCallback: Bool
+            rxCallback: Bool,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     mfglibEnd: {
         ID: 0x0084, // 132
-        request: null,
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     mfglibStartTone: {
         ID: 0x0085, // 133
-        request: null,
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     mfglibStopTone: {
         ID: 0x0086, // 134
-        request: null,
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     mfglibStartStream: {
         ID: 0x0087, // 135
-        request: null,
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     mfglibStopStream: {
         ID: 0x0088, // 136
-        request: null,
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     mfglibSendPacket: {
         ID: 0x0089, // 137
         request: {
-            packet: LVBytes
+            packet: LVBytes,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     mfglibSetChannel: {
-        ID: 0x008A, // 138
+        ID: 0x008a, // 138
         request: {
-            channel: uint8_t
+            channel: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     mfglibGetChannel: {
-        ID: 0x008B, // 139
-        request: null,
+        ID: 0x008b, // 139
+        request: undefined,
         response: {
-            channel: uint8_t
+            channel: uint8_t,
         },
     },
     mfglibSetPower: {
-        ID: 0x008C, // 140
+        ID: 0x008c, // 140
         request: {
             txPowerMode: uint16_t,
-            power: int8s
+            power: int8s,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     mfglibGetPower: {
-        ID: 0x008D, // 141
-        request: null,
+        ID: 0x008d, // 141
+        request: undefined,
         response: {
-            power: int8s
+            power: int8s,
         },
     },
     mfglibRxHandler: {
-        ID: 0x008E, // 142
-        request: null,
+        ID: 0x008e, // 142
+        request: undefined,
         response: {
             linkQuality: uint8_t,
             rssi: int8s,
-            packet: LVBytes
+            packet: LVBytes,
         },
     },
 
     // Bootloader Frames
     launchStandaloneBootloader: {
-        ID: 0x008F, // 143
+        ID: 0x008f, // 143
         request: {
-            mode: uint8_t
+            mode: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     sendBootloadMessage: {
@@ -1706,177 +1737,177 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
         request: {
             broadcast: Bool,
             destEui64: EmberEUI64,
-            message: LVBytes
+            message: LVBytes,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     getStandaloneBootloaderVersionPlatMicroPhy: {
         ID: 0x0091, // 145
-        request: null,
+        request: undefined,
         response: {
             bootloader_version: uint16_t,
             nodePlat: uint8_t,
             nodeMicro: uint8_t,
-            nodePhy: uint8_t
+            nodePhy: uint8_t,
         },
     },
     incomingBootloadMessageHandler: {
         ID: 0x0092, // 146
-        request: null,
+        request: undefined,
         response: {
             longId: EmberEUI64,
             lastHopLqi: uint8_t,
             lastHopRssi: int8s,
-            message: LVBytes
+            message: LVBytes,
         },
     },
     bootloadTransmitCompleteHandler: {
         ID: 0x0093, // 147
-        request: null,
+        request: undefined,
         response: {
             status: EmberStatus,
-            message: LVBytes
+            message: LVBytes,
         },
     },
     aesEncrypt: {
         ID: 0x0094, // 148
         request: {
             plaintext: fixed_list(16, uint8_t),
-            key: fixed_list(16, uint8_t)
+            key: fixed_list(16, uint8_t),
         },
         response: {
-            ciphertext: fixed_list(16, uint8_t)
+            ciphertext: fixed_list(16, uint8_t),
         },
     },
     overrideCurrentChannel: {
         ID: 0x0095, // 149
         request: {
-            channel: uint8_t
+            channel: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
 
     // ZLL Frames
     zllNetworkOps: {
-        ID: 0x00B2, // 178
+        ID: 0x00b2, // 178
         request: {
             networkInfo: EmberZllNetwork,
             op: EzspZllNetworkOperation,
-            radioTxPower: int8s
+            radioTxPower: int8s,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     zllSetInitialSecurityState: {
-        ID: 0x00B3, // 179
+        ID: 0x00b3, // 179
         request: {
             networkKey: EmberKeyData,
-            securityState: EmberZllInitialSecurityState
+            securityState: EmberZllInitialSecurityState,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     zllStartScan: {
-        ID: 0x00B4, // 180
+        ID: 0x00b4, // 180
         request: {
             channelMask: uint32_t,
             radioPowerForScan: int8s,
-            nodeType: EmberNodeType
+            nodeType: EmberNodeType,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     zllSetRxOnWhenIdle: {
-        ID: 0x00B5, // 181
+        ID: 0x00b5, // 181
         request: {
-            durationMs: uint16_t
+            durationMs: uint16_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     zllNetworkFoundHandler: {
-        ID: 0x00B6, // 182
-        request: null,
+        ID: 0x00b6, // 182
+        request: undefined,
         response: {
             networkInfo: EmberZllNetwork,
             isDeviceInfoNull: Bool,
             deviceInfo: EmberZllDeviceInfoRecord,
             lastHopLqi: uint8_t,
-            lastHopRssi: int8s
+            lastHopRssi: int8s,
         },
     },
     zllScanCompleteHandler: {
-        ID: 0x00B7, // 183
-        request: null,
+        ID: 0x00b7, // 183
+        request: undefined,
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     zllAddressAssignmentHandler: {
-        ID: 0x00B8, // 184
-        request: null,
+        ID: 0x00b8, // 184
+        request: undefined,
         response: {
             addressInfo: EmberZllAddressAssignment,
             lastHopLqi: uint8_t,
-            lastHopRssi: int8s
+            lastHopRssi: int8s,
         },
     },
     setLogicalAndRadioChannel: {
-        ID: 0x00B9, // 185
+        ID: 0x00b9, // 185
         request: {
-            radioChannel: uint8_t
+            radioChannel: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     getLogicalChannel: {
-        ID: 0x00BA, // 186
-        request: null,
+        ID: 0x00ba, // 186
+        request: undefined,
         response: {
-            logicalChannel: uint8_t
+            logicalChannel: uint8_t,
         },
     },
     zllTouchLinkTargetHandler: {
-        ID: 0x00BB, // 187
-        request: null,
+        ID: 0x00bb, // 187
+        request: undefined,
         response: {
-            networkInfo: EmberZllNetwork
+            networkInfo: EmberZllNetwork,
         },
     },
     zllGetTokens: {
-        ID: 0x00BC, // 188
-        request: null,
+        ID: 0x00bc, // 188
+        request: undefined,
         response: {
             data: EmberTokTypeStackZllData,
-            security: EmberTokTypeStackZllSecurity
+            security: EmberTokTypeStackZllSecurity,
         },
     },
     zllSetDataToken: {
-        ID: 0x00BD, // 189
+        ID: 0x00bd, // 189
         request: {
-            data: EmberTokTypeStackZllData
+            data: EmberTokTypeStackZllData,
         },
-        response: null,
+        response: undefined,
     },
     zllSetNonZllNetwork: {
-        ID: 0x00BF, // 191
-        request: null,
-        response: null,
+        ID: 0x00bf, // 191
+        request: undefined,
+        response: undefined,
     },
     isZllNetwork: {
-        ID: 0x00BE, // 190
-        request: null,
+        ID: 0x00be, // 190
+        request: undefined,
         response: {
-            isZllNetwork: Bool
+            isZllNetwork: Bool,
         },
     },
     // rf4ceSetPairingTableEntry: {
@@ -1934,7 +1965,7 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
     // },
     // rf4ceIncomingMessageHandler: {
     //     ID: 213,
-    //     request: null,
+    //     request: undefined,
     //     response: {
     //         attr: uint8_t,
     //         attr: uint8_t,
@@ -1945,7 +1976,7 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
     // },
     // rf4ceMessageSentHandler: {
     //     ID: 214,
-    //     request: null,
+    //     request: undefined,
     //     response: {
     //         attr: EmberStatus,
     //         attr: uint8_t,
@@ -1969,7 +2000,7 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
     // },
     // rf4ceStop: {
     //     ID: 216,
-    //     request: null,
+    //     request: undefined,
     //     response: {
     //         attr: EmberStatus
     //     },
@@ -1989,14 +2020,14 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
     // },
     // rf4ceDiscoveryCompleteHandler: {
     //     ID: 218,
-    //     request: null,
+    //     request: undefined,
     //     response: {
     //         attr: EmberStatus
     //     },
     // },
     // rf4ceDiscoveryRequestHandler: {
     //     ID: 219,
-    //     request: null,
+    //     request: undefined,
     //     response: {
     //         attr: EmberEUI64,
     //         attr: uint8_t,
@@ -2008,7 +2039,7 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
     // },
     // rf4ceDiscoveryResponseHandler: {
     //     ID: 220,
-    //     request: null,
+    //     request: undefined,
     //     response: {
     //         attr: Bool,
     //         attr: uint8_t,
@@ -2032,7 +2063,7 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
     // },
     // rf4ceAutoDiscoveryResponseCompleteHandler: {
     //     ID: 222,
-    //     request: null,
+    //     request: undefined,
     //     response: {
     //         attr: EmberStatus,
     //         attr: EmberEUI64,
@@ -2056,7 +2087,7 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
     // },
     // rf4cePairCompleteHandler: {
     //     ID: 224,
-    //     request: null,
+    //     request: undefined,
     //     response: {
     //         attr: EmberStatus,
     //         attr: uint8_t,
@@ -2066,7 +2097,7 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
     // },
     // rf4cePairRequestHandler: {
     //     ID: 225,
-    //     request: null,
+    //     request: undefined,
     //     response: {
     //         attr: EmberStatus,
     //         attr: uint8_t,
@@ -2088,14 +2119,14 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
     // },
     // rf4ceUnpairHandler: {
     //     ID: 227,
-    //     request: null,
+    //     request: undefined,
     //     response: {
     //         attr: uint8_t
     //     },
     // },
     // rf4ceUnpairCompleteHandler: {
     //     ID: 228,
-    //     request: null,
+    //     request: undefined,
     //     response: {
     //         attr: uint8_t
     //     },
@@ -2134,7 +2165,7 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
     // },
     // rf4ceGetApplicationInfo: {
     //     ID: 239,
-    //     request: null,
+    //     request: undefined,
     //     response: {
     //         attr: EmberStatus,
     //         attr: EmberRf4ceApplicationInfo
@@ -2152,7 +2183,7 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
     // },
     // rf4ceGetNetworkParameters: {
     //     ID: 244,
-    //     request: null,
+    //     request: undefined,
     //     response: {
     //         attr: EmberStatus,
     //         attr: EmberNodeType,
@@ -2162,7 +2193,7 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
 
     // Green Power Frames
     gpProxyTableProcessGpPairing: {
-        ID: 0x00C9, // 201
+        ID: 0x00c9, // 201
         request: {
             options: uint32_t,
             addr: EmberGpAddress,
@@ -2173,14 +2204,14 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
             sinkIeeeAddress: fixed_list(8, uint8_t),
             gpdKey: EmberKeyData,
             gpdSecurityFrameCounter: uint32_t,
-            forwardingRadius: uint8_t
+            forwardingRadius: uint8_t,
         },
         response: {
-            gpPairingAdded: Bool
+            gpPairingAdded: Bool,
         },
     },
     dGpSend: {
-        ID: 0x00C6, // 198
+        ID: 0x00c6, // 198
         request: {
             action: Bool,
             useCca: Bool,
@@ -2188,23 +2219,23 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
             gpdCommandId: uint8_t,
             gpdAsdu: LVBytes,
             gpepHandle: uint8_t,
-            gpTxQueueEntryLifetimeMs: uint16_t
+            gpTxQueueEntryLifetimeMs: uint16_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     dGpSentHandler: {
-        ID: 0x00C7, // 199
-        request: null,
+        ID: 0x00c7, // 199
+        request: undefined,
         response: {
             status: EmberStatus,
-            gpepHandle: uint8_t
+            gpepHandle: uint8_t,
         },
     },
     gpepIncomingMessageHandler: {
-        ID: 0x00C5, // 197
-        request: null,
+        ID: 0x00c5, // 197
+        request: undefined,
         response: {
             status: EmberStatus,
             gpdLink: uint8_t,
@@ -2219,43 +2250,41 @@ export const FRAMES: {[key: string]: EZSPFrameDesc} = {
             bidirectionalInfo: uint8_t,
             gpdSecurityFrameCounter: uint32_t,
             gpdCommandId: uint8_t,
-            payload: Bytes,
-            // mic: uint32_t,
-            //attr: EmberGpSinkListEntry,
-            // proxyTableIndex: uint8_t,
-            // gpdCommandPayload: LVBytes
+            mic: uint32_t,
+            proxyTableIndex: uint8_t,
+            gpdCommandPayload: LVBytes,
         },
     },
     changeSourceRouteHandler: {
-        ID: 0x00C4,
-        request: null,
+        ID: 0x00c4,
+        request: undefined,
         response: {
             newChildId: EmberNodeId,
-            newParentId: EmberNodeId
+            newParentId: EmberNodeId,
         },
-        maxV: 8
+        maxV: 8,
     },
     incomingNetworkStatusHandler: {
-        ID: 0x00C4,
-        request: null,
+        ID: 0x00c4,
+        request: undefined,
         response: {
-            errorCode: uint8_t,
-            target: EmberNodeId
+            errorCode: EmberStackError,
+            target: EmberNodeId,
         },
-        minV: 9
+        minV: 9,
     },
     setSourceRouteDiscoveryMode: {
         ID: 0x005a,
         request: {
-            mode: uint8_t
+            mode: uint8_t,
         },
         response: {
-            remainingTime: uint32_t
+            remainingTime: uint32_t,
         },
     },
 };
 
-export const FRAME_NAMES_BY_ID: { [key: string]: string[] } = {};
+export const FRAME_NAMES_BY_ID: {[key: string]: string[]} = {};
 for (const key of Object.getOwnPropertyNames(FRAMES)) {
     const frameDesc = FRAMES[key];
     if (FRAME_NAMES_BY_ID[frameDesc.ID]) {
@@ -2266,7 +2295,8 @@ for (const key of Object.getOwnPropertyNames(FRAMES)) {
 }
 
 interface EZSPZDOResponseFrame {
-    ID: number, params: ParamsDesc
+    ID: number;
+    params: ParamsDesc;
 }
 
 export const ZDOREQUESTS: {[key: string]: EZSPFrameDesc} = {
@@ -2275,10 +2305,10 @@ export const ZDOREQUESTS: {[key: string]: EZSPFrameDesc} = {
         ID: 0x0002,
         request: {
             transId: uint8_t,
-            dstaddr: EmberNodeId
+            dstaddr: EmberNodeId,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     simpleDescReq: {
@@ -2286,20 +2316,20 @@ export const ZDOREQUESTS: {[key: string]: EZSPFrameDesc} = {
         request: {
             transId: uint8_t,
             dstaddr: EmberNodeId,
-            targetEp: uint8_t
+            targetEp: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     activeEpReq: {
         ID: 0x0005,
         request: {
             transId: uint8_t,
-            dstaddr: EmberNodeId
+            dstaddr: EmberNodeId,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     // ZDO Bind Manager Attributes
@@ -2310,10 +2340,10 @@ export const ZDOREQUESTS: {[key: string]: EZSPFrameDesc} = {
             sourceEui: EmberEUI64,
             sourceEp: uint8_t,
             clusterId: uint16_t,
-            destAddr: EmberMultiAddress
+            destAddr: EmberMultiAddress,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     unBindReq: {
@@ -2323,31 +2353,31 @@ export const ZDOREQUESTS: {[key: string]: EZSPFrameDesc} = {
             sourceEui: EmberEUI64,
             sourceEp: uint8_t,
             clusterId: uint16_t,
-            destAddr: EmberMultiAddress
+            destAddr: EmberMultiAddress,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
-    // ZDO network manager attributes commands 
+    // ZDO network manager attributes commands
     mgmtLqiReq: {
         ID: 0x0031,
         request: {
             transId: uint8_t,
-            startindex: uint8_t
+            startindex: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     mgmtRtgReq: {
         ID: 0x0032,
         request: {
             transId: uint8_t,
-            startindex: uint8_t
+            startindex: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     mgmtLeaveReq: {
@@ -2355,10 +2385,10 @@ export const ZDOREQUESTS: {[key: string]: EZSPFrameDesc} = {
         request: {
             transId: uint8_t,
             destAddr: EmberEUI64,
-            removechildrenRejoin: uint8_t
+            removechildrenRejoin: uint8_t,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
     mgmtPermitJoinReq: {
@@ -2366,10 +2396,10 @@ export const ZDOREQUESTS: {[key: string]: EZSPFrameDesc} = {
         request: {
             transId: uint8_t,
             duration: uint8_t,
-            tcSignificant: Bool
+            tcSignificant: Bool,
         },
         response: {
-            status: EmberStatus
+            status: EmberStatus,
         },
     },
 };
@@ -2382,17 +2412,17 @@ export const ZDORESPONSES: {[key: string]: EZSPZDOResponseFrame} = {
             transId: uint8_t,
             status: EmberStatus,
             nwkaddr: EmberNodeId,
-            descriptor: EmberNodeDescriptor
+            descriptor: EmberNodeDescriptor,
         },
     },
     simpleDescRsp: {
         ID: 0x8004,
         params: {
             transId: uint8_t,
-            status: EmberStatus, 
+            status: EmberStatus,
             nwkaddr: EmberNodeId,
             len: uint8_t,
-            descriptor: EmberSimpleDescriptor
+            descriptor: EmberSimpleDescriptor,
         },
     },
     activeEpRsp: {
@@ -2400,70 +2430,67 @@ export const ZDORESPONSES: {[key: string]: EZSPZDOResponseFrame} = {
         params: {
             transId: uint8_t,
             status: EmberStatus,
-            nwkaddr: EmberNodeId, 
-            activeeplist: LVBytes
-        }
+            nwkaddr: EmberNodeId,
+            activeeplist: LVBytes,
+        },
     },
     // ZDO Bind Manager Attributes
     bindRsp: {
         ID: 0x8021,
         params: {
             transId: uint8_t,
-            status: EmberStatus
-        }
+            status: EmberStatus,
+        },
     },
     unBindRsp: {
         ID: 0x8022,
         params: {
             transId: uint8_t,
-            status: EmberStatus
-        }
+            status: EmberStatus,
+        },
     },
-    // ZDO network manager attributes commands 
+    // ZDO network manager attributes commands
     mgmtLqiRsp: {
         ID: 0x8031,
         params: {
             transId: uint8_t,
             status: EmberStatus,
-            neighborlqilist: EmberNeighbors
-        }
+            neighborlqilist: EmberNeighbors,
+        },
     },
     mgmtRtgRsp: {
         ID: 0x8032,
         params: {
             transId: uint8_t,
             status: EmberStatus,
-            routingtablelist: EmberRoutingTable
-        }
+            routingtablelist: EmberRoutingTable,
+        },
     },
     mgmtLeaveRsp: {
         ID: 0x8034,
         params: {
             transId: uint8_t,
-            status: EmberStatus
-        }
+            status: EmberStatus,
+        },
     },
     mgmtPermitJoinRsp: {
         ID: 0x8036,
         params: {
             transId: uint8_t,
-            status: EmberStatus
-        }
+            status: EmberStatus,
+        },
     },
 };
 
+export const ZGP: {[key: string]: EZSPZDOResponseFrame} = {};
 
-export const ZGP: {[key: string]: EZSPZDOResponseFrame} = {
-
-};
-
-export const ZDOREQUEST_NAME_BY_ID: { [key: string]: string } = {};
+export const ZDOREQUEST_NAME_BY_ID: {[key: string]: string} = {};
 for (const key of Object.getOwnPropertyNames(ZDOREQUESTS)) {
     const frameDesc = ZDOREQUESTS[key];
     ZDOREQUEST_NAME_BY_ID[frameDesc.ID] = key;
 }
 
-export const ZDORESPONSE_NAME_BY_ID: { [key: string]: string } = {};
+export const ZDORESPONSE_NAME_BY_ID: {[key: string]: string} = {};
 for (const key of Object.getOwnPropertyNames(ZDORESPONSES)) {
     const frameDesc = ZDORESPONSES[key];
     ZDORESPONSE_NAME_BY_ID[frameDesc.ID] = key;

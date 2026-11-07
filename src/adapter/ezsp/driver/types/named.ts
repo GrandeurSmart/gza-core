@@ -1,9 +1,9 @@
-/* istanbul ignore file */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import * as basic from './basic';
-import {fixed_list} from './basic';
+/* v8 ignore start */
 
-console.assert(basic.uint8_t);
+import * as basic from "./basic";
+import {fixed_list} from "./basic";
+
+// console.assert(basic.uint8_t);
 
 export class NcpResetCode extends basic.uint8_t {
     //Reset and Error Codes for NCP
@@ -13,102 +13,86 @@ export class NcpResetCode extends basic.uint8_t {
     static RESET_WATCHDOG = 0x03;
     static RESET_ASSERT = 0x06;
     static RESET_BOOTLOADER = 0x09;
-    static RESET_SOFTWARE = 0x0B;
+    static RESET_SOFTWARE = 0x0b;
     static ERROR_EXCEEDED_MAXIMUM_ACK_TIMEOUT_COUNT = 0x51;
     static ERROR_UNKNOWN_EM3XX_ERROR = 0x80;
 }
 
-export class EmberRf4ceTxOption extends basic.uint8_t {
-}
+export class EmberRf4ceTxOption extends basic.uint8_t {}
 
-export class EmberRf4ceNodeCapabilities extends basic.uint8_t {
-}
+export class EmberRf4ceNodeCapabilities extends basic.uint8_t {}
 
-export class EmberRf4ceApplicationCapabilities extends basic.uint8_t {
-}
+export class EmberRf4ceApplicationCapabilities extends basic.uint8_t {}
 
-export class EmberNodeId extends basic.uint16_t {
-}
+export class EmberNodeId extends basic.uint16_t {}
 
-export class EmberPanId extends basic.uint16_t {
-}
+export class EmberPanId extends basic.uint16_t {}
 
-export class EmberMulticastId extends basic.uint16_t {
-}
+export class EmberMulticastId extends basic.uint16_t {}
 
 export class EmberEUI64 extends fixed_list(8, basic.uint8_t) {
-
     constructor(private _value: ArrayLike<number> | string) {
         super();
-        if (typeof (_value) === 'string') {
-            if (_value.startsWith('0x'))
-                _value = _value.slice(2);
+        if (typeof _value === "string") {
+            if (_value.startsWith("0x")) _value = _value.slice(2);
             if ((_value as string).length !== 16) {
-                throw new Error('Incorrect value passed');
+                throw new Error("Incorrect value passed");
             }
-            this._value = Buffer.from(_value, 'hex');
+            this._value = Buffer.from(_value, "hex");
         } else {
             if (_value.length !== 8) {
-                throw new Error('Incorrect value passed');
+                throw new Error("Incorrect value passed");
             }
             this._value = _value;
         }
     }
 
-    /* eslint-disable-next-line @typescript-eslint/no-explicit-any*/
-    static deserialize(cls: any, data: Buffer): any[] {
+    static override deserialize(cls: any, data: Buffer): any[] {
+        // biome-ignore lint/complexity/noThisInStatic: legacy
         const arr = super.deserialize(cls, data);
         const r = arr[0];
         data = arr[1] as Buffer;
         return [Buffer.from(r).reverse(), data];
     }
 
-    /* eslint-disable-next-line @typescript-eslint/no-explicit-any*/
-    static serialize(cls: any, value: number[] | EmberEUI64): Buffer {
+    static serialize(_cls: any, value: number[] | EmberEUI64): Buffer {
         if (value instanceof EmberEUI64) {
             value = (value as EmberEUI64).value as number[];
         }
-        console.assert(cls._length === value.length);
-        /* eslint-disable-next-line @typescript-eslint/no-explicit-any*/
-        const val = Buffer.from(value).reverse().map(i => basic.uint8_t.serialize(basic.uint8_t, i)[0]);
+        // console.assert(cls._length === value.length);
+
+        const val = Buffer.from(value)
+            .reverse()
+            .map((i) => basic.uint8_t.serialize(basic.uint8_t, i)[0]);
         return Buffer.from(val);
     }
 
-    /* eslint-disable-next-line @typescript-eslint/no-explicit-any*/
     public get value(): any {
         return this._value;
     }
 
     public toString(): string {
-        /* eslint-disable-next-line @typescript-eslint/no-explicit-any*/
-        return Buffer.from(this._value as any).toString('hex');
+        return Buffer.from(this._value as any).toString("hex");
     }
 }
 
-export class EmberLibraryStatus extends basic.uint8_t {
-}
+export class EmberLibraryStatus extends basic.uint8_t {}
 
-export class SecureEzspSecurityType extends basic.uint32_t {
-}
+export class SecureEzspSecurityType extends basic.uint32_t {}
 
-export class SecureEzspSecurityLevel extends basic.uint8_t {
-}
+export class SecureEzspSecurityLevel extends basic.uint8_t {}
 
-export class EmberGpSecurityLevel extends basic.uint8_t {
-}
+export class EmberGpSecurityLevel extends basic.uint8_t {}
 
-export class EmberGpKeyType extends basic.uint8_t {
-}
+export class EmberGpKeyType extends basic.uint8_t {}
 
-export class SecureEzspRandomNumber extends basic.uint64_t {
-}
+export class SecureEzspRandomNumber extends basic.uint64_t {}
 
-export class SecureEzspSessionId extends basic.uint64_t {
-}
+export class SecureEzspSessionId extends basic.uint64_t {}
 
 export class Bool extends basic.uint8_t {
-    static false = 0x00;  // An alias for zero, used for clarity.
-    static true = 0x01;  // An alias for one, used for clarity.
+    static false = 0x00; // An alias for zero, used for clarity.
+    static true = 0x01; // An alias for one, used for clarity.
 }
 
 export class EzspConfigId extends basic.uint8_t {
@@ -144,13 +128,13 @@ export class EzspConfigId extends basic.uint8_t {
     // The size of the alarm broadcast buffer.
     static CONFIG_BROADCAST_ALARM_DATA_SIZE = 0x09;
     // The size of the unicast alarm buffers allocated for end device children.
-    static CONFIG_UNICAST_ALARM_DATA_SIZE = 0x0A;
+    static CONFIG_UNICAST_ALARM_DATA_SIZE = 0x0a;
     // Specifies the stack profile.
-    static CONFIG_STACK_PROFILE = 0x0C;
+    static CONFIG_STACK_PROFILE = 0x0c;
     // The security level used for security at the MAC and network layers. The
     // supported values are 0 (no security) and 5 (payload is encrypted and a
     // four-byte MIC is used for authentication).
-    static CONFIG_SECURITY_LEVEL = 0x0D;
+    static CONFIG_SECURITY_LEVEL = 0x0d;
     // The maximum number of hops for a message.
     static CONFIG_MAX_HOPS = 0x10;
     // The maximum number of end device children that a router will support.
@@ -185,22 +169,22 @@ export class EzspConfigId extends basic.uint8_t {
     // ::CONFIG_ADDRESS_TABLE_SIZE.)
     static CONFIG_TRUST_CENTER_ADDRESS_CACHE_SIZE = 0x19;
     // The size of the source route table.
-    static CONFIG_SOURCE_ROUTE_TABLE_SIZE = 0x1A;
+    static CONFIG_SOURCE_ROUTE_TABLE_SIZE = 0x1a;
     // The units used for timing out end devices on their parents.
-    static CONFIG_END_DEVICE_POLL_TIMEOUT_SHIFT = 0x1B;
+    static CONFIG_END_DEVICE_POLL_TIMEOUT_SHIFT = 0x1b;
     // The number of blocks of a fragmented message that can be sent in a single
     // window.
-    static CONFIG_FRAGMENT_WINDOW_SIZE = 0x1C;
+    static CONFIG_FRAGMENT_WINDOW_SIZE = 0x1c;
     // The time the stack will wait (in milliseconds) between sending blocks of
     // a fragmented message.
-    static CONFIG_FRAGMENT_DELAY_MS = 0x1D;
+    static CONFIG_FRAGMENT_DELAY_MS = 0x1d;
     // The size of the Key Table used for storing individual link keys (if the
     // device is a Trust Center) or Application Link Keys (if the device is a
     // normal node).
-    static CONFIG_KEY_TABLE_SIZE = 0x1E;
+    static CONFIG_KEY_TABLE_SIZE = 0x1e;
     // The APS ACK timeout value. The stack waits this amount of time between
     // resends of APS retried messages.
-    static CONFIG_APS_ACK_TIMEOUT = 0x1F;
+    static CONFIG_APS_ACK_TIMEOUT = 0x1f;
     // The duration of an active scan, in the units used by the 15.4 scan
     // parameter (((1 << duration) + 1) * 15ms). This also controls the jitter
     // used when responding to a beacon request.
@@ -212,9 +196,9 @@ export class EzspConfigId extends basic.uint8_t {
     // network manager within one minute to trigger a PAN id change.
     static CONFIG_PAN_ID_CONFLICT_REPORT_THRESHOLD = 0x22;
     // The timeout value in minutes for how long the Trust Center or a normal
-    // node waits for the ZigBee Request Key to complete. On the Trust Center
+    // node waits for the Zigbee Request Key to complete. On the Trust Center
     // this controls whether or not the device buffers the request, waiting for
-    // a matching pair of ZigBee Request Key. If the value is non-zero, the
+    // a matching pair of Zigbee Request Key. If the value is non-zero, the
     // Trust Center buffers and waits for that amount of time. If the value is
     // zero, the Trust Center does not buffer the request and immediately
     // responds to the request.  Zero is the most compliant behavior.
@@ -231,20 +215,20 @@ export class EzspConfigId extends basic.uint8_t {
     // application must check the APS options bitfield within the
     // incomingMessageHandler callback to see if the
     // APS_OPTION_ZDO_RESPONSE_REQUIRED flag is set.
-    static CONFIG_APPLICATION_ZDO_FLAGS = 0x2A;
+    static CONFIG_APPLICATION_ZDO_FLAGS = 0x2a;
     // The maximum number of broadcasts during a single broadcast timeout
     // period.
-    static CONFIG_BROADCAST_TABLE_SIZE = 0x2B;
+    static CONFIG_BROADCAST_TABLE_SIZE = 0x2b;
     // The size of the MAC filter list table.
-    static CONFIG_MAC_FILTER_TABLE_SIZE = 0x2C;
+    static CONFIG_MAC_FILTER_TABLE_SIZE = 0x2c;
     // The number of supported networks.
-    static CONFIG_SUPPORTED_NETWORKS = 0x2D;
+    static CONFIG_SUPPORTED_NETWORKS = 0x2d;
     // Whether multicasts are sent to the RxOnWhenIdle=true address (0xFFFD) or
     // the sleepy broadcast address (0xFFFF). The RxOnWhenIdle=true address is
-    // the ZigBee compliant destination for multicasts.
-    static CONFIG_SEND_MULTICASTS_TO_SLEEPY_ADDRESS = 0x2E;
+    // the Zigbee compliant destination for multicasts.
+    static CONFIG_SEND_MULTICASTS_TO_SLEEPY_ADDRESS = 0x2e;
     // ZLL group address initial configuration.
-    static CONFIG_ZLL_GROUP_ADDRESSES = 0x2F;
+    static CONFIG_ZLL_GROUP_ADDRESSES = 0x2f;
     // ZLL rssi threshold initial configuration.
     static CONFIG_ZLL_RSSI_THRESHOLD = 0x30;
     // The maximum number of pairings supported by the stack. Controllers
@@ -277,7 +261,6 @@ export class EzspConfigId extends basic.uint8_t {
     static CONFIG_TC_REJOINS_USING_WELL_KNOWN_KEY_TIMEOUT_S = 0x38;
 }
 
-
 export class EzspValueId extends basic.uint8_t {
     // Identifies a value.
 
@@ -306,17 +289,17 @@ export class EzspValueId extends basic.uint8_t {
     // A list of EmberMacFilterMatchData values.
     static VALUE_MAC_FILTER_LIST = 0x09;
     // The Ember Extended Security Bitmask.
-    static VALUE_EXTENDED_SECURITY_BITMASK = 0x0A;
+    static VALUE_EXTENDED_SECURITY_BITMASK = 0x0a;
     // The node short ID.
-    static VALUE_NODE_SHORT_ID = 0x0B;
+    static VALUE_NODE_SHORT_ID = 0x0b;
     // The descriptor capability of the local node.
-    static VALUE_DESCRIPTOR_CAPABILITY = 0x0C;
+    static VALUE_DESCRIPTOR_CAPABILITY = 0x0c;
     // The stack device request sequence number of the local node.
-    static VALUE_STACK_DEVICE_REQUEST_SEQUENCE_NUMBER = 0x0D;
+    static VALUE_STACK_DEVICE_REQUEST_SEQUENCE_NUMBER = 0x0d;
     // Enable or disable radio hold-off.
-    static VALUE_RADIO_HOLD_OFF = 0x0E;
+    static VALUE_RADIO_HOLD_OFF = 0x0e;
     // The flags field associated with the endpoint data.
-    static VALUE_ENDPOINT_FLAGS = 0x0F;
+    static VALUE_ENDPOINT_FLAGS = 0x0f;
     // Enable/disable the Mfg security config key settings.
     static VALUE_MFG_SECURITY_CONFIG = 0x10;
     // Retrieves the version information from the stack on the NCP.
@@ -337,7 +320,7 @@ export class EzspValueId extends basic.uint8_t {
     // initiated a rejoin it will record this value internally for retrieval by
     // ezspGetValue(VALUE_REAL_REJOIN_REASON).
     static VALUE_LAST_REJOIN_REASON = 0x13;
-    // The next ZigBee sequence number.
+    // The next Zigbee sequence number.
     static VALUE_NEXT_ZIGBEE_SEQUENCE_NUMBER = 0x14;
     // CCA energy detect threshold for radio.
     static VALUE_CCA_THRESHOLD = 0x15;
@@ -348,22 +331,22 @@ export class EzspValueId extends basic.uint8_t {
     // Clears all the counters
     static VALUE_CLEAR_COUNTERS = 0x19;
     // The device RF4CE base channel
-    static VALUE_RF4CE_BASE_CHANNEL = 0x1A;
+    static VALUE_RF4CE_BASE_CHANNEL = 0x1a;
     // The RF4CE device types supported by the node
-    static VALUE_RF4CE_SUPPORTED_DEVICE_TYPES_LIST = 0x1B;
+    static VALUE_RF4CE_SUPPORTED_DEVICE_TYPES_LIST = 0x1b;
     // The RF4CE profiles supported by the node
-    static VALUE_RF4CE_SUPPORTED_PROFILES_LIST = 0x1C;
+    static VALUE_RF4CE_SUPPORTED_PROFILES_LIST = 0x1c;
     // Setting this byte enables R21 behavior on the NCP.
     static VALUE_ENABLE_R21_BEHAVIOR = 0x29;
     // Configure the antenna mode(0-primary,1-secondary,2- toggle on tx ack
     // fail).
     static VALUE_ANTENNA_MODE = 0x30;
     // The GDP binding recipient parameters
-    static VALUE_RF4CE_GDP_BINDING_RECIPIENT_PARAMETERS = 0x1D;
+    static VALUE_RF4CE_GDP_BINDING_RECIPIENT_PARAMETERS = 0x1d;
     // The GDP binding push button stimulus received pending flag
-    static VALUE_RF4CE_GDP_PUSH_BUTTON_STIMULUS_RECEIVED_PENDING_FLAG = 0x1E;
+    static VALUE_RF4CE_GDP_PUSH_BUTTON_STIMULUS_RECEIVED_PENDING_FLAG = 0x1e;
     // The GDP originator proxy flag in the advanced binding options
-    static VALUE_RF4CE_GDP_BINDING_PROXY_FLAG = 0x1F;
+    static VALUE_RF4CE_GDP_BINDING_PROXY_FLAG = 0x1f;
     // The GDP application specific user s join unti_VALUE_RF4CE_MSO_USER_STRING
     // 0x21 The MSO user string
     static VALUE_RF4CE_GDP_APPLICATION_SPECIFIC_USER_STRING = 0x20;
@@ -390,7 +373,7 @@ export class EzspValueId extends basic.uint8_t {
     // Configure manufacturing library options(0-non-CSMA transmits,1-CSMA transmits).
     static VALUE_MFGLIB_OPTIONS = 0x33;
 
-    static VALUE_END_DEVICE_KEEP_ALIVE_SUPPORT_MODE = 0x3F;
+    static VALUE_END_DEVICE_KEEP_ALIVE_SUPPORT_MODE = 0x3f;
 }
 
 export class EzspExtendedValueId extends basic.uint8_t {
@@ -411,7 +394,6 @@ export class EzspExtendedValueId extends basic.uint8_t {
     static EXTENDED_VALUE_GET_SOURCE_ROUTE_OVERHEAD = 0x02;
 }
 
-
 export class EzspEndpointFlags extends basic.uint16_t {
     // Flags associated with the endpoint data configured on the NCP.
 
@@ -420,7 +402,6 @@ export class EzspEndpointFlags extends basic.uint16_t {
     // Indicates that the endpoint is enabled and discoverable via ZDO.
     static ENDPOINT_ENABLED = 0x01;
 }
-
 
 export class EmberConfigTxPowerMode extends basic.uint16_t {
     // Values for CONFIG_TX_POWER_MODE.
@@ -437,7 +418,6 @@ export class EmberConfigTxPowerMode extends basic.uint16_t {
     // boost mode and the alternate transmitter output.
     static TX_POWER_MODE_ALTERNATE = 0x02;
 }
-
 
 export class EzspPolicyId extends basic.uint8_t {
     // Identifies a policy.
@@ -459,7 +439,7 @@ export class EzspPolicyId extends basic.uint8_t {
     // Controls whether the Trust Center will respond to application link key
     // requests.
     static APP_KEY_REQUEST_POLICY = 0x06;
-    // Controls whether ZigBee packets that appear invalid are automatically
+    // Controls whether Zigbee packets that appear invalid are automatically
     // dropped by the stack. A counter will be incremented when this occurs.
     static PACKET_VALIDATE_LIBRARY_POLICY = 0x07;
     // Controls whether the stack will process ZLL messages.
@@ -467,7 +447,6 @@ export class EzspPolicyId extends basic.uint8_t {
 
     static TC_REJOINS_USING_WELL_KNOWN_KEY_POLICY = 0x09;
 }
-
 
 export class EzspDecisionId extends basic.uint16_t {
     // Identifies a policy decision.
@@ -546,7 +525,6 @@ export class EzspDecisionId extends basic.uint16_t {
     static PACKET_VALIDATE_LIBRARY_CHECKS_DISABLED = 0x63;
 }
 
-
 export class EzspMfgTokenId extends basic.uint8_t {
     // Manufacturing token IDs used by ezspGetMfgToken().
 
@@ -573,15 +551,15 @@ export class EzspMfgTokenId extends basic.uint8_t {
     // Certificate Based Key Exchange (CBKE) data (92 bytes).
     static MFG_CBKE_DATA = 0x09;
     // Installation code (20 bytes).
-    static MFG_INSTALLATION_CODE = 0x0A;
+    static MFG_INSTALLATION_CODE = 0x0a;
     // Radio channel filter calibration data (1 byte). This token is not stored
     // in the Flash Information Area. It is updated by the stack each time a
     // calibration is performed.
-    static STACK_CAL_FILTER = 0x0B;
+    static STACK_CAL_FILTER = 0x0b;
     // Custom EUI64 MAC address (8 bytes).
-    static MFG_CUSTOM_EUI_64 = 0x0C;
+    static MFG_CUSTOM_EUI_64 = 0x0c;
     // CTUNE value (2 byte).
-    static MFG_CTUNE = 0x0D;
+    static MFG_CTUNE = 0x0d;
 }
 
 export class EzspStatus extends basic.uint8_t {
@@ -619,16 +597,16 @@ export class EzspStatus extends basic.uint8_t {
     static SPI_WAITING_FOR_RESPONSE = 0x19;
     // The NCP has not asserted nHOST_INT within the time limit defined by
     // WAKE_HANDSHAKE_TIMEOUT.
-    static SPI_ERR_HANDSHAKE_TIMEOUT = 0x1A;
+    static SPI_ERR_HANDSHAKE_TIMEOUT = 0x1a;
     // The NCP has not asserted nHOST_INT after an NCP reset within the time
     // limit defined by STARTUP_TIMEOUT.
-    static SPI_ERR_STARTUP_TIMEOUT = 0x1B;
+    static SPI_ERR_STARTUP_TIMEOUT = 0x1b;
     // The Host attempted to verify the SPI Protocol activity and version
     // number, and the verification failed.
-    static SPI_ERR_STARTUP_FAIL = 0x1C;
+    static SPI_ERR_STARTUP_FAIL = 0x1c;
     // The Host has sent a command with a SPI Byte that is unsupported by the
     // current mode the NCP is operating in.
-    static SPI_ERR_UNSUPPORTED_SPI_COMMAND = 0x1D;
+    static SPI_ERR_UNSUPPORTED_SPI_COMMAND = 0x1d;
     // Operation not yet complete.
     static ASH_IN_PROGRESS = 0x20;
     // Fatal error detected by host.
@@ -693,7 +671,7 @@ export class EzspStatus extends basic.uint8_t {
     // Received frame with unsupported control byte
     static ERROR_UNSUPPORTED_CONTROL = 0x49;
     // Received frame is unsecure, when security is established
-    static ERROR_UNSECURE_FRAME = 0x4A;
+    static ERROR_UNSECURE_FRAME = 0x4a;
     // Incompatible ASH version
     static ASH_ERROR_VERSION = 0x50;
     // Exceeded max ACK timeouts
@@ -731,17 +709,17 @@ export class EzspStatus extends basic.uint8_t {
     // Received frame shorter than minimum
     static ASH_TOO_SHORT = 0x79;
     // Received frame longer than maximum
-    static ASH_TOO_LONG = 0x7A;
+    static ASH_TOO_LONG = 0x7a;
     // Received frame with illegal control byte
-    static ASH_BAD_CONTROL = 0x7B;
+    static ASH_BAD_CONTROL = 0x7b;
     // Received frame with illegal length for its type
-    static ASH_BAD_LENGTH = 0x7C;
+    static ASH_BAD_LENGTH = 0x7c;
     // Received ASH Ack
-    static ASH_ACK_RECEIVED = 0x7D;
+    static ASH_ACK_RECEIVED = 0x7d;
     // Sent ASH Ack
-    static ASH_ACK_SENT = 0x7E;
+    static ASH_ACK_SENT = 0x7e;
     // No reset or error
-    static NO_ERROR = 0xFF;
+    static NO_ERROR = 0xff;
 }
 
 export class EmberStatus extends basic.uint8_t {
@@ -788,9 +766,9 @@ export class EmberStatus extends basic.uint8_t {
     // The MAC transmit queue is full.
     static MAC_TRANSMIT_QUEUE_FULL = 0x39;
     // MAC header FCR error on receive.
-    static MAC_UNKNOWN_HEADER_TYPE = 0x3A;
+    static MAC_UNKNOWN_HEADER_TYPE = 0x3a;
     // The MAC can't complete this task because it is scanning.
-    static MAC_SCANNING = 0x3D;
+    static MAC_SCANNING = 0x3d;
     // No pending data exists for device doing a data poll.
     static MAC_NO_DATA = 0x31;
     // Attempt to scan when we are joined to a network.
@@ -852,17 +830,17 @@ export class EmberStatus extends basic.uint8_t {
     // means one or both of the tokens TOKEN_MFG_NVDATA_VERSION or
     // TOKEN_STACK_NVDATA_VERSION were incorrect and the token system failed to
     // properly reload default tokens and reset the Simulated EEPROM.
-    static SIM_EEPROM_INIT_3_FAILED = 0x4A;
+    static SIM_EEPROM_INIT_3_FAILED = 0x4a;
     // A fatal error has occurred while trying to write data to the flash,
     // possibly due to write protection or an invalid address. The data in the
     // flash cannot be trusted after this error, and it is possible this error
     // is the result of exceeding the life cycles of the flash.
-    static ERR_FLASH_PROG_FAIL = 0x4B;
+    static ERR_FLASH_PROG_FAIL = 0x4b;
     // A fatal error has occurred while trying to erase flash, possibly due to
     // write protection. The data in the flash cannot be trusted after this
     // error, and it is possible this error is the result of exceeding the life
     // cycles of the flash.
-    static ERR_FLASH_ERASE_FAIL = 0x4C;
+    static ERR_FLASH_ERASE_FAIL = 0x4c;
     // The bootloader received an invalid message (failed attempt to go into
     // bootloader).
     static ERR_BOOTLOADER_TRAP_TABLE_BAD = 0x58;
@@ -871,15 +849,15 @@ export class EmberStatus extends basic.uint8_t {
     static ERR_BOOTLOADER_TRAP_UNKNOWN = 0x59;
     // The bootloader cannot complete the bootload operation because either an
     // image was not found or the image exceeded memory bounds.
-    static ERR_BOOTLOADER_NO_IMAGE = 0x5A;
+    static ERR_BOOTLOADER_NO_IMAGE = 0x5a;
     // The APS layer attempted to send or deliver a message, but it failed.
     static DELIVERY_FAILED = 0x66;
     // This binding index is out of range of the current binding table.
     static BINDING_INDEX_OUT_OF_RANGE = 0x69;
     // This address table index is out of range for the current address table.
-    static ADDRESS_TABLE_INDEX_OUT_OF_RANGE = 0x6A;
+    static ADDRESS_TABLE_INDEX_OUT_OF_RANGE = 0x6a;
     // An invalid binding table index was given to a function.
-    static INVALID_BINDING_INDEX = 0x6C;
+    static INVALID_BINDING_INDEX = 0x6c;
     // The API call is not allowed given the current state of the stack.
     static INVALID_CALL = 0x70;
     // The link cost to a node is not known.
@@ -912,19 +890,19 @@ export class EmberStatus extends basic.uint8_t {
     // The transmit hardware did not finish transmitting a packet.
     static PHY_TX_INCOMPLETE = 0x89;
     // An unsupported channel setting was specified.
-    static PHY_INVALID_CHANNEL = 0x8A;
+    static PHY_INVALID_CHANNEL = 0x8a;
     // An unsupported power setting was specified.
-    static PHY_INVALID_POWER = 0x8B;
+    static PHY_INVALID_POWER = 0x8b;
     // The packet cannot be transmitted because the physical MAC layer is
     // currently transmitting a packet.  (This is used for the MAC backoff
     // algorithm.) PHY_TX_CCA_FAIL 0x8D The transmit attempt failed because all
     // CCA attempts indicated that the channel was busy
-    static PHY_TX_BUSY = 0x8C;
+    static PHY_TX_BUSY = 0x8c;
     // The software installed on the hardware doesn't recognize the hardware
     // radio type.
-    static PHY_OSCILLATOR_CHECK_FAILED = 0x8E;
+    static PHY_OSCILLATOR_CHECK_FAILED = 0x8e;
     // The expected ACK was received after the last transmission.
-    static PHY_ACK_RECEIVED = 0x8F;
+    static PHY_ACK_RECEIVED = 0x8f;
     // The stack software has completed initialization and is ready to send and
     // receive packets over the air.
     static NETWORK_UP = 0x90;
@@ -935,8 +913,8 @@ export class EmberStatus extends basic.uint8_t {
     // After moving, a mobile node's attempt to re-establish contact with the
     // network failed.
     static MOVE_FAILED = 0x96;
-    // An attempt to join as a router failed due to a ZigBee versus ZigBee Pro
-    // incompatibility. ZigBee devices joining ZigBee Pro networks (or vice
+    // An attempt to join as a router failed due to a Zigbee versus Zigbee Pro
+    // incompatibility. Zigbee devices joining Zigbee Pro networks (or vice
     // versa) must join as End Devices, not Routers.
     static CANNOT_JOIN_AS_ROUTER = 0x98;
     // The local node ID has changed. The application can obtain the new node ID
@@ -944,39 +922,39 @@ export class EmberStatus extends basic.uint8_t {
     static NODE_ID_CHANGED = 0x99;
     // The local PAN ID has changed. The application can obtain the new PAN ID
     // by calling emberGetPanId().
-    static PAN_ID_CHANGED = 0x9A;
+    static PAN_ID_CHANGED = 0x9a;
     // An attempt to join or rejoin the network failed because no router beacons
     // could be heard by the joining node.
-    static NO_BEACONS = 0xAB;
+    static NO_BEACONS = 0xab;
     // An attempt was made to join a Secured Network using a pre-configured key,
     // but the Trust Center sent back a Network Key in-the-clear when an
     // encrypted Network Key was required.
-    static RECEIVED_KEY_IN_THE_CLEAR = 0xAC;
+    static RECEIVED_KEY_IN_THE_CLEAR = 0xac;
     // An attempt was made to join a Secured Network, but the device did not
     // receive a Network Key.
-    static NO_NETWORK_KEY_RECEIVED = 0xAD;
+    static NO_NETWORK_KEY_RECEIVED = 0xad;
     // After a device joined a Secured Network, a Link Key was requested but no
     // response was ever received.
-    static NO_LINK_KEY_RECEIVED = 0xAE;
+    static NO_LINK_KEY_RECEIVED = 0xae;
     // An attempt was made to join a Secured Network without a pre-configured
     // key, but the Trust Center sent encrypted data using a pre-configured key.
-    static PRECONFIGURED_KEY_REQUIRED = 0xAF;
+    static PRECONFIGURED_KEY_REQUIRED = 0xaf;
     // The node has not joined a network.
     static NOT_JOINED = 0x93;
     // The chosen security level (the value of SECURITY_LEVEL) is not supported
     // by the stack.
     static INVALID_SECURITY_LEVEL = 0x95;
     // A message cannot be sent because the network is currently overloaded.
-    static NETWORK_BUSY = 0xA1;
+    static NETWORK_BUSY = 0xa1;
     // The application tried to send a message using an endpoint that it has not
     // defined.
-    static INVALID_ENDPOINT = 0xA3;
+    static INVALID_ENDPOINT = 0xa3;
     // The application tried to use a binding that has been remotely modified
     // and the change has not yet been reported to the application.
-    static BINDING_HAS_CHANGED = 0xA4;
+    static BINDING_HAS_CHANGED = 0xa4;
     // An attempt to generate random bytes failed because of insufficient random
     // data from the radio.
-    static INSUFFICIENT_RANDOM_DATA = 0xA5;
+    static INSUFFICIENT_RANDOM_DATA = 0xa5;
     // There was an error in trying to encrypt at the APS Level. This could
     // result from either an inability to determine the long address of the
     // recipient from the short address (no entry in the binding table) or there
@@ -985,107 +963,692 @@ export class EmberStatus extends basic.uint8_t {
     // TRUST_CENTER_MASTER_KEY_NOT_SET 0xA7 There was an attempt to form a
     // network using commercial security without setting the Trust Center master
     // key first.
-    static APS_ENCRYPTION_ERROR = 0xA6;
+    static APS_ENCRYPTION_ERROR = 0xa6;
     // There was an attempt to form or join a network with security without
     // calling emberSetInitialSecurityState() first.
-    static SECURITY_STATE_NOT_SET = 0xA8;
+    static SECURITY_STATE_NOT_SET = 0xa8;
     // There was an attempt to set an entry in the key table using an invalid
     // long address. An entry cannot be set using either the local device's or
     // Trust Center's IEEE address. Or an entry already exists in the table with
     // the same IEEE address. An Address of all zeros or all F's are not valid
     // addresses in 802.15.4.
-    static KEY_TABLE_INVALID_ADDRESS = 0xB3;
+    static KEY_TABLE_INVALID_ADDRESS = 0xb3;
     // There was an attempt to set a security configuration that is not valid
     // given the other security settings.
-    static SECURITY_CONFIGURATION_INVALID = 0xB7;
+    static SECURITY_CONFIGURATION_INVALID = 0xb7;
     // There was an attempt to broadcast a key switch too quickly after
     // broadcasting the next network key. The Trust Center must wait at least a
     // period equal to the broadcast timeout so that all routers have a chance
     // to receive the broadcast of the new network key.
-    static TOO_SOON_FOR_SWITCH_KEY = 0xB8;
+    static TOO_SOON_FOR_SWITCH_KEY = 0xb8;
     // The message could not be sent because the link key corresponding to the
     // destination is not authorized for use in APS data messages. APS Commands
     // (sent by the stack) are allowed. To use it for encryption of APS data
     // messages it must be authorized using a key agreement protocol (such as
     // CBKE).
-    static KEY_NOT_AUTHORIZED = 0xBB;
+    static KEY_NOT_AUTHORIZED = 0xbb;
     // The security data provided was not valid, or an integrity check failed.
-    static SECURITY_DATA_INVALID = 0xBD;
-    // A ZigBee route error command frame was received indicating that a source
+    static SECURITY_DATA_INVALID = 0xbd;
+    // A Zigbee route error command frame was received indicating that a source
     // routed message from this node failed en route.
-    static SOURCE_ROUTE_FAILURE = 0xA9;
-    // A ZigBee route error command frame was received indicating that a message
+    static SOURCE_ROUTE_FAILURE = 0xa9;
+    // A Zigbee route error command frame was received indicating that a message
     // sent to this node along a many-to-one route failed en route. The route
     // error frame was delivered by an ad-hoc search for a functioning route.
-    static MANY_TO_ONE_ROUTE_FAILURE = 0xAA;
+    static MANY_TO_ONE_ROUTE_FAILURE = 0xaa;
     // A critical and fatal error indicating that the version of the stack
     // trying to run does not match with the chip it is running on. The software
     // (stack) on the chip must be replaced with software that is compatible
     // with the chip.
-    static STACK_AND_HARDWARE_MISMATCH = 0xB0;
+    static STACK_AND_HARDWARE_MISMATCH = 0xb0;
     // An index was passed into the function that was larger than the valid
     // range.
-    static INDEX_OUT_OF_RANGE = 0xB1;
+    static INDEX_OUT_OF_RANGE = 0xb1;
     // There are no empty entries left in the table.
-    static TABLE_FULL = 0xB4;
+    static TABLE_FULL = 0xb4;
     // The requested table entry has been erased and contains no valid data.
-    static TABLE_ENTRY_ERASED = 0xB6;
+    static TABLE_ENTRY_ERASED = 0xb6;
     // The requested function cannot be executed because the library that
     // contains the necessary functionality is not present.
-    static LIBRARY_NOT_PRESENT = 0xB5;
+    static LIBRARY_NOT_PRESENT = 0xb5;
     // The stack accepted the command and is currently processing the request.
     // The results will be returned via an appropriate handler.
-    static OPERATION_IN_PROGRESS = 0xBA;
+    static OPERATION_IN_PROGRESS = 0xba;
     // This error is reserved for customer application use.  This will never be
     // returned from any portion of the network stack or HAL.
-    static APPLICATION_ERROR_0 = 0xF0;
+    static APPLICATION_ERROR_0 = 0xf0;
     // This error is reserved for customer application use.  This will never be
     // returned from any portion of the network stack or HAL.
-    static APPLICATION_ERROR_1 = 0xF1;
+    static APPLICATION_ERROR_1 = 0xf1;
     // This error is reserved for customer application use.  This will never be
     // returned from any portion of the network stack or HAL.
-    static APPLICATION_ERROR_2 = 0xF2;
+    static APPLICATION_ERROR_2 = 0xf2;
     // This error is reserved for customer application use.  This will never be
     // returned from any portion of the network stack or HAL.
-    static APPLICATION_ERROR_3 = 0xF3;
+    static APPLICATION_ERROR_3 = 0xf3;
     // This error is reserved for customer application use.  This will never be
     // returned from any portion of the network stack or HAL.
-    static APPLICATION_ERROR_4 = 0xF4;
+    static APPLICATION_ERROR_4 = 0xf4;
     // This error is reserved for customer application use.  This will never be
     // returned from any portion of the network stack or HAL.
-    static APPLICATION_ERROR_5 = 0xF5;
+    static APPLICATION_ERROR_5 = 0xf5;
     // This error is reserved for customer application use.  This will never be
     // returned from any portion of the network stack or HAL.
-    static APPLICATION_ERROR_6 = 0xF6;
+    static APPLICATION_ERROR_6 = 0xf6;
     // This error is reserved for customer application use.  This will never be
     // returned from any portion of the network stack or HAL.
-    static APPLICATION_ERROR_7 = 0xF7;
+    static APPLICATION_ERROR_7 = 0xf7;
     // This error is reserved for customer application use.  This will never be
     // returned from any portion of the network stack or HAL.
-    static APPLICATION_ERROR_8 = 0xF8;
+    static APPLICATION_ERROR_8 = 0xf8;
     // This error is reserved for customer application use.  This will never be
     // returned from any portion of the network stack or HAL.
-    static APPLICATION_ERROR_9 = 0xF9;
+    static APPLICATION_ERROR_9 = 0xf9;
     // This error is reserved for customer application use.  This will never be
     // returned from any portion of the network stack or HAL.
-    static APPLICATION_ERROR_10 = 0xFA;
+    static APPLICATION_ERROR_10 = 0xfa;
     // This error is reserved for customer application use.  This will never be
     // returned from any portion of the network stack or HAL.
-    static APPLICATION_ERROR_11 = 0xFB;
+    static APPLICATION_ERROR_11 = 0xfb;
     // This error is reserved for customer application use.  This will never be
     // returned from any portion of the network stack or HAL.
-    static APPLICATION_ERROR_12 = 0xFC;
+    static APPLICATION_ERROR_12 = 0xfc;
     // This error is reserved for customer application use.  This will never be
     // returned from any portion of the network stack or HAL.
-    static APPLICATION_ERROR_13 = 0xFD;
+    static APPLICATION_ERROR_13 = 0xfd;
     // This error is reserved for customer application use.  This will never be
     // returned from any portion of the network stack or HAL.
-    static APPLICATION_ERROR_14 = 0xFE;
+    static APPLICATION_ERROR_14 = 0xfe;
     // This error is reserved for customer application use.  This will never be
     // returned from any portion of the network stack or HAL.
-    static APPLICATION_ERROR_15 = 0xFF;
+    static APPLICATION_ERROR_15 = 0xff;
 }
 
+/** define global status variable. */
+export class SLStatus extends basic.uint32_t {
+    /** No error. */
+    static SL_STATUS_OK = 0x0000;
+    /** Generic error. */
+    static SL_STATUS_FAIL = 0x0001;
+    /**State Errors */
+    /** Generic invalid state error. */
+    static SL_STATUS_INVALID_STATE = 0x0002;
+    /** Module is not ready for requested operation. */
+    static SL_STATUS_NOT_READY = 0x0003;
+    /** Module is busy and cannot carry out requested operation. */
+    static SL_STATUS_BUSY = 0x0004;
+    /** Operation is in progress and not yet complete (pass or fail). */
+    static SL_STATUS_IN_PROGRESS = 0x0005;
+    /** Operation aborted. */
+    static SL_STATUS_ABORT = 0x0006;
+    /** Operation timed out. */
+    static SL_STATUS_TIMEOUT = 0x0007;
+    /** Operation not allowed per permissions. */
+    static SL_STATUS_PERMISSION = 0x0008;
+    /** Non-blocking operation would block. */
+    static SL_STATUS_WOULD_BLOCK = 0x0009;
+    /** Operation/module is Idle, cannot carry requested operation. */
+    static SL_STATUS_IDLE = 0x000a;
+    /** Operation cannot be done while construct is waiting. */
+    static SL_STATUS_IS_WAITING = 0x000b;
+    /** No task/construct waiting/pending for that action/event. */
+    static SL_STATUS_NONE_WAITING = 0x000c;
+    /** Operation cannot be done while construct is suspended. */
+    static SL_STATUS_SUSPENDED = 0x000d;
+    /** Feature not available due to software configuration. */
+    static SL_STATUS_NOT_AVAILABLE = 0x000e;
+    /** Feature not supported. */
+    static SL_STATUS_NOT_SUPPORTED = 0x000f;
+    /** Initialization failed. */
+    static SL_STATUS_INITIALIZATION = 0x0010;
+    /** Module has not been initialized. */
+    static SL_STATUS_NOT_INITIALIZED = 0x0011;
+    /** Module has already been initialized. */
+    static SL_STATUS_ALREADY_INITIALIZED = 0x0012;
+    /** Object/construct has been deleted. */
+    static SL_STATUS_DELETED = 0x0013;
+    /** Illegal call from ISR. */
+    static SL_STATUS_ISR = 0x0014;
+    /** Illegal call because network is up. */
+    static SL_STATUS_NETWORK_UP = 0x0015;
+    /** Illegal call because network is down. */
+    static SL_STATUS_NETWORK_DOWN = 0x0016;
+    /** Failure due to not being joined in a network. */
+    static SL_STATUS_NOT_JOINED = 0x0017;
+    /** Invalid operation as there are no beacons. */
+    static SL_STATUS_NO_BEACONS = 0x0018;
+    /**Allocation/ownership Errors */
+    /** Generic allocation error. */
+    static SL_STATUS_ALLOCATION_FAILED = 0x0019;
+    /** No more resource available to perform the operation. */
+    static SL_STATUS_NO_MORE_RESOURCE = 0x001a;
+    /** Item/list/queue is empty. */
+    static SL_STATUS_EMPTY = 0x001b;
+    /** Item/list/queue is full. */
+    static SL_STATUS_FULL = 0x001c;
+    /** Item would overflow. */
+    static SL_STATUS_WOULD_OVERFLOW = 0x001d;
+    /** Item/list/queue has been overflowed. */
+    static SL_STATUS_HAS_OVERFLOWED = 0x001e;
+    /** Generic ownership error. */
+    static SL_STATUS_OWNERSHIP = 0x001f;
+    /** Already/still owning resource. */
+    static SL_STATUS_IS_OWNER = 0x0020;
+    /**Invalid Parameters Errors */
+    /** Generic invalid argument or consequence of invalid argument. */
+    static SL_STATUS_INVALID_PARAMETER = 0x0021;
+    /** Invalid null pointer received as argument. */
+    static SL_STATUS_NULL_POINTER = 0x0022;
+    /** Invalid configuration provided. */
+    static SL_STATUS_INVALID_CONFIGURATION = 0x0023;
+    /** Invalid mode. */
+    static SL_STATUS_INVALID_MODE = 0x0024;
+    /** Invalid handle. */
+    static SL_STATUS_INVALID_HANDLE = 0x0025;
+    /** Invalid type for operation. */
+    static SL_STATUS_INVALID_TYPE = 0x0026;
+    /** Invalid index. */
+    static SL_STATUS_INVALID_INDEX = 0x0027;
+    /** Invalid range. */
+    static SL_STATUS_INVALID_RANGE = 0x0028;
+    /** Invalid key. */
+    static SL_STATUS_INVALID_KEY = 0x0029;
+    /** Invalid credentials. */
+    static SL_STATUS_INVALID_CREDENTIALS = 0x002a;
+    /** Invalid count. */
+    static SL_STATUS_INVALID_COUNT = 0x002b;
+    /** Invalid signature / verification failed. */
+    static SL_STATUS_INVALID_SIGNATURE = 0x002c;
+    /** Item could not be found. */
+    static SL_STATUS_NOT_FOUND = 0x002d;
+    /** Item already exists. */
+    static SL_STATUS_ALREADY_EXISTS = 0x002e;
+    /**IO/Communication Errors */
+    /** Generic I/O failure. */
+    static SL_STATUS_IO = 0x002f;
+    /** I/O failure due to timeout. */
+    static SL_STATUS_IO_TIMEOUT = 0x0030;
+    /** Generic transmission error. */
+    static SL_STATUS_TRANSMIT = 0x0031;
+    /** Transmit underflowed. */
+    static SL_STATUS_TRANSMIT_UNDERFLOW = 0x0032;
+    /** Transmit is incomplete. */
+    static SL_STATUS_TRANSMIT_INCOMPLETE = 0x0033;
+    /** Transmit is busy. */
+    static SL_STATUS_TRANSMIT_BUSY = 0x0034;
+    /** Generic reception error. */
+    static SL_STATUS_RECEIVE = 0x0035;
+    /** Failed to read on/via given object. */
+    static SL_STATUS_OBJECT_READ = 0x0036;
+    /** Failed to write on/via given object. */
+    static SL_STATUS_OBJECT_WRITE = 0x0037;
+    /** Message is too long. */
+    static SL_STATUS_MESSAGE_TOO_LONG = 0x0038;
+    /**EEPROM/Flash Errors */
+    static SL_STATUS_EEPROM_MFG_VERSION_MISMATCH = 0x0039;
+    static SL_STATUS_EEPROM_STACK_VERSION_MISMATCH = 0x003a;
+    /** Flash write is inhibited. */
+    static SL_STATUS_FLASH_WRITE_INHIBITED = 0x003b;
+    /** Flash verification failed. */
+    static SL_STATUS_FLASH_VERIFY_FAILED = 0x003c;
+    /** Flash programming failed. */
+    static SL_STATUS_FLASH_PROGRAM_FAILED = 0x003d;
+    /** Flash erase failed. */
+    static SL_STATUS_FLASH_ERASE_FAILED = 0x003e;
+    /**MAC Errors */
+    static SL_STATUS_MAC_NO_DATA = 0x003f;
+    static SL_STATUS_MAC_NO_ACK_RECEIVED = 0x0040;
+    static SL_STATUS_MAC_INDIRECT_TIMEOUT = 0x0041;
+    static SL_STATUS_MAC_UNKNOWN_HEADER_TYPE = 0x0042;
+    static SL_STATUS_MAC_ACK_HEADER_TYPE = 0x0043;
+    static SL_STATUS_MAC_COMMAND_TRANSMIT_FAILURE = 0x0044;
+    /**CLI_STORAGE Errors */
+    /** Error in open NVM */
+    static SL_STATUS_CLI_STORAGE_NVM_OPEN_ERROR = 0x0045;
+    /**Security status codes */
+    /** Image checksum is not valid. */
+    static SL_STATUS_SECURITY_IMAGE_CHECKSUM_ERROR = 0x0046;
+    /** Decryption failed */
+    static SL_STATUS_SECURITY_DECRYPT_ERROR = 0x0047;
+    /**Command status codes */
+    /** Command was not recognized */
+    static SL_STATUS_COMMAND_IS_INVALID = 0x0048;
+    /** Command or parameter maximum length exceeded */
+    static SL_STATUS_COMMAND_TOO_LONG = 0x0049;
+    /** Data received does not form a complete command */
+    static SL_STATUS_COMMAND_INCOMPLETE = 0x004a;
+    /**Misc Errors */
+    /** Bus error, e.g. invalid DMA address */
+    static SL_STATUS_BUS_ERROR = 0x004b;
+    /**Unified MAC Errors */
+    static SL_STATUS_CCA_FAILURE = 0x004c;
+    /**Scan errors */
+    static SL_STATUS_MAC_SCANNING = 0x004d;
+    static SL_STATUS_MAC_INCORRECT_SCAN_TYPE = 0x004e;
+    static SL_STATUS_INVALID_CHANNEL_MASK = 0x004f;
+    static SL_STATUS_BAD_SCAN_DURATION = 0x0050;
+    /**Bluetooth status codes */
+    /** Bonding procedure can't be started because device has no space */
+    /** left for bond. */
+    static SL_STATUS_BT_OUT_OF_BONDS = 0x0402;
+    /** Unspecified error */
+    static SL_STATUS_BT_UNSPECIFIED = 0x0403;
+    /** Hardware failure */
+    static SL_STATUS_BT_HARDWARE = 0x0404;
+    /** The bonding does not exist. */
+    static SL_STATUS_BT_NO_BONDING = 0x0406;
+    /** Error using crypto functions */
+    static SL_STATUS_BT_CRYPTO = 0x0407;
+    /** Data was corrupted. */
+    static SL_STATUS_BT_DATA_CORRUPTED = 0x0408;
+    /** Invalid periodic advertising sync handle */
+    static SL_STATUS_BT_INVALID_SYNC_HANDLE = 0x040a;
+    /** Bluetooth cannot be used on this hardware */
+    static SL_STATUS_BT_INVALID_MODULE_ACTION = 0x040b;
+    /** Error received from radio */
+    static SL_STATUS_BT_RADIO = 0x040c;
+    /** Returned when remote disconnects the connection-oriented channel by sending */
+    /** disconnection request. */
+    static SL_STATUS_BT_L2CAP_REMOTE_DISCONNECTED = 0x040d;
+    /** Returned when local host disconnect the connection-oriented channel by sending */
+    /** disconnection request. */
+    static SL_STATUS_BT_L2CAP_LOCAL_DISCONNECTED = 0x040e;
+    /** Returned when local host did not find a connection-oriented channel with given */
+    /** destination CID. */
+    static SL_STATUS_BT_L2CAP_CID_NOT_EXIST = 0x040f;
+    /** Returned when connection-oriented channel disconnected due to LE connection is dropped. */
+    static SL_STATUS_BT_L2CAP_LE_DISCONNECTED = 0x0410;
+    /** Returned when connection-oriented channel disconnected due to remote end send data */
+    /** even without credit. */
+    static SL_STATUS_BT_L2CAP_FLOW_CONTROL_VIOLATED = 0x0412;
+    /** Returned when connection-oriented channel disconnected due to remote end send flow */
+    /** control credits exceed 65535. */
+    static SL_STATUS_BT_L2CAP_FLOW_CONTROL_CREDIT_OVERFLOWED = 0x0413;
+    /** Returned when connection-oriented channel has run out of flow control credit and */
+    /** local application still trying to send data. */
+    static SL_STATUS_BT_L2CAP_NO_FLOW_CONTROL_CREDIT = 0x0414;
+    /** Returned when connection-oriented channel has not received connection response message */
+    /** within maximum timeout. */
+    static SL_STATUS_BT_L2CAP_CONNECTION_REQUEST_TIMEOUT = 0x0415;
+    /** Returned when local host received a connection-oriented channel connection response */
+    /** with an invalid destination CID. */
+    static SL_STATUS_BT_L2CAP_INVALID_CID = 0x0416;
+    /** Returned when local host application tries to send a command which is not suitable */
+    /** for L2CAP channel's current state. */
+    static SL_STATUS_BT_L2CAP_WRONG_STATE = 0x0417;
+    /** Flash reserved for PS store is full */
+    static SL_STATUS_BT_PS_STORE_FULL = 0x041b;
+    /** PS key not found */
+    static SL_STATUS_BT_PS_KEY_NOT_FOUND = 0x041c;
+    /** Mismatched or insufficient security level */
+    static SL_STATUS_BT_APPLICATION_MISMATCHED_OR_INSUFFICIENT_SECURITY = 0x041d;
+    /** Encrypion/decryption operation failed. */
+    static SL_STATUS_BT_APPLICATION_ENCRYPTION_DECRYPTION_ERROR = 0x041e;
+    /**Bluetooth controller status codes */
+    /** Connection does not exist, or connection open request was cancelled. */
+    static SL_STATUS_BT_CTRL_UNKNOWN_CONNECTION_IDENTIFIER = 0x1002;
+    /** Pairing or authentication failed due to incorrect results in the pairing or */
+    /** authentication procedure. This could be due to an incorrect PIN or Link Key */
+    static SL_STATUS_BT_CTRL_AUTHENTICATION_FAILURE = 0x1005;
+    /** Pairing failed because of missing PIN, or authentication failed because of missing Key */
+    static SL_STATUS_BT_CTRL_PIN_OR_KEY_MISSING = 0x1006;
+    /** Controller is out of memory. */
+    static SL_STATUS_BT_CTRL_MEMORY_CAPACITY_EXCEEDED = 0x1007;
+    /** Link supervision timeout has expired. */
+    static SL_STATUS_BT_CTRL_CONNECTION_TIMEOUT = 0x1008;
+    /** Controller is at limit of connections it can support. */
+    static SL_STATUS_BT_CTRL_CONNECTION_LIMIT_EXCEEDED = 0x1009;
+    /** The Synchronous Connection Limit to a Device Exceeded error code indicates that */
+    /** the Controller has reached the limit to the number of synchronous connections that */
+    /** can be achieved to a device. */
+    static SL_STATUS_BT_CTRL_SYNCHRONOUS_CONNECTION_LIMIT_EXCEEDED = 0x100a;
+    /** The ACL Connection Already Exists error code indicates that an attempt to create */
+    /** a new ACL Connection to a device when there is already a connection to this device. */
+    static SL_STATUS_BT_CTRL_ACL_CONNECTION_ALREADY_EXISTS = 0x100b;
+    /** Command requested cannot be executed because the Controller is in a state where */
+    /** it cannot process this command at this time. */
+    static SL_STATUS_BT_CTRL_COMMAND_DISALLOWED = 0x100c;
+    /** The Connection Rejected Due To Limited Resources error code indicates that an */
+    /** incoming connection was rejected due to limited resources. */
+    static SL_STATUS_BT_CTRL_CONNECTION_REJECTED_DUE_TO_LIMITED_RESOURCES = 0x100d;
+    /** The Connection Rejected Due To Security Reasons error code indicates that a */
+    /** connection was rejected due to security requirements not being fulfilled, like */
+    /** authentication or pairing. */
+    static SL_STATUS_BT_CTRL_CONNECTION_REJECTED_DUE_TO_SECURITY_REASONS = 0x100e;
+    /** The Connection was rejected because this device does not accept the BD_ADDR. */
+    /** This may be because the device will only accept connections from specific BD_ADDRs. */
+    static SL_STATUS_BT_CTRL_CONNECTION_REJECTED_DUE_TO_UNACCEPTABLE_BD_ADDR = 0x100f;
+    /** The Connection Accept Timeout has been exceeded for this connection attempt. */
+    static SL_STATUS_BT_CTRL_CONNECTION_ACCEPT_TIMEOUT_EXCEEDED = 0x1010;
+    /** A feature or parameter value in the HCI command is not supported. */
+    static SL_STATUS_BT_CTRL_UNSUPPORTED_FEATURE_OR_PARAMETER_VALUE = 0x1011;
+    /** Command contained invalid parameters. */
+    static SL_STATUS_BT_CTRL_INVALID_COMMAND_PARAMETERS = 0x1012;
+    /** User on the remote device terminated the connection. */
+    static SL_STATUS_BT_CTRL_REMOTE_USER_TERMINATED = 0x1013;
+    /** The remote device terminated the connection because of low resources */
+    static SL_STATUS_BT_CTRL_REMOTE_DEVICE_TERMINATED_CONNECTION_DUE_TO_LOW_RESOURCES = 0x1014;
+    /** Remote Device Terminated Connection due to Power Off */
+    static SL_STATUS_BT_CTRL_REMOTE_POWERING_OFF = 0x1015;
+    /** Local device terminated the connection. */
+    static SL_STATUS_BT_CTRL_CONNECTION_TERMINATED_BY_LOCAL_HOST = 0x1016;
+    /** The Controller is disallowing an authentication or pairing procedure because */
+    /** too little time has elapsed since the last authentication or pairing attempt failed. */
+    static SL_STATUS_BT_CTRL_REPEATED_ATTEMPTS = 0x1017;
+    /** The device does not allow pairing. This can be for example, when a device only */
+    /** allows pairing during a certain time window after some user input allows pairing */
+    static SL_STATUS_BT_CTRL_PAIRING_NOT_ALLOWED = 0x1018;
+    /** The remote device does not support the feature associated with the issued command. */
+    static SL_STATUS_BT_CTRL_UNSUPPORTED_REMOTE_FEATURE = 0x101a;
+    /** No other error code specified is appropriate to use. */
+    static SL_STATUS_BT_CTRL_UNSPECIFIED_ERROR = 0x101f;
+    /** Connection terminated due to link-layer procedure timeout. */
+    static SL_STATUS_BT_CTRL_LL_RESPONSE_TIMEOUT = 0x1022;
+    /** LL procedure has collided with the same transaction or procedure that is already */
+    /** in progress. */
+    static SL_STATUS_BT_CTRL_LL_PROCEDURE_COLLISION = 0x1023;
+    /** The requested encryption mode is not acceptable at this time. */
+    static SL_STATUS_BT_CTRL_ENCRYPTION_MODE_NOT_ACCEPTABLE = 0x1025;
+    /** Link key cannot be changed because a fixed unit key is being used. */
+    static SL_STATUS_BT_CTRL_LINK_KEY_CANNOT_BE_CHANGED = 0x1026;
+    /** LMP PDU or LL PDU that includes an instant cannot be performed because the instan */
+    /** when this would have occurred has passed. */
+    static SL_STATUS_BT_CTRL_INSTANT_PASSED = 0x1028;
+    /** It was not possible to pair as a unit key was requested and it is not supported. */
+    static SL_STATUS_BT_CTRL_PAIRING_WITH_UNIT_KEY_NOT_SUPPORTED = 0x1029;
+    /** LMP transaction was started that collides with an ongoing transaction. */
+    static SL_STATUS_BT_CTRL_DIFFERENT_TRANSACTION_COLLISION = 0x102a;
+    /** The Controller cannot perform channel assessment because it is not supported. */
+    static SL_STATUS_BT_CTRL_CHANNEL_ASSESSMENT_NOT_SUPPORTED = 0x102e;
+    /** The HCI command or LMP PDU sent is only possible on an encrypted link. */
+    static SL_STATUS_BT_CTRL_INSUFFICIENT_SECURITY = 0x102f;
+    /** A parameter value requested is outside the mandatory range of parameters for the */
+    /** given HCI command or LMP PDU. */
+    static SL_STATUS_BT_CTRL_PARAMETER_OUT_OF_MANDATORY_RANGE = 0x1030;
+    /** The IO capabilities request or response was rejected because the sending Host does */
+    /** not support Secure Simple Pairing even though the receiving Link Manager does. */
+    static SL_STATUS_BT_CTRL_SIMPLE_PAIRING_NOT_SUPPORTED_BY_HOST = 0x1037;
+    /** The Host is busy with another pairing operation and unable to support the requested */
+    /** pairing. The receiving device should retry pairing again later. */
+    static SL_STATUS_BT_CTRL_HOST_BUSY_PAIRING = 0x1038;
+    /** The Controller could not calculate an appropriate value for the Channel selection operation. */
+    static SL_STATUS_BT_CTRL_CONNECTION_REJECTED_DUE_TO_NO_SUITABLE_CHANNEL_FOUND = 0x1039;
+    /** Operation was rejected because the controller is busy and unable to process the request. */
+    static SL_STATUS_BT_CTRL_CONTROLLER_BUSY = 0x103a;
+    /** Remote device terminated the connection because of an unacceptable connection interval. */
+    static SL_STATUS_BT_CTRL_UNACCEPTABLE_CONNECTION_INTERVAL = 0x103b;
+    /** Ddvertising for a fixed duration completed or, for directed advertising, that advertising */
+    /** completed without a connection being created. */
+    static SL_STATUS_BT_CTRL_ADVERTISING_TIMEOUT = 0x103c;
+    /** Connection was terminated because the Message Integrity Check (MIC) failed on a */
+    /** received packet. */
+    static SL_STATUS_BT_CTRL_CONNECTION_TERMINATED_DUE_TO_MIC_FAILURE = 0x103d;
+    /** LL initiated a connection but the connection has failed to be established. Controller did not receive */
+    /** any packets from remote end. */
+    static SL_STATUS_BT_CTRL_CONNECTION_FAILED_TO_BE_ESTABLISHED = 0x103e;
+    /** The MAC of the 802.11 AMP was requested to connect to a peer, but the connection failed. */
+    static SL_STATUS_BT_CTRL_MAC_CONNECTION_FAILED = 0x103f;
+    /** The master, at this time, is unable to make a coarse adjustment to the piconet clock, */
+    /** using the supplied parameters. Instead the master will attempt to move the clock using clock dragging. */
+    static SL_STATUS_BT_CTRL_COARSE_CLOCK_ADJUSTMENT_REJECTED_BUT_WILL_TRY_TO_ADJUST_USING_CLOCK_DRAGGING = 0x1040;
+    /** A command was sent from the Host that should identify an Advertising or Sync handle, but the */
+    /** Advertising or Sync handle does not exist. */
+    static SL_STATUS_BT_CTRL_UNKNOWN_ADVERTISING_IDENTIFIER = 0x1042;
+    /** Number of operations requested has been reached and has indicated the completion of the activity */
+    /** (e.g., advertising or scanning). */
+    static SL_STATUS_BT_CTRL_LIMIT_REACHED = 0x1043;
+    /** A request to the Controller issued by the Host and still pending was successfully canceled. */
+    static SL_STATUS_BT_CTRL_OPERATION_CANCELLED_BY_HOST = 0x1044;
+    /** An attempt was made to send or receive a packet that exceeds the maximum allowed packet l */
+    static SL_STATUS_BT_CTRL_PACKET_TOO_LONG = 0x1045;
+    /**Bluetooth attribute status codes */
+    /** The attribute handle given was not valid on this server */
+    static SL_STATUS_BT_ATT_INVALID_HANDLE = 0x1101;
+    /** The attribute cannot be read */
+    static SL_STATUS_BT_ATT_READ_NOT_PERMITTED = 0x1102;
+    /** The attribute cannot be written */
+    static SL_STATUS_BT_ATT_WRITE_NOT_PERMITTED = 0x1103;
+    /** The attribute PDU was invalid */
+    static SL_STATUS_BT_ATT_INVALID_PDU = 0x1104;
+    /** The attribute requires authentication before it can be read or written. */
+    static SL_STATUS_BT_ATT_INSUFFICIENT_AUTHENTICATION = 0x1105;
+    /** Attribute Server does not support the request received from the client. */
+    static SL_STATUS_BT_ATT_REQUEST_NOT_SUPPORTED = 0x1106;
+    /** Offset specified was past the end of the attribute */
+    static SL_STATUS_BT_ATT_INVALID_OFFSET = 0x1107;
+    /** The attribute requires authorization before it can be read or written. */
+    static SL_STATUS_BT_ATT_INSUFFICIENT_AUTHORIZATION = 0x1108;
+    /** Too many prepare writes have been queued */
+    static SL_STATUS_BT_ATT_PREPARE_QUEUE_FULL = 0x1109;
+    /** No attribute found within the given attribute handle range. */
+    static SL_STATUS_BT_ATT_ATT_NOT_FOUND = 0x110a;
+    /** The attribute cannot be read or written using the Read Blob Request */
+    static SL_STATUS_BT_ATT_ATT_NOT_LONG = 0x110b;
+    /** The Encryption Key Size used for encrypting this link is insufficient. */
+    static SL_STATUS_BT_ATT_INSUFFICIENT_ENC_KEY_SIZE = 0x110c;
+    /** The attribute value length is invalid for the operation */
+    static SL_STATUS_BT_ATT_INVALID_ATT_LENGTH = 0x110d;
+    /** The attribute request that was requested has encountered an error that was unlikely, and */
+    /** therefore could not be completed as requested. */
+    static SL_STATUS_BT_ATT_UNLIKELY_ERROR = 0x110e;
+    /** The attribute requires encryption before it can be read or written. */
+    static SL_STATUS_BT_ATT_INSUFFICIENT_ENCRYPTION = 0x110f;
+    /** The attribute type is not a supported grouping attribute as defined by a higher layer */
+    /** specification. */
+    static SL_STATUS_BT_ATT_UNSUPPORTED_GROUP_TYPE = 0x1110;
+    /** Insufficient Resources to complete the request */
+    static SL_STATUS_BT_ATT_INSUFFICIENT_RESOURCES = 0x1111;
+    /** The server requests the client to rediscover the database. */
+    static SL_STATUS_BT_ATT_OUT_OF_SYNC = 0x1112;
+    /** The attribute parameter value was not allowed. */
+    static SL_STATUS_BT_ATT_VALUE_NOT_ALLOWED = 0x1113;
+    /** When this is returned in a BGAPI response, the application tried to read or write the */
+    /** value of a user attribute from the GATT databa */
+    static SL_STATUS_BT_ATT_APPLICATION = 0x1180;
+    /** The requested write operation cannot be fulfilled for reasons other than permissions. */
+    static SL_STATUS_BT_ATT_WRITE_REQUEST_REJECTED = 0x11fc;
+    /** The Client Characteristic Configuration descriptor is not configured according to the */
+    /** requirements of the profile or service. */
+    static SL_STATUS_BT_ATT_CLIENT_CHARACTERISTIC_CONFIGURATION_DESCRIPTOR_IMPROPERLY_CONFIGURED = 0x11fd;
+    /** The profile or service request cannot be serviced because an operation that has been */
+    /** previously triggered is still in progress. */
+    static SL_STATUS_BT_ATT_PROCEDURE_ALREADY_IN_PROGRESS = 0x11fe;
+    /** The attribute value is out of range as defined by a profile or service specification. */
+    static SL_STATUS_BT_ATT_OUT_OF_RANGE = 0x11ff;
+    /**Bluetooth Security Manager Protocol status codes */
+    /** The user input of passkey failed, for example, the user cancelled the operation */
+    static SL_STATUS_BT_SMP_PASSKEY_ENTRY_FAILED = 0x1201;
+    /** Out of Band data is not available for authentication */
+    static SL_STATUS_BT_SMP_OOB_NOT_AVAILABLE = 0x1202;
+    /** The pairing procedure cannot be performed as authentication requirements cannot be */
+    /** met due to IO capabilities of one or both devices */
+    static SL_STATUS_BT_SMP_AUTHENTICATION_REQUIREMENTS = 0x1203;
+    /** The confirm value does not match the calculated compare value */
+    static SL_STATUS_BT_SMP_CONFIRM_VALUE_FAILED = 0x1204;
+    /** Pairing is not supported by the device */
+    static SL_STATUS_BT_SMP_PAIRING_NOT_SUPPORTED = 0x1205;
+    /** The resultant encryption key size is insufficient for the security requirements of this device */
+    static SL_STATUS_BT_SMP_ENCRYPTION_KEY_SIZE = 0x1206;
+    /** The SMP command received is not supported on this device */
+    static SL_STATUS_BT_SMP_COMMAND_NOT_SUPPORTED = 0x1207;
+    /** Pairing failed due to an unspecified reason */
+    static SL_STATUS_BT_SMP_UNSPECIFIED_REASON = 0x1208;
+    /** Pairing or authentication procedure is disallowed because too little time has elapsed */
+    /** since last pairing request or security request */
+    static SL_STATUS_BT_SMP_REPEATED_ATTEMPTS = 0x1209;
+    /** The Invalid Parameters error code indicates: the command length is invalid or a parameter */
+    /** is outside of the specified range. */
+    static SL_STATUS_BT_SMP_INVALID_PARAMETERS = 0x120a;
+    /** Indicates to the remote device that the DHKey Check value received doesn't match the one */
+    /** calculated by the local device. */
+    static SL_STATUS_BT_SMP_DHKEY_CHECK_FAILED = 0x120b;
+    /** Indicates that the confirm values in the numeric comparison protocol do not match. */
+    static SL_STATUS_BT_SMP_NUMERIC_COMPARISON_FAILED = 0x120c;
+    /** Indicates that the pairing over the LE transport failed due to a Pairing Request */
+    /** sent over the BR/EDR transport in process. */
+    static SL_STATUS_BT_SMP_BREDR_PAIRING_IN_PROGRESS = 0x120d;
+    /** Indicates that the BR/EDR Link Key generated on the BR/EDR transport cannot be used */
+    /** to derive and distribute keys for the LE transport. */
+    static SL_STATUS_BT_SMP_CROSS_TRANSPORT_KEY_DERIVATION_GENERATION_NOT_ALLOWED = 0x120e;
+    /** Indicates that the device chose not to accept a distributed key. */
+    static SL_STATUS_BT_SMP_KEY_REJECTED = 0x120f;
+    /**Bluetooth Mesh status codes */
+    /** Returned when trying to add a key or some other unique resource with an ID which already exists */
+    static SL_STATUS_BT_MESH_ALREADY_EXISTS = 0x0501;
+    /** Returned when trying to manipulate a key or some other resource with an ID which does not exist */
+    static SL_STATUS_BT_MESH_DOES_NOT_EXIST = 0x0502;
+    /** Returned when an operation cannot be executed because a pre-configured limit for keys, */
+    /** key bindings, elements, models, virtual addresses, provisioned devices, or provisioning sessions is reached */
+    static SL_STATUS_BT_MESH_LIMIT_REACHED = 0x0503;
+    /** Returned when trying to use a reserved address or add a "pre-provisioned" device */
+    /** using an address already used by some other device */
+    static SL_STATUS_BT_MESH_INVALID_ADDRESS = 0x0504;
+    /** In a BGAPI response, the user supplied malformed data; in a BGAPI event, the remote */
+    /** end responded with malformed or unrecognized data */
+    static SL_STATUS_BT_MESH_MALFORMED_DATA = 0x0505;
+    /** An attempt was made to initialize a subsystem that was already initialized. */
+    static SL_STATUS_BT_MESH_ALREADY_INITIALIZED = 0x0506;
+    /** An attempt was made to use a subsystem that wasn't initialized yet. Call the */
+    /** subsystem's init function first. */
+    static SL_STATUS_BT_MESH_NOT_INITIALIZED = 0x0507;
+    /** Returned when trying to establish a friendship as a Low Power Node, but no acceptable */
+    /** friend offer message was received. */
+    static SL_STATUS_BT_MESH_NO_FRIEND_OFFER = 0x0508;
+    /** Provisioning link was unexpectedly closed before provisioning was complete. */
+    static SL_STATUS_BT_MESH_PROV_LINK_CLOSED = 0x0509;
+    /** An unrecognized provisioning PDU was received. */
+    static SL_STATUS_BT_MESH_PROV_INVALID_PDU = 0x050a;
+    /** A provisioning PDU with wrong length or containing field values that are out of */
+    /** bounds was received. */
+    static SL_STATUS_BT_MESH_PROV_INVALID_PDU_FORMAT = 0x050b;
+    /** An unexpected (out of sequence) provisioning PDU was received. */
+    static SL_STATUS_BT_MESH_PROV_UNEXPECTED_PDU = 0x050c;
+    /** The computed confirmation value did not match the expected value. */
+    static SL_STATUS_BT_MESH_PROV_CONFIRMATION_FAILED = 0x050d;
+    /** Provisioning could not be continued due to insufficient resources. */
+    static SL_STATUS_BT_MESH_PROV_OUT_OF_RESOURCES = 0x050e;
+    /** The provisioning data block could not be decrypted. */
+    static SL_STATUS_BT_MESH_PROV_DECRYPTION_FAILED = 0x050f;
+    /** An unexpected error happened during provisioning. */
+    static SL_STATUS_BT_MESH_PROV_UNEXPECTED_ERROR = 0x0510;
+    /** Device could not assign unicast addresses to all of its elements. */
+    static SL_STATUS_BT_MESH_PROV_CANNOT_ASSIGN_ADDR = 0x0511;
+    /** Returned when trying to reuse an address of a previously deleted device before an */
+    /** IV Index Update has been executed. */
+    static SL_STATUS_BT_MESH_ADDRESS_TEMPORARILY_UNAVAILABLE = 0x0512;
+    /** Returned when trying to assign an address that is used by one of the devices in the */
+    /** Device Database, or by the Provisioner itself. */
+    static SL_STATUS_BT_MESH_ADDRESS_ALREADY_USED = 0x0513;
+    /** Application key or publish address are not set */
+    static SL_STATUS_BT_MESH_PUBLISH_NOT_CONFIGURED = 0x0514;
+    /** Application key is not bound to a model */
+    static SL_STATUS_BT_MESH_APP_KEY_NOT_BOUND = 0x0515;
+    /**Bluetooth Mesh foundation status codes */
+    /** Returned when address in request was not valid */
+    static SL_STATUS_BT_MESH_FOUNDATION_INVALID_ADDRESS = 0x1301;
+    /** Returned when model identified is not found for a given element */
+    static SL_STATUS_BT_MESH_FOUNDATION_INVALID_MODEL = 0x1302;
+    /** Returned when the key identified by AppKeyIndex is not stored in the node */
+    static SL_STATUS_BT_MESH_FOUNDATION_INVALID_APP_KEY = 0x1303;
+    /** Returned when the key identified by NetKeyIndex is not stored in the node */
+    static SL_STATUS_BT_MESH_FOUNDATION_INVALID_NET_KEY = 0x1304;
+    /** Returned when The node cannot serve the request due to insufficient resources */
+    static SL_STATUS_BT_MESH_FOUNDATION_INSUFFICIENT_RESOURCES = 0x1305;
+    /** Returned when the key identified is already stored in the node and the new */
+    /** NetKey value is different */
+    static SL_STATUS_BT_MESH_FOUNDATION_KEY_INDEX_EXISTS = 0x1306;
+    /** Returned when the model does not support the publish mechanism */
+    static SL_STATUS_BT_MESH_FOUNDATION_INVALID_PUBLISH_PARAMS = 0x1307;
+    /** Returned when  the model does not support the subscribe mechanism */
+    static SL_STATUS_BT_MESH_FOUNDATION_NOT_SUBSCRIBE_MODEL = 0x1308;
+    /** Returned when storing of the requested parameters failed */
+    static SL_STATUS_BT_MESH_FOUNDATION_STORAGE_FAILURE = 0x1309;
+    /** Returned when requested setting is not supported */
+    static SL_STATUS_BT_MESH_FOUNDATION_NOT_SUPPORTED = 0x130a;
+    /** Returned when the requested update operation cannot be performed due to general constraints */
+    static SL_STATUS_BT_MESH_FOUNDATION_CANNOT_UPDATE = 0x130b;
+    /** Returned when the requested delete operation cannot be performed due to general constraints */
+    static SL_STATUS_BT_MESH_FOUNDATION_CANNOT_REMOVE = 0x130c;
+    /** Returned when the requested bind operation cannot be performed due to general constraints */
+    static SL_STATUS_BT_MESH_FOUNDATION_CANNOT_BIND = 0x130d;
+    /** Returned when The node cannot start advertising with Node Identity or Proxy since the */
+    /** maximum number of parallel advertising is reached */
+    static SL_STATUS_BT_MESH_FOUNDATION_TEMPORARILY_UNABLE = 0x130e;
+    /** Returned when the requested state cannot be set */
+    static SL_STATUS_BT_MESH_FOUNDATION_CANNOT_SET = 0x130f;
+    /** Returned when an unspecified error took place */
+    static SL_STATUS_BT_MESH_FOUNDATION_UNSPECIFIED = 0x1310;
+    /** Returned when the NetKeyIndex and AppKeyIndex combination is not valid for a Config AppKey Update */
+    static SL_STATUS_BT_MESH_FOUNDATION_INVALID_BINDING = 0x1311;
+    /**Wi-Fi Errors */
+    /** Invalid firmware keyset */
+    static SL_STATUS_WIFI_INVALID_KEY = 0x0b01;
+    /** The firmware download took too long */
+    static SL_STATUS_WIFI_FIRMWARE_DOWNLOAD_TIMEOUT = 0x0b02;
+    /** Unknown request ID or wrong interface ID used */
+    static SL_STATUS_WIFI_UNSUPPORTED_MESSAGE_ID = 0x0b03;
+    /** The request is successful but some parameters have been ignored */
+    static SL_STATUS_WIFI_WARNING = 0x0b04;
+    /** No Packets waiting to be received */
+    static SL_STATUS_WIFI_NO_PACKET_TO_RECEIVE = 0x0b05;
+    /** The sleep mode is granted */
+    static SL_STATUS_WIFI_SLEEP_GRANTED = 0x0b08;
+    /** The WFx does not go back to sleep */
+    static SL_STATUS_WIFI_SLEEP_NOT_GRANTED = 0x0b09;
+    /** The SecureLink MAC key was not found */
+    static SL_STATUS_WIFI_SECURE_LINK_MAC_KEY_ERROR = 0x0b10;
+    /** The SecureLink MAC key is already installed in OTP */
+    static SL_STATUS_WIFI_SECURE_LINK_MAC_KEY_ALREADY_BURNED = 0x0b11;
+    /** The SecureLink MAC key cannot be installed in RAM */
+    static SL_STATUS_WIFI_SECURE_LINK_RAM_MODE_NOT_ALLOWED = 0x0b12;
+    /** The SecureLink MAC key installation failed */
+    static SL_STATUS_WIFI_SECURE_LINK_FAILED_UNKNOWN_MODE = 0x0b13;
+    /** SecureLink key (re)negotiation failed */
+    static SL_STATUS_WIFI_SECURE_LINK_EXCHANGE_FAILED = 0x0b14;
+    /** The device is in an inappropriate state to perform the request */
+    static SL_STATUS_WIFI_WRONG_STATE = 0x0b18;
+    /** The request failed due to regulatory limitations */
+    static SL_STATUS_WIFI_CHANNEL_NOT_ALLOWED = 0x0b19;
+    /** The connection request failed because no suitable AP was found */
+    static SL_STATUS_WIFI_NO_MATCHING_AP = 0x0b1a;
+    /** The connection request was aborted by host */
+    static SL_STATUS_WIFI_CONNECTION_ABORTED = 0x0b1b;
+    /** The connection request failed because of a timeout */
+    static SL_STATUS_WIFI_CONNECTION_TIMEOUT = 0x0b1c;
+    /** The connection request failed because the AP rejected the device */
+    static SL_STATUS_WIFI_CONNECTION_REJECTED_BY_AP = 0x0b1d;
+    /** The connection request failed because the WPA handshake did not complete successfully */
+    static SL_STATUS_WIFI_CONNECTION_AUTH_FAILURE = 0x0b1e;
+    /** The request failed because the retry limit was exceeded */
+    static SL_STATUS_WIFI_RETRY_EXCEEDED = 0x0b1f;
+    /** The request failed because the MSDU life time was exceeded */
+    static SL_STATUS_WIFI_TX_LIFETIME_EXCEEDED = 0x0b20;
+}
+
+export class EmberStackError extends basic.uint8_t {
+    // Error codes that a router uses to notify the message initiator about a broken route.
+    static EMBER_ROUTE_ERROR_NO_ROUTE_AVAILABLE = 0x00;
+    static EMBER_ROUTE_ERROR_TREE_LINK_FAILURE = 0x01;
+    static EMBER_ROUTE_ERROR_NON_TREE_LINK_FAILURE = 0x02;
+    static EMBER_ROUTE_ERROR_LOW_BATTERY_LEVEL = 0x03;
+    static EMBER_ROUTE_ERROR_NO_ROUTING_CAPACITY = 0x04;
+    static EMBER_ROUTE_ERROR_NO_INDIRECT_CAPACITY = 0x05;
+    static EMBER_ROUTE_ERROR_INDIRECT_TRANSACTION_EXPIRY = 0x06;
+    static EMBER_ROUTE_ERROR_TARGET_DEVICE_UNAVAILABLE = 0x07;
+    static EMBER_ROUTE_ERROR_TARGET_ADDRESS_UNALLOCATED = 0x08;
+    static EMBER_ROUTE_ERROR_PARENT_LINK_FAILURE = 0x09;
+    static EMBER_ROUTE_ERROR_VALIDATE_ROUTE = 0x0a;
+    static EMBER_ROUTE_ERROR_SOURCE_ROUTE_FAILURE = 0x0b;
+    static EMBER_ROUTE_ERROR_MANY_TO_ONE_ROUTE_FAILURE = 0x0c;
+    static EMBER_ROUTE_ERROR_ADDRESS_CONFLICT = 0x0d;
+    static EMBER_ROUTE_ERROR_VERIFY_ADDRESSES = 0x0e;
+    static EMBER_ROUTE_ERROR_PAN_IDENTIFIER_UPDATE = 0x0f;
+
+    static ZIGBEE_NETWORK_STATUS_NETWORK_ADDRESS_UPDATE = 0x10;
+    static ZIGBEE_NETWORK_STATUS_BAD_FRAME_COUNTER = 0x11;
+    static ZIGBEE_NETWORK_STATUS_BAD_KEY_SEQUENCE_NUMBER = 0x12;
+    static ZIGBEE_NETWORK_STATUS_UNKNOWN_COMMAND = 0x13;
+}
 
 export class EmberEventUnits extends basic.uint8_t {
     // Either marks an event as inactive or specifies the units for the event
@@ -1102,7 +1665,6 @@ export class EmberEventUnits extends basic.uint8_t {
     // each).
     static EVENT_MINUTE_TIME = 0x03;
 }
-
 
 export class EmberNodeType extends basic.uint8_t {
     // The type of the node.
@@ -1122,7 +1684,6 @@ export class EmberNodeType extends basic.uint8_t {
     static MOBILE_END_DEVICE = 0x05;
 }
 
-
 export class EmberNetworkStatus extends basic.uint8_t {
     // The possible join states for a node.
 
@@ -1138,7 +1699,6 @@ export class EmberNetworkStatus extends basic.uint8_t {
     // The node is in the process of leaving its current network.
     static LEAVING_NETWORK = 0x04;
 }
-
 
 export class EmberIncomingMessageType extends basic.uint8_t {
     // Incoming message types.
@@ -1159,7 +1719,6 @@ export class EmberIncomingMessageType extends basic.uint8_t {
     static INCOMING_MANY_TO_ONE_ROUTE_REQUEST = 0x06;
 }
 
-
 export class EmberOutgoingMessageType extends basic.uint8_t {
     // Outgoing message types.
 
@@ -1177,7 +1736,6 @@ export class EmberOutgoingMessageType extends basic.uint8_t {
     static OUTGOING_BROADCAST = 0x04;
 }
 
-
 export class EmberMacPassthroughType extends basic.uint8_t {
     // MAC passthrough message type flags.
 
@@ -1194,7 +1752,6 @@ export class EmberMacPassthroughType extends basic.uint8_t {
     static MAC_PASSTHROUGH_INTERNAL = 0x80;
 }
 
-
 export class EmberBindingType extends basic.uint8_t {
     // Binding types.
 
@@ -1209,7 +1766,6 @@ export class EmberBindingType extends basic.uint8_t {
     // receive messages sent to the group.
     static MULTICAST_BINDING = 0x03;
 }
-
 
 export class EmberApsOption extends basic.uint16_t {
     // Options to use when sending a message.
@@ -1250,7 +1806,6 @@ export class EmberApsOption extends basic.uint16_t {
     static APS_OPTION_FRAGMENT = 0x8000;
 }
 
-
 export class EzspNetworkScanType extends basic.uint8_t {
     // Network scan types.
 
@@ -1259,7 +1814,6 @@ export class EzspNetworkScanType extends basic.uint8_t {
     // An active scan scans each channel for available networks.
     static ACTIVE_SCAN = 0x01;
 }
-
 
 export class EmberJoinDecision extends basic.uint8_t {
     // Decision made by the trust center when a node attempts to join.
@@ -1277,12 +1831,11 @@ export class EmberJoinDecision extends basic.uint8_t {
     static NO_ACTION = 0x03;
 }
 
-
 export class EmberInitialSecurityBitmask extends basic.uint16_t {
     // This is the Initial Security Bitmask that controls the use of various
     // security features.
 
-    // This enables ZigBee Standard Security on the node.
+    // This enables Zigbee Standard Security on the node.
     static STANDARD_SECURITY_MODE = 0x0000;
     // This enables Distributed Trust Center Mode for the device forming the
     // network. (Previously known as NO_TRUST_CENTER_MODE)
@@ -1340,15 +1893,14 @@ export class EmberInitialSecurityBitmask extends basic.uint16_t {
     static HAVE_TRUST_CENTER_EUI64 = 0x0040;
 }
 
-
 export class EmberCurrentSecurityBitmask extends basic.uint16_t {
     // This is the Current Security Bitmask that details the use of various
     // security features.
 
-    // This denotes that the device is running in a network with ZigBee Standard
+    // This denotes that the device is running in a network with Zigbee Standard
     // Security.
     static STANDARD_SECURITY_MODE = 0x0000;
-    // This denotes that the device is running in a network with ZigBee High
+    // This denotes that the device is running in a network with Zigbee High
     // Security.
     static HIGH_SECURITY_MODE = 0x0001;
     // This denotes that the device is running in a network without a
@@ -1363,9 +1915,8 @@ export class EmberCurrentSecurityBitmask extends basic.uint16_t {
     static TRUST_CENTER_USES_HASHED_LINK_KEY = 0x0084;
 }
 
-
 export class EmberKeyType extends basic.uint8_t {
-    // Describes the type of ZigBee security key.
+    // Describes the type of Zigbee security key.
 
     // A shared key between the Trust Center and a device.
     static TRUST_CENTER_LINK_KEY = 0x01;
@@ -1397,7 +1948,6 @@ export class EmberKeyStructBitmask extends basic.uint16_t {
     static KEY_HAS_PARTNER_EUI64 = 0x0008;
 }
 
-
 export class EmberDeviceUpdate extends basic.uint8_t {
     // The status of the device update.
 
@@ -1409,7 +1959,6 @@ export class EmberDeviceUpdate extends basic.uint8_t {
     static HIGH_SECURITY_UNSECURED_JOIN = 0x5;
     static HIGH_SECURITY_UNSECURED_REJOIN = 0x7;
 }
-
 
 export class EmberKeyStatus extends basic.uint8_t {
     // The status of the attempt to establish a key.
@@ -1423,12 +1972,12 @@ export class EmberKeyStatus extends basic.uint8_t {
     static TC_APP_KEY_SENT_TO_REQUESTER = 0x07;
     static TC_RESPONSE_TO_KEY_REQUEST_FAILED = 0x08;
     static TC_REQUEST_KEY_TYPE_NOT_SUPPORTED = 0x09;
-    static TC_NO_LINK_KEY_FOR_REQUESTER = 0x0A;
-    static TC_REQUESTER_EUI64_UNKNOWN = 0x0B;
-    static TC_RECEIVED_FIRST_APP_KEY_REQUEST = 0x0C;
-    static TC_TIMEOUT_WAITING_FOR_SECOND_APP_KEY_REQUEST = 0x0D;
-    static TC_NON_MATCHING_APP_KEY_REQUEST_RECEIVED = 0x0E;
-    static TC_FAILED_TO_SEND_APP_KEYS = 0x0F;
+    static TC_NO_LINK_KEY_FOR_REQUESTER = 0x0a;
+    static TC_REQUESTER_EUI64_UNKNOWN = 0x0b;
+    static TC_RECEIVED_FIRST_APP_KEY_REQUEST = 0x0c;
+    static TC_TIMEOUT_WAITING_FOR_SECOND_APP_KEY_REQUEST = 0x0d;
+    static TC_NON_MATCHING_APP_KEY_REQUEST_RECEIVED = 0x0e;
+    static TC_FAILED_TO_SEND_APP_KEYS = 0x0f;
     static TC_FAILED_TO_STORE_APP_KEY_REQUEST = 0x10;
     static TC_REJECTED_APP_KEY_REQUEST = 0x11;
 }
@@ -1536,7 +2085,6 @@ export class EmberCounterType extends basic.uint8_t {
     static COUNTER_TYPE_COUNT = 40;
 }
 
-
 export class EmberJoinMethod extends basic.uint8_t {
     // The type of method used for joining.
 
@@ -1546,7 +2094,7 @@ export class EmberJoinMethod extends basic.uint8_t {
     // equivalent to a MAC association. This value should be used by default.
     static USE_MAC_ASSOCIATION = 0x0;
     // For those networks where the "permit joining" flag is never turned on,
-    // they will need to use a ZigBee NWK Rejoin. This value causes the rejoin
+    // they will need to use a Zigbee NWK Rejoin. This value causes the rejoin
     // to be sent without NWK security and the Trust Center will be asked to
     // send the NWK key to the device. The NWK key sent to the device can be
     // encrypted with the device's corresponding Trust Center link key. That is
@@ -1566,7 +2114,6 @@ export class EmberJoinMethod extends basic.uint8_t {
     // need to send any messages to begin communicating on the network.
     static USE_NWK_COMMISSIONING = 0x3;
 }
-
 
 export class EmberZdoConfigurationFlags extends basic.uint8_t {
     // Flags for controlling which incoming ZDO requests are passed to the
@@ -1603,20 +2150,18 @@ export class EmberZdoConfigurationFlags extends basic.uint8_t {
     static APP_HANDLES_ZDO_BINDING_REQUESTS = 0x08;
 }
 
-
 export class EmberConcentratorType extends basic.uint16_t {
     // Type of concentrator.
 
     // A concentrator with insufficient memory to store source routes for the
     // entire network. Route records are sent to the concentrator prior to every
     // inbound APS unicast.
-    static LOW_RAM_CONCENTRATOR = 0xFFF8;
+    static LOW_RAM_CONCENTRATOR = 0xfff8;
     // A concentrator with sufficient memory to store source routes for the
     // entire network. Remote nodes stop sending route records once the
     // concentrator has successfully received one.
-    static HIGH_RAM_CONCENTRATOR = 0xFFF9;
+    static HIGH_RAM_CONCENTRATOR = 0xfff9;
 }
-
 
 export class EmberZllState extends basic.uint16_t {
     // ZLL device state identifier.
@@ -1635,7 +2180,6 @@ export class EmberZllState extends basic.uint16_t {
     static ZLL_STATE_NON_ZLL_NETWORK = 0x0100;
 }
 
-
 export class EmberZllKeyIndex extends basic.uint8_t {
     // ZLL key encryption algorithm enumeration.
 
@@ -1644,22 +2188,21 @@ export class EmberZllKeyIndex extends basic.uint8_t {
     // Key encryption algorithm shared by all certified devices.
     static ZLL_KEY_INDEX_MASTER = 0x04;
     // Key encryption algorithm for use during development and certification.
-    static ZLL_KEY_INDEX_CERTIFICATION = 0x0F;
+    static ZLL_KEY_INDEX_CERTIFICATION = 0x0f;
 }
 
 export class EzspZllNetworkOperation extends basic.uint8_t {
     // Differentiates among ZLL network operations.
 
-    static ZLL_FORM_NETWORK = 0x00;  // ZLL form network command.
-    static ZLL_JOIN_TARGET = 0x01;  // ZLL join target command.
+    static ZLL_FORM_NETWORK = 0x00; // ZLL form network command.
+    static ZLL_JOIN_TARGET = 0x01; // ZLL join target command.
 }
-
 
 export class EzspSourceRouteOverheadInformation extends basic.uint8_t {
     // Validates Source Route Overhead Information cached.
 
     // Ezsp source route overhead unknown
-    static SOURCE_ROUTE_OVERHEAD_UNKNOWN = 0xFF;
+    static SOURCE_ROUTE_OVERHEAD_UNKNOWN = 0xff;
 }
 
 export class EmberNetworkInitBitmask extends basic.uint16_t {
@@ -1690,12 +2233,12 @@ export class EmberZDOCmd extends basic.uint16_t {
     static Discovery_store_req = 0x0016;
     static Node_Desc_store_req = 0x0017;
     static Active_EP_store_req = 0x0019;
-    static Simple_Desc_store_req = 0x001A;
-    static Remove_node_cache_req = 0x001B;
-    static Find_node_cache_req = 0x001C;
-    static Extended_Simple_Desc_req = 0x001D;
-    static Extended_Active_EP_req = 0x001E;
-    static Parent_annce = 0x001F;
+    static Simple_Desc_store_req = 0x001a;
+    static Remove_node_cache_req = 0x001b;
+    static Find_node_cache_req = 0x001c;
+    static Extended_Simple_Desc_req = 0x001d;
+    static Extended_Active_EP_req = 0x001e;
+    static Parent_annce = 0x001f;
     //  Bind Management Server Services Responses
     static End_Device_Bind_req = 0x0020;
     static Bind_req = 0x0021;
@@ -1728,12 +2271,12 @@ export class EmberZDOCmd extends basic.uint16_t {
     static Node_Desc_store_rsp = 0x8017;
     static Power_Desc_store_rsp = 0x8018;
     static Active_EP_store_rsp = 0x8019;
-    static Simple_Desc_store_rsp = 0x801A;
-    static Remove_node_cache_rsp = 0x801B;
-    static Find_node_cache_rsp = 0x801C;
-    static Extended_Simple_Desc_rsp = 0x801D;
-    static Extended_Active_EP_rsp = 0x801E;
-    static Parent_annce_rsp = 0x801F;
+    static Simple_Desc_store_rsp = 0x801a;
+    static Remove_node_cache_rsp = 0x801b;
+    static Find_node_cache_rsp = 0x801c;
+    static Extended_Simple_Desc_rsp = 0x801d;
+    static Extended_Active_EP_rsp = 0x801e;
+    static Parent_annce_rsp = 0x801f;
     //  Bind Management Server Services Responses
     static End_Device_Bind_rsp = 0x8020;
     static Bind_rsp = 0x8021;
@@ -1766,4 +2309,22 @@ export class EzspDecisionBitmask extends basic.uint16_t {
     static JOINS_USE_INSTALL_CODE_KEY = 0x0010;
     // Delay sending the network key to a new joining device.
     static DEFER_JOINS = 0x0020;
+}
+
+export class EmberDerivedKeyType extends basic.uint8_t {
+    // Derived keys are calculated when performing Zigbee crypto operations.
+    // The stack makes use of these derivations.
+
+    // Perform no derivation; use the key as is.
+    static NONE = 0;
+    // Perform the Key-Transport-Key hash.
+    static KEY_TRANSPORT_KEY = 1;
+    // Perform the Key-Load-Key hash.
+    static KEY_LOAD_KEY = 2;
+    // Perform the Verify Key hash.
+    static VERIFY_KEY = 3;
+    // Perform a simple AES hash of the key for TC backup.
+    static TC_SWAP_OUT_KEY = 4;
+    // For a TC using hashed link keys, hashed the root key against the supplied EUI in context.
+    static TC_HASHED_LINK_KEY = 5;
 }
