@@ -1,38 +1,37 @@
-/* istanbul ignore file */
-/* eslint-disable */
-import ZiGateFrame from './frame';
-import BuffaloZiGate, {BuffaloZiGateOptions} from './buffaloZiGate';
-import {ZiGateCommandCode, ZiGateMessageCode, ZiGateObjectPayload} from "./constants";
-import {ZiGateMessage, ZiGateMessageParameter} from "./messageType";
-import {ZiGateCommand, ZiGateCommandParameter, ZiGateCommandType} from "./commandType";
-import {Debug} from '../debug';
+/* v8 ignore start */
+
+import {logger} from "../../../utils/logger";
+import BuffaloZiGate, {type BuffaloZiGateOptions} from "./buffaloZiGate";
+import {ZiGateCommand, type ZiGateCommandParameter, type ZiGateCommandType} from "./commandType";
+import type {ZiGateCommandCode, ZiGateMessageCode, ZiGateObjectPayload} from "./constants";
+import ZiGateFrame from "./frame";
+import {ZiGateMessage, type ZiGateMessageParameter} from "./messageType";
+import ParameterType from "./parameterType";
 
 type ZiGateCode = ZiGateCommandCode | ZiGateMessageCode;
 type ZiGateParameter = ZiGateCommandParameter | ZiGateMessageParameter;
 
+const NS = "zh:zigate:object";
 
-const debug = Debug('driver:ziGateObject');
-
-const BufferAndListTypes = [
-    'BUFFER', 'BUFFER8', 'BUFFER16',
-    'BUFFER18', 'BUFFER32', 'BUFFER42',
-    'BUFFER100', 'LIST_UINT16', 'LIST_ROUTING_TABLE',
-    'LIST_BIND_TABLE', 'LIST_NEIGHBOR_LQI', 'LIST_NETWORK',
-    'LIST_ASSOC_DEV', 'LIST_UINT8',
+const BufferAndListTypes: ParameterType[] = [
+    ParameterType.BUFFER,
+    ParameterType.BUFFER8,
+    ParameterType.BUFFER16,
+    ParameterType.BUFFER18,
+    ParameterType.BUFFER32,
+    ParameterType.BUFFER42,
+    ParameterType.BUFFER100,
+    ParameterType.LIST_UINT16,
+    ParameterType.LIST_UINT8,
 ];
 
 class ZiGateObject {
     private readonly _code: ZiGateCode;
     private readonly _payload: ZiGateObjectPayload;
     private readonly _parameters: ZiGateParameter[];
-    private readonly _frame: ZiGateFrame;
+    private readonly _frame?: ZiGateFrame;
 
-    private constructor(
-        code: ZiGateCode,
-        payload: ZiGateObjectPayload,
-        parameters: ZiGateParameter[],
-        frame?: ZiGateFrame
-    ) {
+    private constructor(code: ZiGateCode, payload: ZiGateObjectPayload, parameters: ZiGateParameter[], frame?: ZiGateFrame) {
         this._code = code;
         this._payload = payload;
         this._parameters = parameters;
@@ -43,7 +42,7 @@ class ZiGateObject {
         return this._code;
     }
 
-    get frame(): ZiGateFrame {
+    get frame(): ZiGateFrame | undefined {
         return this._frame;
     }
 
@@ -55,10 +54,7 @@ class ZiGateObject {
         return ZiGateCommand[this._code];
     }
 
-    public static createRequest(
-        commandCode: ZiGateCommandCode,
-        payload: ZiGateObjectPayload
-    ): ZiGateObject {
+    public static createRequest(commandCode: ZiGateCommandCode, payload: ZiGateObjectPayload): ZiGateObject {
         const cmd = ZiGateCommand[commandCode];
 
         if (!cmd) {
@@ -70,10 +66,10 @@ class ZiGateObject {
 
     public static fromZiGateFrame(frame: ZiGateFrame): ZiGateObject {
         const code = frame.readMsgCode();
-        return ZiGateObject.fromBufer(code, frame.msgPayloadBytes, frame);
+        return ZiGateObject.fromBuffer(code, frame.msgPayloadBytes, frame);
     }
 
-    public static fromBufer(code: number, buffer: Buffer, frame?: ZiGateFrame): ZiGateObject {
+    public static fromBuffer(code: number, buffer: Buffer, frame: ZiGateFrame): ZiGateObject {
         const msg = ZiGateMessage[code];
 
         if (!msg) {
@@ -85,7 +81,7 @@ class ZiGateObject {
             throw new Error(`Message '${code.toString(16)}' cannot be a response`);
         }
 
-        const payload = this.readParameters(buffer, parameters);
+        const payload = ZiGateObject.readParameters(buffer, parameters);
 
         return new ZiGateObject(code, payload, parameters, frame);
     }
@@ -103,25 +99,26 @@ class ZiGateObject {
                 const lengthParameter = parameters[parameters.indexOf(parameter) - 1];
                 const length = result[lengthParameter.name];
 
-                if (typeof length === 'number') {
+                if (typeof length === "number") {
                     options.length = length;
                 }
             }
 
             try {
                 result[parameter.name] = buffalo.read(parameter.parameterType, options);
-            } catch (e) {
-                debug.error(e.stack);
+            } catch (error) {
+                // biome-ignore lint/style/noNonNullAssertion: ignored using `--suppress`
+                logger.error((error as Error).stack!, NS);
             }
         }
 
         if (buffalo.isMore()) {
-            let bufferString = buffalo.getBuffer().toString('hex');
-            debug.error(
-                "Last bytes of data were not parsed \x1b[32m%s\x1b[31m%s\x1b[0m ",
-                bufferString.slice(0, (buffalo.getPosition() * 2)).replace(/../g, "$& "),
-                bufferString.slice(buffalo.getPosition() * 2).replace(/../g, "$& ")
-            )
+            const bufferString = buffalo.getBuffer().toString("hex");
+            logger.debug(
+                `Last bytes of data were not parsed \x1b[32m${bufferString.slice(0, buffalo.getPosition() * 2).replace(/../g, "$& ")}` +
+                    `\x1b[31m${bufferString.slice(buffalo.getPosition() * 2).replace(/../g, "$& ")}\x1b[0m `,
+                NS,
+            );
         }
 
         return result;
@@ -144,7 +141,6 @@ class ZiGateObject {
         }
         return buffalo.getWritten();
     }
-
 }
 
 export default ZiGateObject;

@@ -1,13 +1,16 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import assert from "node:assert";
+
 import {Struct} from "../struct";
 
 /**
  * Creates a gza-core `hasConfigured` struct.
- * 
+ *
  * @param data Data to initialize structure with.
  */
-export const hasConfigured = (data?: Buffer) => Struct.new()
-    .member("uint8", "hasConfigured")
-    .method("isConfigured", Boolean.prototype, struct => struct.hasConfigured === 0x55)
-    .build(data);
+export const hasConfigured = (data?: Buffer | Buffer[]) => {
+    assert(!Array.isArray(data));
+    return Struct.new()
+        .member("uint8", "hasConfigured")
+        .method("isConfigured", Boolean.prototype, (struct) => struct.hasConfigured === 0x55)
+        .build(data);
+};

@@ -1,16 +1,17 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import {nwkKeyDescriptor} from "./nwk-key-descriptor";
+import assert from "node:assert";
+
 import {Struct} from "../struct";
+import {nwkKeyDescriptor} from "./nwk-key-descriptor";
 
 /**
  * Creates a NIB (Network Information Base) struct.
  *
  * *Definition from Z-Stack 3.0.2 `nwk.h`*
- * 
+ *
  * @param data Data to initialize structure with.
  */
-export const nib = (data?: Buffer) => {
+export const nib = (data?: Buffer | Buffer[]) => {
+    assert(!Array.isArray(data));
     return Struct.new()
         .member("uint8", "SequenceNum")
         .member("uint8", "PassiveAckTimeout")

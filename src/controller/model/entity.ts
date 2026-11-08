@@ -1,10 +1,12 @@
-import Database from '../database';
-import {Adapter} from '../../adapter';
-import events from 'events';
+import events from "node:events";
 
-abstract class Entity extends events.EventEmitter {
-    protected static database: Database = null;
-    protected static adapter: Adapter = null;
+import type {Adapter} from "../../adapter";
+import type Database from "../database";
+
+// biome-ignore lint/suspicious/noExplicitAny: API
+export abstract class Entity<T extends Record<keyof T, any[]> = Record<string, any[]>> extends events.EventEmitter<T> {
+    protected static database: Database;
+    protected static adapter: Adapter;
 
     public static injectDatabase(database: Database): void {
         Entity.database = database;

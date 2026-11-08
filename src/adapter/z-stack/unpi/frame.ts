@@ -1,18 +1,15 @@
-import {Type, Subsystem, DataStart, SOF, PositionCmd0, PositionCmd1} from './constants';
+import {DataStart, PositionCmd0, PositionCmd1, SOF, type Subsystem, type Type} from "./constants";
 
-class Frame {
+export class Frame {
     public readonly type: Type;
     public readonly subsystem: Subsystem;
     public readonly commandID: number;
     public readonly data: Buffer;
 
-    public readonly length: number;
-    public readonly fcs: number;
+    public readonly length?: number;
+    public readonly fcs?: number;
 
-    public constructor(
-        type: Type, subsystem: Subsystem, commandID: number, data: Buffer,
-        length: number = null, fcs: number = null,
-    ) {
+    public constructor(type: Type, subsystem: Subsystem, commandID: number, data: Buffer, length?: number, fcs?: number) {
         this.type = type;
         this.subsystem = subsystem;
         this.commandID = commandID;
@@ -23,7 +20,7 @@ class Frame {
 
     public toBuffer(): Buffer {
         const length = this.data.length;
-        const cmd0 = ((this.type << 5) & 0xE0) | (this.subsystem & 0x1F);
+        const cmd0 = ((this.type << 5) & 0xe0) | (this.subsystem & 0x1f);
 
         let payload = Buffer.from([SOF, length, cmd0, this.commandID]);
         payload = Buffer.concat([payload, this.data]);
@@ -33,20 +30,20 @@ class Frame {
     }
 
     public static fromBuffer(length: number, fcsPosition: number, buffer: Buffer): Frame {
-        const subsystem: Subsystem = buffer.readUInt8(PositionCmd0) & 0x1F;
-        const type: Type = (buffer.readUInt8(PositionCmd0) & 0xE0) >> 5;
+        const subsystem: Subsystem = buffer.readUInt8(PositionCmd0) & 0x1f;
+        const type: Type = (buffer.readUInt8(PositionCmd0) & 0xe0) >> 5;
         const commandID = buffer.readUInt8(PositionCmd1);
-        const data = buffer.slice(DataStart, fcsPosition);
+        const data = buffer.subarray(DataStart, fcsPosition);
         const fcs = buffer.readUInt8(fcsPosition);
 
         // Validate the checksum to see if we fully received the message
-        const checksum = this.calculateChecksum(buffer.slice(1, fcsPosition));
+        const checksum = Frame.calculateChecksum(buffer.subarray(1, fcsPosition));
 
         if (checksum === fcs) {
             return new Frame(type, subsystem, commandID, data, length, fcs);
-        } else {
-            throw new Error("Invalid checksum");
         }
+
+        throw new Error("Invalid checksum");
     }
 
     private static calculateChecksum(values: Buffer): number {
@@ -60,9 +57,6 @@ class Frame {
     }
 
     public toString(): string {
-        return `${this.length} - ${this.type} - ${this.subsystem} - ${this.commandID} - ` +
-            `[${[...this.data]}] - ${this.fcs}`;
+        return `${this.length} - ${this.type} - ${this.subsystem} - ${this.commandID} - [${[...this.data]}] - ${this.fcs}`;
     }
 }
-
-export default Frame;
